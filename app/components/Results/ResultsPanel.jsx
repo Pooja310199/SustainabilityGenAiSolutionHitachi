@@ -378,6 +378,8 @@ export default function ResultsPanel({ resultsMap, viewMode, loading }) {
         >
           Collapse All
         </button>
+
+        <button>pooja</button>
       </div>
 
       {/* ===== COUNTRY ===== */}
