@@ -1,0 +1,485 @@
+[
+  {
+  "category": "Conflict: Country or Armed Conflict",
+  "items": [
+    {
+      "type": "War",
+      "status": "Yes",
+      "summary": "In 2025, India and Pakistan engaged in a major armed conflict following a terrorist attack in Pahalgam, Kashmir. India launched air and ground assaults targeting militant strongholds in Pakistan and Pakistan-administered Kashmir, leading to reciprocal attacks that lasted several days and resulted in numerous casualties and widespread damage before an uneasy ceasefire was brokered with international mediation.",
+      "severity": "RED"
+    },
+    {
+      "type": "Civil War",
+      "status": "No",
+      "summary": "There is no active civil war reported in India in 2025. The conflict remains interstate, primarily between India and Pakistan with no internal factions battling for national government control.",
+      "severity": "GREEN"
+    },
+    {
+      "type": "Territorial Dispute",
+      "status": "Yes",
+      "summary": "The longstanding territorial dispute over Kashmir between India and Pakistan remains unresolved. The 2025 conflict was the latest violent episode in this dispute, with both countries continuing to claim the region in full and engaging in periodic skirmishes and military build-ups along the Line of Control.",
+      "severity": "RED"
+    },
+    {
+      "type": "Terrorist Threats",
+      "status": "Yes",
+      "summary": "India faces ongoing terrorist threats, particularly in Kashmir, from Pakistan-based groups such as Lashkar-e-Taiba and Jaish-e-Mohammed. The 2025 Pahalgam attack was attributed to these groups, triggering a severe cross-border military confrontation.",
+      "severity": "RED"
+    },
+    {
+      "type": "Unrest",
+      "status": "Yes",
+      "summary": "Significant unrest persists in Kashmir, marked by civilian displacement, political instability, and human rights concerns following the conflict in 2025. The situation remains tense, with periodic violence and a fragile ceasefire in place.",
+      "severity": "ORANGE"
+    },
+
+    {
+      "type": "Unrest",
+      "status": "Yes",
+      "summary": "Significant unrest persists in Kashmir, marked by civilian displacement, political instability, and human rights concerns following the conflict in 2025. The situation remains tense, with periodic violence and a fragile ceasefire in place.",
+      "severity": "RED"
+    }
+   
+  ],
+  "sources": [
+    "https://defensefeeds.com/analysis/conflicts/india-pakistan-conflict",
+    "https://en.wikipedia.org/wiki/2025_India%E2%80%93Pakistan_conflict",
+    "https://news.org.in/story/2025/implications-of-the-india-pakistan-war",
+    "https://time.com/7823974/india-pakistan-tensions-timeline-history",
+    "https://www.congress.gov/crs-product/conflict-between-india-and-pakistan",
+    "gfhhhhhhhhhhhhh",
+    "ggggggggggggggggggggggggggggggggg"
+  ],
+  "overall_severity": "RED"
+},
+
+{
+  "category": "UN Geoscheme Classification",
+  "items": [
+    {
+      "description": "Recognized as sovereign state",
+      "status": "Yes",
+      "summary": "India is recognized by the United Nations as a sovereign state and is a full member. It is not listed as non-self-governing, nor as disputed or occupied by the UN.",
+      "severity": "GREEN"
+    },
+    {
+      "description": "Sovereignty disputed",
+      "status": "No",
+      "summary": "India’s sovereignty is not disputed for the country as a whole in official UN documentation. While there are territorial disputes (e.g., Jammu & Kashmir, Arunachal Pradesh, Aksai Chin), India itself is not categorized as disputed or occupied.",
+      "severity": "GREEN"
+    },
+    {
+      "description": "Recognized by UN and other states globally",
+      "status": "Yes",
+      "summary": "India is broadly recognized as a sovereign state by the UN and most global states. There is no international question of its recognition as a country, though certain regions are subject to bilateral disputes.",
+      "severity": "GREEN"
+    },
+     {
+      "description": "Recognized by UN and other states globally",
+      "status": "Yes",
+      "summary": "India is broadly recognized as a sovereign state by the UN and most global states. There is no international question of its recognition as a country, though certain regions are subject to bilateral disputes.",
+      "severity": "RED"
+    }
+  ],
+  "sources": [
+    "https://en.wikipedia.org/wiki/India",
+    "https://en.wikipedia.org/wiki/List_of_territorial_disputes",
+    "https://en.wikipedia.org/wiki/Territorial_disputes_of_India",
+    "https://en.wikipedia.org/wiki/List_of_non-self-governing_territories",
+    "https://unhabitat.org/sites/default/files/2022/02/main-instances-of-disputed-territories.pdf",
+    "https://www.crshtiiasis.com/to-the-point/territorial-disputes-of-india/",
+    "https://www.un.org/dppa/decolonization/en/nsgt",
+    "https://www.wikimond.com/en/articles/territorial_disputes_of_India",
+    "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm"
+  ],
+  "overall_severity": "RED"
+},
+
+
+{
+
+  "category":"Sensitive Country Protocol",
+  "metrics":{
+
+    "country":"Ukraine",
+    "regions":[
+
+
+ ],
+    "severity":[],
+    "overall_severity":"RED"
+
+
+
+  },
+  "sources":[
+
+    "htttps/hhhhhhhhhhhhhh",
+    "httpsnnnnnnnnnnn"
+  ],
+  "overall_severity":"ORANGE"
+
+
+
+
+},
+
+
+
+
+
+
+
+{
+  "category": "Rule of Law and Democracy",
+  "metrics": {
+    "global_ranking": {
+      "rank": "N/A",
+      "rescaled": "N/A",
+      "severity": "N/A",
+      "risk_level": "N/A"
+    },
+    "regional_ranking": {
+      "rank": "3/6",
+      "region": "South Asia",
+      "rescaled": 5,
+      "severity": "ORANGE",
+      "risk_level": "Medium Risk"
+    },
+    "gsod_index": {
+      "index_value": 0.48,
+      "rescaled": 4.8,
+      "severity": "RED",
+      "risk_level": "High Risk"
+    },
+    "worldbank_percentile_rank": {
+      "percentile": 56.13,
+      "rescaled": 5.61,
+      "severity": "ORANGE",
+      "risk_level": "Medium Risk"
+    },
+    "democracy_indexes": {
+      "year": 2024,
+      "electoral_democracy_index_d": {
+        "value": 0.4,
+        "rescaled": 3.98,
+        "severity": "RED",
+        "risk_level": "High Risk"
+      },
+      "liberal_democracy_index_d": {
+        "value": 0.29,
+        "rescaled": 2.91,
+        "severity": "RED",
+        "risk_level": "High Risk"
+      },
+      "participatory_democracy_index_d": {
+        "value": 0.25,
+        "rescaled": 2.48,
+        "severity": "RED",
+        "risk_level": "High Risk"
+      },
+      "deliberative_democracy_index_d": {
+        "value": 0.29,
+        "rescaled": 2.87,
+        "severity": "RED",
+        "risk_level": "High Risk"
+      },
+      "egalitarian_democracy_index_d": {
+        "value": 0.21,
+        "rescaled": 2.15,
+        "severity": "RED",
+        "risk_level": "High Risk"
+      },
+
+
+      "chandan_democracy_index_d": {
+        "value": 0.21,
+        "rescaled": 2.15,
+        "severity": "RED",
+        "risk_level": "High Risk"
+      }
+
+    },
+    "human_freedom_index": {
+      "rank": "110/165",
+      "score": 6.26,
+      "severity": "ORANGE",
+      "risk_level": "Medium Risk"
+    },
+       "pooja_ranking": {
+      "rank": "79/142",
+      "rescaled": 4.44,
+      "severity": "RED",
+      "risk_level": "High Risk"
+    }
+  },
+  "analysis": {
+    "trends_and_challenges": [
+      "Ongoing modernization of legislative and institutional frameworks, such as the proposed simultaneous elections and legal system reform.",
+      "Concerns regarding the independence and credibility of democratic institutions, potential centralization of power, and debates over federalism."
+    ],
+    "legal_and_institutional_framework": [
+      "The 129th Constitution Amendment Bill aims to synchronize state assemblies and Lok Sabha tenures, introducing exceptions managed by the Election Commission.",
+      "Judicial reforms and adoption of technology like AI, specialized courts, and efficiency measures are priorities, but there are concerns about judicial independence as raised by international observers."
+    ]
+
+  },
+  "sources": [
+    "https://blog-iacl-aidc.org/2025-posts/2025/3/4/the-129th-constitution-amendment-bill-and-its-probable-impact-on-indias-democratic-framework",
+    "https://indiawest.com/ilacon-2025-a-vision-for-a-modern-legal-framework-in-india",
+    "https://www.icj.org/wp-content/uploads/2025/02/Judicial-Independence-in-India.pdf",
+    "gggggggggggggggggggggggggggggggg"
+  ],
+  "overall_severity": "RED"
+},
+
+{
+  "category": "Civil Liberties",
+  "metrics":{
+  "civic_space_score": {
+    "score": 33,
+    "rescaled": 3.3,
+    "severity": "RED",
+    "risk_level": "High Risk"
+  },
+  "freedom_house": {
+    "global_freedom": {
+      "score": "63/100",
+      "rescaled": 6.3,
+      "severity": "ORANGE",
+      "risk_level": "Medium Risk"
+    },
+    "political_rights": {
+      "score": "31/40",
+      "rescaled": 7.75,
+      "severity": "ORANGE",
+      "risk_level": "Medium Risk"
+    },
+    "civil_liberties": {
+      "score": "32/60",
+      "rescaled": 5.33,
+      "severity": "ORANGE",
+      "risk_level": "Medium Risk"
+    },
+    "internet_freedom": {
+      "score": "N/A",
+      "severity": "N/A",
+      "risk_level": "No Data"
+    }
+  }
+  },
+   "analysis":{
+  "trends_and_challenges": [
+    "Increasing government surveillance and censorship, including internet shutdowns and crackdown on dissent.",
+    "Harassment of journalists, NGOs, and opposition voices has risen, with use of anti-terror laws to silence critics.",
+    "Judicial improvements on digital rights, but overall civil liberties continue to deteriorate, with pressure on freedom of expression and religious tolerance."
+  ]
+},
+  "sources": [
+    "https://freedomhouse.org/country/india/freedom-world/2025/",
+    "https://monitor.civicus.org/about/how-it-works/ratings/",
+    "https://monitor.civicus.org/country/india/",
+    "https://monitor.civicus.org/data/",
+    "https://powercorridors.in/",
+    "https://www.ecoi.net/en/document/2123535.html",
+    "https://www.nriaffairs.com/",
+    "https://powercorridors.in/supreme-count-shockwaves-landmark-ruling-reshapes-internet-freedom-in-india/",
+    "https://powercorridors.in/indias-democracy-dims-classified-partly-free-again-in-2025-freedom-report/",
+    "https://www.nriaffairs.com/indias-freedom-status-declines-in-freedom-houses-2025-report-while-kashmir-sees-improvement/"
+  ],
+  "overall_severity": "ORANGE"
+},
+
+{
+  "category": "Human Rights General",
+  "metrics": {
+    "human_rights_owdin": [
+      {
+        "index": "Human Rights Index",
+        "value": 0.597,
+        "index_description": "Extent to which people are free from government torture, political killings, forced labor; property rights; freedoms of movement, religion, expression, and association.",
+        "rescaled": 5.97,
+        "severity": "ORANGE",
+        "risk_level": "Medium Risk"
+      },
+      {
+        "index": "Participatory Democracy Index",
+        "value": 0.248,
+        "index_description": "Suffrage, fair elections, association and expression freedoms, citizen engagement in government and civil society.",
+        "rescaled": 2.48,
+        "severity": "RED",
+        "risk_level": "High Risk"
+      },
+      {
+        "index": "Electoral Democracy Index",
+        "value": 0.398,
+        "index_description": "Political leaders elected under comprehensive suffrage in free, fair elections; association and expression freedoms.",
+        "rescaled": 3.98,
+        "severity": "RED",
+        "risk_level": "High Risk"
+      },
+      {
+        "index": "Freedom of Association Index",
+        "value": 0.593,
+        "index_description": "Ability of parties (including opposition) and civil society organizations to freely form, participate, and operate.",
+        "rescaled": 5.93,
+        "severity": "ORANGE",
+        "risk_level": "Medium Risk"
+      },
+      {
+        "index": "Freedom of Expression Index",
+        "value": 0.493,
+        "index_description": "Ability to discuss political matters; press, media, academic, and cultural freedom.",
+        "rescaled": 4.93,
+        "severity": "RED",
+        "risk_level": "High Risk"
+      }
+    ],
+    "hrmi_rights_tracker": {
+      "Quality_of_Life": {
+        "summary_score": 7.08,
+        "subindicators": [
+          {
+            "name": "Food",
+            "value": 6.1,
+            "severity": "ORANGE",
+            "risk_level": "Medium Risk"
+          },
+          {
+            "name": "Health",
+            "value": 8.5,
+            "severity": "GREEN",
+            "risk_level": "Low Risk"
+          },
+          {
+            "name": "Housing",
+            "value": 7.47,
+            "severity": "ORANGE",
+            "risk_level": "Medium Risk"
+          },
+          {
+            "name": "Education",
+            "value": 7.59,
+            "severity": "ORANGE",
+            "risk_level": "Medium Risk"
+          },
+          {
+            "name": "Work",
+            "value": 5.77,
+            "severity": "ORANGE",
+            "risk_level": "Medium Risk"
+          }
+        ],
+        "severity": "ORANGE",
+        "risk_level": "Medium Risk"
+      },
+      "Safety_From_the_State_Rights": {
+        "summary_score": 4.7,
+        "subindicators": [
+          {
+            "name": "Freedom from Extrajudicial Execution",
+            "value": 5.1,
+            "severity": "ORANGE",
+            "risk_level": "Medium Risk"
+          },
+          {
+            "name": "Freedom from Arbitrary Arrest",
+            "value": 3.7,
+            "severity": "RED",
+            "risk_level": "High Risk"
+          },
+          {
+            "name": "Freedom from Disappearance",
+            "value": 6.1,
+            "severity": "ORANGE",
+            "risk_level": "Medium Risk"
+          },
+          {
+            "name": "Freedom from Torture",
+            "value": 4.0,
+            "severity": "RED",
+            "risk_level": "High Risk"
+          },
+          {
+            "name": "Freedom from Death Penalty Misuse",
+            "value": 10.0,
+            "severity": "GREEN",
+            "risk_level": "Low Risk"
+          }
+        ],
+        "severity": "RED",
+        "risk_level": "High Risk"
+      },
+      "Empowerment_Rights": {
+        "summary_score": 3.6,
+        "subindicators": [
+          {
+            "name": "Right to Assembly",
+            "value": 3.6,
+            "severity": "RED",
+            "risk_level": "High Risk"
+          },
+          {
+            "name": "Right to Association",
+            "value": 3.6,
+            "severity": "RED",
+            "risk_level": "High Risk"
+          },
+          {
+            "name": "Right to Participation in Government",
+            "value": 4.4,
+            "severity": "RED",
+            "risk_level": "High Risk"
+          },
+          {
+            "name": "Freedom of Expression",
+            "value": 3.5,
+            "severity": "RED",
+            "risk_level": "High Risk"
+          }
+        ],
+        "severity": "RED",
+        "risk_level": "High Risk"
+      }
+    }
+  },
+  "analysis": [
+    {
+      "topic": "Country Ranking and Status",
+      "summary": [
+        "India remains ranked as 'Partly Free' by leading organizations such as Freedom House and HRMI, with declining scores in civil liberties and political rights.",
+        "Human rights indices show low to moderate scores in democratic freedoms, civil rights, and participation."
+      ]
+    },
+    {
+      "topic": "General State of Human Rights",
+      "summary": [
+        "India faces ongoing and significant human rights challenges, including discrimination and violence against minorities, political repression, and limited freedom of expression.",
+        "Civil society and activists experience political targeting and restrictions, with legal and administrative obstacles to dissent."
+      ]
+    },
+    {
+      "topic": "Key Human Rights Trends, Challenges and Systemic Abuses",
+      "summary": [
+        "Systemic abuses include discrimination and violence against minorities, arbitrary detentions, and suppression of dissent.",
+        "Police brutality, custodial violence, and lack of accountability are widespread concerns.",
+        "Limited progress on legal safeguards, international criticism, and institutional failures contribute to ongoing risks for vulnerable groups."
+      ]
+    }
+  ],
+  "sources": [
+    "https://freedomhouse.org/country/india/freedom-world/2025",
+    "https://humanrightsmeasurement.org/wp-content/uploads/2025/06/HRMI-India-2025-Summary-Report.pdf",
+    "https://rightstracker.org/country/IND",
+    "https://www.eurasiaview.com/03102025-intensifying-global-scrutiny-of-indias-systemic-human-rights-abuses-oped/",
+    "https://www.hrw.org/world-report/2025/country-chapters/india",
+    "https://www.nationalheraldindia.com/opinion/whats-happening-in-india-in-2025-highlights-of-the-year-so-far",
+    "https://www.state.gov/wp-content/uploads/2025/07/642521-INDIA-2024-HUMAN-RIGHTS-REPORT.pdf",
+    "https://www.thenewsminute.com/news/first-ever-global-torture-index-flags-india-as-high-risk-country"
+  ],
+  "overall_severity": "RED"
+}
+
+
+
+]

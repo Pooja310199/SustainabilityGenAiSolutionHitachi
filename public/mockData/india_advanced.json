@@ -1,0 +1,388 @@
+[
+  {
+  "category": "Litigation",
+  "results": [
+    {
+      "subcategory": "Internet Freedom",
+      "metrics": {
+        "country": "India",
+        "scores": {
+          "A": {
+            "name": "Obstacles to Access",
+            "value": 14,
+            "max_value": 25,
+            "queries": [
+              {
+                "code": "A1",
+                "query": "Do infrastructural limitations restrict access to the internet or the speed and quality of internet connections? (0–6 points)",
+                "value": 4,
+                "max_value": 6,
+                "rescaled": 6.67,
+                "severity": "ORANGE",
+                "risk_level": "Medium Risk"
+              },
+              {
+                "code": "A2",
+                "query": "Is access to the internet prohibitively expensive or beyond the reach of certain segments of the population for geographical, social, or other reasons? (0–3 points)",
+                "value": 2,
+                "max_value": 3,
+                "rescaled": 6.67,
+                "severity": "ORANGE",
+                "risk_level": "Medium Risk"
+              },
+              {
+                "code": "A3",
+                "query": "Does the government exercise technical or legal control over internet infrastructure for the purposes of restricting connectivity? (0–6 points)",
+                "value": 2,
+                "max_value": 6,
+                "rescaled": 3.33,
+                "severity": "RED",
+                "risk_level": "High Risk"
+              },
+              {
+                "code": "A4",
+                "query": "Are there legal, regulatory, or economic obstacles that restrict the diversity of service providers? (0–4 points)",
+                "value": 4,
+                "max_value": 4,
+                "rescaled": 10.0,
+                "severity": "GREEN",
+                "risk_level": "Low Risk"
+              },
+              {
+                "code": "A5",
+                "query": "Do national regulatory bodies that oversee service providers and digital technology fail to operate in a free, fair, and independent manner? (0–4 points)",
+                "value": 2,
+                "max_value": 4,
+                "rescaled": 5.0,
+                "severity": "ORANGE",
+                "risk_level": "Medium Risk"
+              }
+            ],
+            "rescaled": 5.6,
+            "severity": "ORANGE",
+            "risk_level": "Medium Risk"
+          },
+          "B": {
+            "name": "Limits on Content",
+            "value": 19,
+            "max_value": 35,
+            "queries": [
+              {
+                "code": "B1",
+                "query": "Does the state block or filter, or compel service providers to block or filter, internet content…? (0–6 points)",
+                "value": 3,
+                "max_value": 6,
+                "rescaled": 5.0,
+                "severity": "ORANGE",
+                "risk_level": "Medium Risk"
+              },
+              {
+                "code": "B2",
+                "query": "Do state or nonstate actors employ legal, administrative…? (0–4 points)",
+                "value": 1,
+                "max_value": 4,
+                "rescaled": 2.5,
+                "severity": "RED",
+                "risk_level": "High Risk"
+              },
+              {
+                "code": "B3",
+                "query": "Do restrictions on the internet and digital content lack transparency…? (0–4 points)",
+                "value": 2,
+                "max_value": 4,
+                "rescaled": 5.0,
+                "severity": "ORANGE",
+                "risk_level": "Medium Risk"
+              },
+              {
+                "code": "B4",
+                "query": "Do online journalists, commentators, and ordinary users practice self-censorship? (0–4 points)",
+                "value": 3,
+                "max_value": 4,
+                "rescaled": 7.5,
+                "severity": "ORANGE",
+                "risk_level": "Medium Risk"
+              },
+              {
+                "code": "B5",
+                "query": "Are online sources of information controlled or manipulated…? (0–4 points)",
+                "value": 1,
+                "max_value": 4,
+                "rescaled": 2.5,
+                "severity": "RED",
+                "risk_level": "High Risk"
+              },
+              {
+                "code": "B6",
+                "query": "Are there economic, regulatory, or other constraints…? (0–3 points)",
+                "value": 2,
+                "max_value": 3,
+                "rescaled": 6.67,
+                "severity": "ORANGE",
+                "risk_level": "Medium Risk"
+              },
+              {
+                "code": "B7",
+                "query": "Does the online information landscape lack diversity and reliability? (0–4 points)",
+                "value": 3,
+                "max_value": 4,
+                "rescaled": 7.5,
+                "severity": "ORANGE",
+                "risk_level": "Medium Risk"
+              },
+              {
+                "code": "B8",
+                "query": "Do conditions impede users’ ability to form communities, mobilize, and campaign…? (0–6 points)",
+                "value": 4,
+                "max_value": 6,
+                "rescaled": 6.67,
+                "severity": "ORANGE",
+                "risk_level": "Medium Risk"
+              }
+            ],
+            "rescaled": 5.43,
+            "severity": "ORANGE",
+            "risk_level": "Medium Risk"
+          },
+          "C": {
+            "name": "Violations of User Rights",
+            "value": 17,
+            "max_value": 40,
+            "queries": [
+              {
+                "code": "C1",
+                "query": "Do the constitution or other laws fail to protect rights…? (0–6 points)",
+                "value": 4,
+                "max_value": 6,
+                "rescaled": 6.67,
+                "severity": "ORANGE",
+                "risk_level": "Medium Risk"
+              },
+              {
+                "code": "C2",
+                "query": "Are there laws that assign criminal penalties or civil liability…? (0–4 points)",
+                "value": 2,
+                "max_value": 4,
+                "rescaled": 5.0,
+                "severity": "ORANGE",
+                "risk_level": "Medium Risk"
+              },
+              {
+                "code": "C3",
+                "query": "Are individuals penalized for online activities…? (0–6 points)",
+                "value": 2,
+                "max_value": 6,
+                "rescaled": 3.33,
+                "severity": "RED",
+                "risk_level": "High Risk"
+              },
+              {
+                "code": "C4",
+                "query": "Does the government place restrictions on anonymous communication or encryption? (0–4 points)",
+                "value": 2,
+                "max_value": 4,
+                "rescaled": 5.0,
+                "severity": "ORANGE",
+                "risk_level": "Medium Risk"
+              },
+              {
+                "code": "C5",
+                "query": "Does state surveillance of internet activities infringe on users’ right to privacy? (0–6 points)",
+                "value": 1,
+                "max_value": 6,
+                "rescaled": 1.67,
+                "severity": "RED",
+                "risk_level": "High Risk"
+              },
+              {
+                "code": "C6",
+                "query": "Does monitoring and collection of user data… infringe on privacy? (0–6 points)",
+                "value": 2,
+                "max_value": 6,
+                "rescaled": 3.33,
+                "severity": "RED",
+                "risk_level": "High Risk"
+              },
+              {
+                "code": "C7",
+                "query": "Are individuals subject to extralegal intimidation…? (0–5 points)",
+                "value": 2,
+                "max_value": 5,
+                "rescaled": 4.0,
+                "severity": "RED",
+                "risk_level": "High Risk"
+              },
+              {
+                "code": "C8",
+                "query": "Are websites or users subject to widespread hacking/cyberattacks? (0–3 points)",
+                "value": 2,
+                "max_value": 3,
+                "rescaled": 6.67,
+                "severity": "ORANGE",
+                "risk_level": "Medium Risk"
+              }
+            ],
+            "rescaled": 4.25,
+            "severity": "RED",
+            "risk_level": "High Risk"
+          }
+        },
+        "value": 50,
+        "max_value": 100,
+        "rescaled": 5.0,
+        "severity": "ORANGE",
+        "risk_level": "Medium Risk"
+      },
+      "analysis": {
+        "key_developments": "India is rated 'Partly Free' for 2025…"
+      },
+      "sources": [
+        "https://freedomhouse.org/country/india/freedom-world/2025",
+        "https://m.thewire.in/article/world/india-freedom-house-report-authoritarian-controls-on-the-freedom-of-movement",
+        "https://powercorridors.in/indias-democracy-dims-classified-partly-free-again-in-2025-freedom-report/",
+        "https://www.nriaffairs.com/indias-freedom-status-declines-in-freedom-houses-2025-report-while-kashmir-sees-improvement/"
+      ],
+      "overall_severity": "RED"
+    },
+    {
+      "subcategory": "V-Dem Media Freedom",
+      "metrics": {
+
+        "country": "India",
+        "scores":{
+
+      "freedom_of_expression_and_alternative_sources_of_information_index_d": {
+          "original_value": 8.493,
+          "rescaled": 5.49,
+          "severity": "ORANGE",
+          "risk_level": "Medium Risk"
+        },
+        "government_censorship_effort_media_c": {
+          "original_value": 0.256,
+          "rescaled": 5.26,
+          "severity": "ORANGE",
+          "risk_level": "Medium Risk"
+        },
+        "harassment_of_journalists_c": {
+          "original_value": -0.302,
+          "rescaled": 4.7,
+          "severity": "RED",
+          "risk_level": "High Risk"
+        },
+        "internet_censorship_effort_c": {
+          "original_value": -0.471,
+          "rescaled": 4.53,
+          "severity": "RED",
+          "risk_level": "High Risk"
+        },
+        "media_bias_c": {
+          "original_value": 0.321,
+          "rescaled": 5.32,
+          "severity": "ORANGE",
+          "risk_level": "Medium Risk"
+        },
+        "media_corrupt_c": {
+          "original_value": 0.058,
+          "rescaled": 5.06,
+          "severity": "ORANGE",
+          "risk_level": "Medium Risk"
+        },
+        "media_self_censorship_c": {
+          "original_value": -0.391,
+          "rescaled": 4.61,
+          "severity": "RED",
+          "risk_level": "High Risk"
+        },
+        "female_journalists_c": {
+          "original_value": 31.773,
+          "rescaled": 3.18,
+          "severity": "RED",
+          "risk_level": "High Risk"
+        },
+        "print_broadcast_media_critical_c": {
+          "original_value": 0.09,
+          "rescaled": 5.09,
+          "severity": "ORANGE",
+          "risk_level": "Medium Risk"
+        },
+        "print_broadcast_media_perspectives_c": {
+          "original_value": 0.543,
+          "rescaled": 5.54,
+          "severity": "ORANGE",
+          "risk_level": "Medium Risk"
+        }
+      }
+      },
+      "sources": [],
+      "overall_severity": "ORANGE"
+    },
+    {
+      "subcategory": "RSF World Press Freedom",
+      "metrics": {
+        "country": "India",
+        "year": 2025,
+        "score": {
+          "original_value": 32.96,
+          "rescaled": 3.3,
+          "severity": "RED",
+          "risk_level": "High Risk"
+        },
+        "rank": {
+          "original_value": 151,
+          "rescaled": 1.61,
+          "severity": "RED",
+          "risk_level": "High Risk"
+        },
+        "rank_previous_year": 159,
+        "score_previous_year": 31.28,
+        "contexts": {
+          "political_context": {
+            "original_value": 24.3,
+            "rescaled": 2.43,
+            "severity": "RED",
+            "risk_level": "High Risk"
+          },
+          "economic_context": {
+            "original_value": 34.17,
+            "rescaled": 3.42,
+            "severity": "RED",
+            "risk_level": "High Risk"
+          },
+          "legal_context": {
+            "original_value": 42.64,
+            "rescaled": 4.26,
+            "severity": "RED",
+            "risk_level": "High Risk"
+          },
+          "social_context": {
+            "original_value": 32.38,
+            "rescaled": 3.24,
+            "severity": "RED",
+            "risk_level": "High Risk"
+          },
+          "safety": {
+            "original_value": 31.3,
+            "rescaled": 3.13,
+            "severity": "RED",
+            "risk_level": "High Risk"
+          }
+        },
+        "overall_severity": "RED",
+        "overall_risk_level": "High Risk"
+      },
+      "analysis": {
+        "media_landscape": "India has a vast media sector…",
+        "political_context": "Since 2014, under Prime Minister Narendra Modi…",
+        "legal_framework": "Press freedom is included under the right to freedom of expression but not explicitly guaranteed…",
+        "sociocultural_context": "Indian media lacks representation of the country's diversity…",
+        "safety": "India remains highly dangerous for journalists…"
+      },
+      "sources": [
+        "https://rsf.org/en/country/india"
+      ],
+      "overall_severity": "RED"
+    }
+  ],
+  "errors": null
+}
+]

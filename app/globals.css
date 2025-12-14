@@ -1,26 +1,106 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+html, body {
+  height: 100%;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.no-scrollbar {
+  scrollbar-width: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+
+
+/* --- PRINT SAFE GLOBALS ------------------------ */
+@media print {
+
+  /* Hide screen-only elements */
+  .print\:hidden {
+    display: none !important;
+  }
+
+  /* Expand everything */
+  * {
+    overflow: visible !important;
+  }
+
+  .no-print-scroll {
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+  }
+
+  .pdf-section-block {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  body {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+
+@media print {
+  .print-full-width {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: none !important;
+    display: block !important;
+  }
+}
+@media print {
+  .avoid-break {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+}
+
+@media print {
+  * {
+    overflow: visible !important;
+  }
+}
+
+@media print {
+  /* Remove left margin when printing */
+  .print-remove-ml {
+    margin-left: 0 !important;
+  }
+
+  /* Convert main layout from row → column */
+  .print-force-column {
+    display: block !important;
+  }
+
+  /* Expand main content full width */
+  .print-full-width {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: none !important;
+  }
+
+  /* Hide sidebar completely */
+  .print-hide {
+    display: none !important;
+  }
+}
+
+.category-header {
+  transition: all 0.2s ease-in-out;
+}
+
+.category-header:hover {
+  filter: brightness(0.98);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+html{
+
+font-size:10px;
 }

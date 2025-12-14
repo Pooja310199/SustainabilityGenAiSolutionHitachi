@@ -1,0 +1,149 @@
+[
+
+{
+
+  "category":"project name human rights",
+  "results":[
+{
+  "sub_category":"BHRC Allegations",
+  "analysis":{
+    "allegations":[
+      {
+        "title":"allegationshhhhhh",
+        "link":"hhhhhhhhhhhhh",
+        "published_date":"2022-06-01",
+        "description":"reports gghhjjjjjjjjj."
+
+      },
+      {
+         "title":"allegationshhhhhh",
+        "link":"gggggggggggg",
+        "published_date":"2022-06-01",
+        "description":"reports gghhjjjjjjjjj."
+
+      },
+      {
+                 "title":"allegationshhhhhh",
+        "link":"hhhhhhhhhhhhhhhhhhhh",
+        "published_date":"2022-06-01",
+        "description":"reports gghhjjjjjjjjj."
+
+      }
+
+    ]
+
+  },
+  "sources":[
+    "https/wwww",
+    "https/wwww",
+    "https/wwww",
+    "https/wwww"
+
+  ]
+
+},
+{
+        "sub_category":"Bing Search",
+        "analysis":{
+          "queries":[
+            {
+              "question":"questionhhhhhh?",
+              "result":[
+                {
+                  "summary":"ffffffffffffff",
+                  "timeline":[
+
+                    "ffffffffffffffffffffffffff",
+                    "ggggggggggggggggggg",
+                    "fgggggggggggggggg",
+                    "ghhhhhhhhhhhhhhhhh"
+                  ],
+                  "allegation_type":"null"
+
+                }
+                
+              ]
+              
+            },
+            {
+
+               "question":"questionhhhhhh?",
+              "result":[
+                {
+                  "summary":"ffffffffffffff",
+                  "timeline":[
+
+                    "ffffffffffffffffffffffffff",
+                    "ggggggggggggggggggg",
+                    "fgggggggggggggggg",
+                    "ghhhhhhhhhhhhhhhhh"
+                  ],
+                  "allegation_type":"gffffffffffffffffffffffff"
+
+                }
+                
+              ]
+            },
+            {
+
+               "question":"questionhhhhhh?",
+              "result":[
+                {
+                  "summary":"ffffffffffffff",
+                  "timeline":[
+
+                    "ffffffffffffffffffffffffff",
+                    "ggggggggggggggggggg",
+                    "fgggggggggggggggg",
+                    "ghhhhhhhhhhhhhhhhh"
+                  ],
+                  "allegation_type":"gffffffffffffffffffffffff"
+
+                }
+                
+              ]
+            },
+            {
+               "question":"questionhhhhhh?",
+              "result":[
+                {
+                  "summary":"ffffffffffffff",
+                  "timeline":[
+
+                    "ffffffffffffffffffffffffff",
+                    "ggggggggggggggggggg",
+                    "fgggggggggggggggg",
+                    "ghhhhhhhhhhhhhhhhh"
+                  ],
+                  "allegation_type":null
+
+                }
+                
+              ]
+            }
+
+
+          ]
+
+        },
+        "sources":[
+          "https/wwww",
+          "https/wwww",
+          "https/wwww",
+          "https/wwww"
+
+        ]
+
+}
+
+
+  ],
+  "errors":null,
+  "overall_severity":"N/A",
+  "overall_risk_level":"No Data"
+  
+
+}
+
+
+]

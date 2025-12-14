@@ -1,0 +1,130 @@
+[
+ {
+  "category": "Sustainability Maturityl",
+  "results": [
+    {
+      "sub_category": "EcoVadis Rating",
+      "metrics": {
+        "ecovadis_rating": {
+          "query": "power india ?",
+          "result": "Limited",
+          "reasoning": "Limited There is no public confirmation of Alliander having an EcoVadis rating or Gold/Platinum medal in 2025. The company is actively engaging with external validation through SBTi commitment and is on a pathway to verified emissions reduction targets, but does not appear in EcoVadis public listings for these awards.",
+          "severity": "ORANGE",
+          "risk_level": "Medium Risk"
+        }
+      },
+      "overall_severity": "ORANGE",
+      "overall_risk_level": "Medium Risk",
+      "sources": [
+        "https://annualreport.alliander.com/annual-reports/annual-report-2024/sustainability-statement-1/environment/climate-change-e1",
+        "https://nexioprojects.com/beyond-the-medal-navigating-your-2025-ecovadis-assessment-with-confidence/",
+        "https://resources.ecovadis.com/sustainability-impact/ecovadis-index-9th-edition",
+        "https://www.alliander.com/content/uploads/dotcom/Alliander-Half-Year-Report-2025.pdf",
+        "https://www.alliander.com/content/uploads/dotcom/Alliander-Halfjaarbericht-2825.pdf"
+      ]
+    },
+    {
+      "sub_category": "Sustainability Report Availability",
+      "metrics": {
+        "has_report": {
+          "query": "Does Alliander have a published Sustainability Report?",
+          "result": "Yes",
+          "reasoning": "Yes international standards such as GRI and, more recently, ESRS under CSRD. has been publishing annual sustainability reports since at least 2012, showing consistent availability of reports for more than 5 years and aligning with Over 5 years of sustainability reporting aligned with international standards such as GRI and, more recently, ESRS under CSRD.",
+          "severity": "GREEN",
+          "risk_level": "Low Risk"
+        },
+        "alignment_with_internal_frameworks": {
+          "result": "Yes",
+          "query": "Does Alliander align its sustainability reports with internal frameworks like GRI, SASB, or TCFD?",
+          "reasoning": "Yes Fully aligned with international frameworks (e.g., GRI, SASB, TCFD). Alliander’s reports are prepared in line with GRI standards, supplemented by sector indicators, and explicitly follow the ESRS under CSRD, referencing TCFD for climate risk reporting.",
+          "severity": "GREEN",
+          "risk_level": "Low Risk"
+        },
+        "third_party_verification_and_audits": {
+          "query": "Are Alliander's sustainability reports third-party verified or audited?",
+          "result": "Yes",
+          "reasoning": "Yes Third-party verified or audited sustainability reports. Alliander’s sustainability statement is included in the annual report, which is subject to external audit as per Dutch financial reporting requirements and CSRD regulations, confirming third-party verification.",
+          "severity": "GREEN",
+          "risk_level": "Low Risk"
+        }
+      },
+      "overall_severity": "GREEN",
+      "overall_risk_level": "Low Risk",
+      "sources": [
+        "https://annualreport.alliander.com/",
+        "https://annualreport.alliander.com/annual-reports/annual-report-2023/other-information/gri-content-index",
+        "https://annualreport.alliander.com/annual-reports/annual-report-2024/sustainability-statement-1/general-disclosures/basic-principles-for-the-sustainability-statement",
+        "https://annualreport.alliander.com/annual-reports/annual-report-2024/sustainability-statement-1/introduction",
+        "https://ditchcarbon.com/organizations/alliander",
+        "https://jaarverslag.alliander.com/downloads",
+        "https://www.alliander.com/content/uploads/dotcom/Alliander_Annual_Report_2023.pdf",
+        "https://www.alliander.com/en/investors/alliander-investor-relations-financial-publications/archive-financial-publications/",
+        "https://www.alliander.com/en/investors/financing/esg-rating/",
+        "https://www.alliander.com/nl/investor-relations/financiering/esg-rating/",
+        "https://www.csrhub.com/CSR_and_sustainability_information/Alliander",
+        "https://www.data.illuminem.com/company/9dc01fc9_alliander"
+      ]
+    },
+    {
+      "sub_category": "Sustainability Strategy",
+      "metrics": {
+        "sustainability_strategy": {
+          "query": "Does Alliander have a formal sustainability strategy in place?",
+          "result": "Yes",
+          "reasoning": "Yes Comprehensive sustainability strategy with measurable KPIs. Alliander has a formal and publicly documented strategy for 2025, integrated with business and financial activities, and clear climate targets and reporting frameworks.",
+          "severity": "GREEN",
+          "risk_level": "Low Risk"
+        },
+        "supplier_sustainability_requirements": {
+          "query": "Does Alliander have supplier sustainability requirements?",
+          "result": "Yes",
+          "reasoning": "Yes Fully defined and implemented supplier sustainability requirements. Alliander has robust supplier codes of conduct, circular procurement targets, audit processes, and compliance expectations for suppliers aligned to OECD guidelines and ILO treaties.",
+          "severity": "GREEN",
+          "risk_level": "Low Risk"
+        },
+        "human_rights_policy": {
+          "query": "Does Alliander have a Human Rights Policy and Code of Conduct?",
+          "result": "Yes",
+          "reasoning": "Yes Fully implemented Human Rights Policy and Code of Conduct. Human rights are addressed in their Supplier Code of Conduct and Sustainability Statement, covering supply chain risks and aligning to OECD and ILO treaties.",
+          "severity": "GREEN",
+          "risk_level": "Low Risk"
+        },
+        "code_of_conduct": {
+          "query": "Does Alliander have a Code of Conduct?",
+          "result": "Yes",
+          "reasoning": "Yes Comprehensive and fully implemented Code of Conduct. The code is publicly available, applies to employees, suppliers, subcontractors, and sets standards for ethical business conduct and compliance.",
+          "severity": "GREEN",
+          "risk_level": "Low Risk"
+        }
+      },
+      "overall_severity": "GREEN",
+      "overall_risk_level": "Low Risk",
+      "sources": [
+        "https://annualreport.alliander.com/annual-reports/annual-report-2023/how-we-create-value/making-the-energy-supply-and-our-organisation-sustainable/supply-chain-responsibility-and-circular-procurement",
+        "https://annualreport.alliander.com/annual-reports/annual-report-2023/profile-of-alliander-1/our-strategy",
+        "https://annualreport.alliander.com/annual-reports/annual-report-2024/about-alliander-1/objectives-and-results",
+        "https://annualreport.alliander.com/annual-reports/annual-report-2024/sustainability-statement-1/environment/circularity-e5",
+        "https://annualreport.alliander.com/annual-reports/annual-report-2024/sustainability-statement-1/general-disclosures/strategy-business-model-and-value-chain",
+        "https://annualreport.alliander.com/annual-reports/annual-report-2024/sustainability-statement-1/introduction",
+        "https://annualreport.alliander.com/annual-reports/annual-report-2024/sustainability-statement-1/social/workers-in-the-value-chain-s2",
+        "https://ditchcarbon.com/organizations/alliander",
+        "https://www.alliander.com/content/uploads/dotcom/2025-AllianderGreenFinanceFramework.pdf",
+        "https://www.alliander.com/content/uploads/dotcom/2404-Alliander-Code-of-conduct.pdf",
+        "https://www.alliander.com/content/uploads/dotcom/Alliander-Halfjaarbericht-2025.pdf",
+        "https://www.alliander.com/content/uploads/dotcom/Alliander-gedragscode-voor-Zakelijke-Partners-publicatie-def-ENG.pdf",
+        "https://www.alliander.com/en/about-alliander/corporate-governance/code-of-conduct/",
+        "https://www.alliander.com/en/about-alliander/strategy/",
+        "https://www.alliander.com/nl/over-alliander/corporate-governance/gedragscode/"
+      ]
+    }
+  ],
+  "errors": null,
+  "overall_severity": "GREEN",
+  "overall_risk_level": "Low Risk"
+}
+
+
+
+
+
+]
