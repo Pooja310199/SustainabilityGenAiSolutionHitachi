@@ -2,6 +2,7 @@
 import React from "react";
 import { ChevronUpIcon } from "@heroicons/react/24/solid";
 import { capitalizeWords, allValuesNA } from "../Common/Utils";
+import SeverityDot from "../Common/SeverityDot";
 
 export default function RenderProjectMacro({
   content,
@@ -29,7 +30,13 @@ export default function RenderProjectMacro({
                    bg-gray-50 hover:bg-gray-100 border-b rounded-t-xl
                    text-left text-sm font-semibold text-gray-800 transition"
       >
-        <span>{capitalizeWords(content.category || "Project Section")}</span>
+        {/* <span>{capitalizeWords(content.category || "Project Section")}</span> */}
+
+        {/* LEFT: Severity dot + Category */}
+        <span className="flex items-center gap-2">
+          <SeverityDot level={content.overall_severity} />
+          {capitalizeWords(content.category || "Project Section")}
+        </span>
         <ChevronUpIcon
           className={`h-4 w-5 transition-transform ${
             expandedProjectSub[mainKey] ? "rotate-180" : ""
@@ -198,6 +205,164 @@ export default function RenderProjectMacro({
                               </div>
                             );
                           })}
+                        </div>
+                      )}
+
+                    {/* PROJECT SITE / ENVIRONMENT DATA */}
+                    {res.analysis &&
+                      !res.analysis.allegations &&
+                      !res.analysis.queries && (
+                        <div className="space-y-4">
+                          {Object.entries(res.analysis).map(
+                            ([key, value], vi) => {
+                              // if (!value || allValuesNA(value)) return null;
+
+                              if (
+                                !value ||
+                                (allValuesNA(value) &&
+                                  !(
+                                    Array.isArray(value.results) &&
+                                    value.results.some(
+                                      (r) =>
+                                        typeof r === "string" && r.trim() !== ""
+                                    )
+                                  ))
+                              )
+                                return null;
+
+                              const envKey = `env-${index}-${idx}-${vi}`;
+
+                              return (
+                                <div
+                                  key={envKey}
+                                  className="border rounded-lg bg-white"
+                                >
+                                  {/* SECTION HEADER */}
+                                  {/* <button
+                                    onClick={() => toggle(envKey)}
+                                    className="w-full flex justify-between items-center px-4 py-2
+                         bg-gray-100 hover:bg-gray-200 rounded-lg
+                         text-sm font-semibold text-gray-800"
+                                  >
+                                    <span>
+                                      {capitalizeWords(
+                                        key.replaceAll("_", " ")
+                                      )}
+                                    </span>
+                                    <ChevronUpIcon
+                                      className={`h-4 w-4 transition-transform ${
+                                        expandedProjectSub[envKey]
+                                          ? "rotate-180"
+                                          : ""
+                                      }`}
+                                    />
+                                  </button> */}
+
+                                  <button
+                                    onClick={() => toggle(envKey)}
+                                    className="w-full flex justify-between items-center px-4 py-2
+             bg-gray-100 hover:bg-gray-200 rounded-lg
+             text-sm font-semibold text-gray-800"
+                                  >
+                                    {/* LEFT: Severity dot + Analysis name */}
+                                    {/* <span className="flex items-center gap-2">
+                                      {value.severity && (
+                                        <SeverityDot level={value.severity} />
+                                      )}
+                                      {capitalizeWords(
+                                        key.replaceAll("_", " ")
+                                      )}
+                                    </span> */}
+
+                                    <span className="flex items-center gap-2">
+                                      <SeverityDot level={value.severity} />
+                                      {capitalizeWords(
+                                        key.replaceAll("_", " ")
+                                      )}
+                                    </span>
+
+                                    {/* RIGHT: Chevron */}
+                                    <ChevronUpIcon
+                                      className={`h-4 w-4 transition-transform ${
+                                        expandedProjectSub[envKey]
+                                          ? "rotate-180"
+                                          : ""
+                                      }`}
+                                    />
+                                  </button>
+
+                                  {expandedProjectSub[envKey] && (
+                                    <div className="p-4 space-y-3 text-sm">
+                                      {Array.isArray(value.results) &&
+                                        value.results.map((item, ii) => (
+                                          <div
+                                            key={ii}
+                                            className="p-3 border rounded-md bg-gray-50"
+                                          >
+                                            {typeof item === "string" ? (
+                                              <p>• {item}</p>
+                                            ) : (
+                                              <>
+                                                <p>
+                                                  <b>Name:</b> {item.name}
+                                                </p>
+                                                <p>
+                                                  <b>Distance:</b>{" "}
+                                                  {item.distance} km
+                                                </p>
+                                                {/* <p>
+                                                  <b>Severity:</b>{" "}
+                                                  {item.severity}
+                                                </p> */}
+
+                                                {item.severity && (
+                                                  <div className="flex items-center gap-2">
+                                                    <span className="font-medium">
+                                                      Severity:
+                                                    </span>
+                                                    <SeverityDot
+                                                      level={item.severity}
+                                                    />
+                                                    <span>{item.severity}</span>
+                                                  </div>
+                                                )}
+
+                                                <p>
+                                                  <b>Risk Level:</b>{" "}
+                                                  {item.risk_level}
+                                                </p>
+                                              </>
+                                            )}
+                                          </div>
+                                        ))}
+
+                                      {(value.severity || value.risk_level) && (
+                                        <div className="pt-2 text-xs text-gray-600 border-t">
+                                          {/* {value.severity && (
+                                            <div className="flex items-center gap-2">
+                                              <span className="font-medium">
+                                                Overall Severity:
+                                              </span>
+                                              <SeverityDot
+                                                level={value.severity}
+                                              />
+                                              <span>{value.severity}</span>
+                                            </div>
+                                          )} */}
+                                          {value.risk_level && (
+                                            <p>
+                                              <b>Overall Risk:</b>{" "}
+                                              {value.risk_level}
+                                            </p>
+                                          )}
+                                        </div>
+                                      )}
+                                    </div>
+                                  )}
+                                </div>
+                              );
+                            }
+                          )}
                         </div>
                       )}
 

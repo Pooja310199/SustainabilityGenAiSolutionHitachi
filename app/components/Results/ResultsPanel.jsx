@@ -224,7 +224,7 @@ export default function ResultsPanel({ resultsMap, viewMode, loading }) {
       queries: {},
       projectSub: {},
       territorySub: {},
-      customerSub: {}, // ⭐ NEW
+      customerSub: {},
     };
 
     const safe = (v) => (Array.isArray(v) ? v : []);
@@ -378,8 +378,6 @@ export default function ResultsPanel({ resultsMap, viewMode, loading }) {
         >
           Collapse All
         </button>
-
-        <button>pooja</button>
       </div>
 
       {/* ===== COUNTRY ===== */}

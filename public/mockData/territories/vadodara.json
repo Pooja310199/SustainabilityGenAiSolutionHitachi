@@ -177,5 +177,393 @@
     "overall_severity":"N/A",
     "overall_risk_level":"No data"
  
-  }
+  },
+
+{
+
+  "category":"Territory Biodiversity",
+  "results":[
+    {
+      "sub_category":"Bing Search 2",
+      "analysis":{
+
+        "iucn_green_list":{
+          "results":[
+            {
+              "name":"bcvbcvb fgggggggfg dffffgdg",
+      "distance":"450",
+      "severity":"RED",
+      "risk_level":"Low_Risk"
+
+            },
+            {
+
+              "name":"bcvbcvb fgggggggfg dffffgdg",
+      "distance":"450",
+      "severity":"RED",
+      "risk_level":"Low_Risk"
+            },
+            {
+
+              "name":"bcvbcvb fgggggggfg dffffgdg",
+      "distance":"450",
+      "severity":"RED",
+      "risk_level":"Low_Risk"
+            }
+
+          ],
+          "severity":"GREEN",
+          "risk_level":"Low Risk"
+
+        },
+
+        "national_red_list_species":{
+          "results":[
+
+            "sdfsdfsf",
+            "fsddddddddddddd",
+            "sdfffffffffffff",
+            "sdffffffffffffffffffffffff"
+          ]
+
+        },
+        "iucn_global_threatened_species":{
+
+          "results":[
+            "fdddddddddddd",
+            "sdffffffffffffff",
+            "sdfffffffffffffffffffffffff",
+            "sfdddddddddddddddd"
+          ]
+
+        },
+        "national_parks":{
+
+        "results":[
+
+         {
+              "name":"bcvbcvb fgggggggfg dffffgdg",
+      "distance":"450",
+      "severity":"RED",
+      "risk_level":"Low_Risk"
+
+            },
+            {
+
+              "name":"bcvbcvb fgggggggfg dffffgdg",
+      "distance":"450",
+      "severity":"RED",
+      "risk_level":"Low_Risk"
+            },
+            {
+
+              "name":"bcvbcvb fgggggggfg dffffgdg",
+      "distance":"450",
+      "severity":"RED",
+      "risk_level":"Low_Risk"
+            }
+
+
+
+
+                    ],
+        "severity":"GREEN",
+          "risk_level":"Low Risk"
+
+
+
+        },
+         "unesco_heritage_sites":{
+
+          "results":[
+{
+              "name":"bcvbcvb fgggggggfg dffffgdg",
+      "distance":"450",
+      "severity":"RED",
+      "risk_level":"Low_Risk"
+
+            },
+            {
+
+              "name":"bcvbcvb fgggggggfg dffffgdg",
+      "distance":"450",
+      "severity":"RED",
+      "risk_level":"Low_Risk"
+            },
+            {
+
+              "name":"bcvbcvb fgggggggfg dffffgdg",
+      "distance":"450",
+      "severity":"RED",
+      "risk_level":"Low_Risk"
+            }
+
+
+          ],
+          "severity":"GREEN",
+          "risk_level":"Low Risk"
+
+        },
+
+         "indigenous_territories_land":{
+
+
+          "results":[
+
+            {
+              "name":"bcvbcvb fgggggggfg dffffgdg",
+      "distance":"450",
+      "severity":"RED",
+      "risk_level":"Low_Risk"
+
+            },
+            {
+
+              "name":"bcvbcvb fgggggggfg dffffgdg",
+      "distance":"450",
+      "severity":"RED",
+      "risk_level":"Low_Risk"
+            },
+            {
+
+              "name":"bcvbcvb fgggggggfg dffffgdg",
+      "distance":"450",
+      "severity":"RED",
+      "risk_level":"Low_Risk"
+            }
+          ],
+          "severity":"GREEN",
+          "risk_level":"Low Risk"
+
+
+        }
+      },
+
+      "overall_severity":"GREEN",
+      "overall_risk_level":"Low Risk",
+      "sources":[
+        "https://jhgjhg",
+        "https://ghgfhhhhh",
+        "https://jhgggggggj",
+        "https://mmmmmmmmmmmmmmmmmmmm"
+
+      ]
+    },
+    {
+
+     "sub_category":"Bing serach 1",
+     "analysis":{
+
+"marine_protected_areas":{
+    "results":[
+
+    {
+              "name":"bcvbcvb fgggggggfg dffffgdg",
+      "distance":"450",
+      "severity":"RED",
+      "risk_level":"Low_Risk"
+
+            },
+            {
+
+              "name":"bcvbcvb fgggggggfg dffffgdg",
+      "distance":"450",
+      "severity":"RED",
+      "risk_level":"Low_Risk"
+            },
+            {
+
+              "name":"bcvbcvb fgggggggfg dffffgdg",
+      "distance":"450",
+      "severity":"RED",
+      "risk_level":"Low_Risk"
+            }
+  ],
+  "severity":"GREEN",
+  "risk_level":"Low Risk"
+
+
+
+},
+"terrestrial_protected_areas":{
+
+    "results":[
+
+    {
+              "name":"bcvbcvb fgggggggfg dffffgdg",
+      "distance":"450",
+      "severity":"RED",
+      "risk_level":"Low_Risk"
+
+            },
+            {
+
+              "name":"bcvbcvb fgggggggfg dffffgdg",
+      "distance":"450",
+      "severity":"RED",
+      "risk_level":"Low_Risk"
+            },
+            {
+
+              "name":"bcvbcvb fgggggggfg dffffgdg",
+      "distance":"450",
+      "severity":"RED",
+      "risk_level":"Low_Risk"
+            }
+  ],
+  "severity":"GREEN",
+  "risk_level":"Low Risk"
+
+
+
+},
+"important_bird_areas":{
+
+    "results":[
+
+    {
+              "name":"bcvbcvb fgggggggfg dffffgdg",
+      "distance":"450",
+      "severity":"RED",
+      "risk_level":"Low_Risk"
+
+            },
+            {
+
+              "name":"bcvbcvb fgggggggfg dffffgdg",
+      "distance":"450",
+      "severity":"RED",
+      "risk_level":"Low_Risk"
+            },
+            {
+
+              "name":"bcvbcvb fgggggggfg dffffgdg",
+      "distance":"450",
+      "severity":"RED",
+      "risk_level":"Low_Risk"
+            }
+  ],
+  "severity":"GREEN",
+  "risk_level":"Low Risk"
+
+
+
+},
+"key_biodiversity_area":{
+
+    "results":[
+
+    {
+              "name":"bcvbcvb fgggggggfg dffffgdg",
+      "distance":"450",
+      "severity":"RED",
+      "risk_level":"Low_Risk"
+
+            },
+            {
+
+              "name":"bcvbcvb fgggggggfg dffffgdg",
+      "distance":"450",
+      "severity":"RED",
+      "risk_level":"Low_Risk"
+            },
+            {
+
+              "name":"bcvbcvb fgggggggfg dffffgdg",
+      "distance":"450",
+      "severity":"RED",
+      "risk_level":"Low_Risk"
+            }
+  ],
+  "severity":"GREEN",
+  "risk_level":"Low Risk"
+
+
+
+},
+"alliandce_for_zero_extinvtiom":{
+  "results":[
+
+    {
+              "name":"bcvbcvb fgggggggfg dffffgdg",
+      "distance":"450",
+      "severity":"RED",
+      "risk_level":"Low_Risk"
+
+            },
+            {
+
+              "name":"bcvbcvb fgggggggfg dffffgdg",
+      "distance":"450",
+      "severity":"RED",
+      "risk_level":"Low_Risk"
+            },
+            {
+
+              "name":"bcvbcvb fgggggggfg dffffgdg",
+      "distance":"450",
+      "severity":"RED",
+      "risk_level":"Low_Risk"
+            }
+  ],
+  "severity":"GREEN",
+  "risk_level":"Low Risk"
+
+
+
+},
+
+"ramsar_wetlands":{
+  "results":[
+
+    {
+              "name":"bcvbcvb fgggggggfg dffffgdg",
+      "distance":"450",
+      "severity":"RED",
+      "risk_level":"Low_Risk"
+
+            },
+            {
+
+              "name":"bcvbcvb fgggggggfg dffffgdg",
+      "distance":"450",
+      "severity":"RED",
+      "risk_level":"Low_Risk"
+            },
+            {
+
+              "name":"bcvbcvb fgggggggfg dffffgdg",
+      "distance":"450",
+      "severity":"RED",
+      "risk_level":"Low_Risk"
+            }
+  ],
+  "severity":"GREEN",
+  "risk_level":"Low Risk"
+
+
+}
+
+
+  
+
+      },
+     "overall_severity":"GREEN",
+     "overall_risk_level":"Low Risk",
+     "sources":[
+
+      "https://dfgdgdgf",
+      "https://dfddddddddddddddddddddddd",
+      "https://erwwwwwwwwwwwwwwwww"
+]
+
+    }
+  
+  ],
+  "errors":null,
+  "overall_severity":"GREEN",
+  "overall_risk_level":"Low Risk"
+
+}
+
 ]

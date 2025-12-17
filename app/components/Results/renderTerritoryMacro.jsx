@@ -2,7 +2,8 @@
 import React from "react";
 import { ChevronUpIcon } from "@heroicons/react/24/solid";
 import { capitalizeWords, allValuesNA } from "../Common/Utils";
-
+import SeverityDot from "../Common/SeverityDot";
+import { Disclosure } from "@headlessui/react";
 export default function RenderTerritoryMacro({
   content,
   index,
@@ -47,22 +48,22 @@ export default function RenderTerritoryMacro({
    EXPAND ALL + COLLAPSE ALL
 ================================ */
 
-  const collapseAll = () => {
-    // Close top-level blocks
-    setIsCountryOpen(false);
-    setIsCustomerOpen(false);
-    setIsProjectOpen(false);
+  // const collapseAll = () => {
+  //   // Close top-level blocks
+  //   setIsCountryOpen(false);
+  //   setIsCustomerOpen(false);
+  //   setIsProjectOpen(false);
 
-    // Reset all nested expanders
-    setExpandedSections({});
-    setExpandedMetrics({});
-    setExpandedSources({});
-    setExpandedSubIndicators({});
-    setExpandedAdvSections({});
-    setExpandedQueries({});
-    setExpandedProjectSub({});
-    setExpandedTerritorySub({});
-  };
+  //   // Reset all nested expanders
+  //   setExpandedSections({});
+  //   setExpandedMetrics({});
+  //   setExpandedSources({});
+  //   setExpandedSubIndicators({});
+  //   setExpandedAdvSections({});
+  //   setExpandedQueries({});
+  //   setExpandedProjectSub({});
+  //   setExpandedTerritorySub({});
+  // };
 
   return (
     <div className="mb-5 rounded-xl border border-gray-200 bg-white shadow-sm">
@@ -236,14 +237,83 @@ export default function RenderTerritoryMacro({
                         </div>
                       )}
 
-                    {/* ================================== */}
                     {/*       OTHER ANALYSIS ARRAYS        */}
-                    {/* ================================== */}
+
                     {Object.entries(res.analysis || {})
                       .filter(
                         ([key]) => key !== "allegations" && key !== "queries"
                       )
                       .map(([key, items]) => {
+                        if (
+                          typeof items === "object" &&
+                          items !== null &&
+                          Array.isArray(items.results)
+                        ) {
+                          if (items.results.length === 0) return null;
+
+                          return (
+                            <Disclosure key={key} defaultOpen={true}>
+                              {({ open }) => (
+                                <div className="border rounded-lg bg-gray-50">
+                                  {/* HEADER */}
+                                  <Disclosure.Button className="w-full flex items-center justify-between px-4 py-3 text-left">
+                                    <div className="flex items-center gap-2 font-semibold text-gray-800">
+                                      {/* 🔴 Severity dot on LEFT */}
+                                      <SeverityDot level={items.severity} />
+
+                                      {capitalizeWords(key.replace(/_/g, " "))}
+                                    </div>
+
+                                    {/* ⬆️⬇️ Arrow */}
+                                    <ChevronUpIcon
+                                      className={`h-5 w-5 text-gray-500 transition-transform ${
+                                        open ? "rotate-180" : ""
+                                      }`}
+                                    />
+                                  </Disclosure.Button>
+
+                                  {/* CONTENT */}
+                                  <Disclosure.Panel className="px-4 pb-4 space-y-3">
+                                    {items.results.map((item, ii) => (
+                                      <div
+                                        key={ii}
+                                        className="border p-3 rounded-lg bg-white shadow-sm space-y-1"
+                                      >
+                                        {typeof item === "string" && (
+                                          <p>• {item}</p>
+                                        )}
+
+                                        {typeof item === "object" &&
+                                          item !== null &&
+                                          Object.entries(item).map(
+                                            ([field, val]) => (
+                                              <p key={field}>
+                                                <span className="font-semibold">
+                                                  {capitalizeWords(
+                                                    field.replace(/_/g, " ")
+                                                  )}
+                                                  :
+                                                </span>{" "}
+                                                {field === "severity" ? (
+                                                  <SeverityDot level={val} />
+                                                ) : field === "distance" &&
+                                                  val !== "N/A" ? (
+                                                  `${val} km`
+                                                ) : (
+                                                  String(val)
+                                                )}
+                                              </p>
+                                            )
+                                          )}
+                                      </div>
+                                    ))}
+                                  </Disclosure.Panel>
+                                </div>
+                              )}
+                            </Disclosure>
+                          );
+                        }
+
                         if (!Array.isArray(items)) return null;
 
                         const filteredItems = items.filter(
@@ -287,9 +357,8 @@ export default function RenderTerritoryMacro({
                         );
                       })}
 
-                    {/* ================================== */}
-                    {/*            SOURCES                */}
-                    {/* ================================== */}
+                    {/*   SOURCES     */}
+
                     {res.sources &&
                       res.sources.filter((s) => !isNAValue(s)).length > 0 && (
                         <div className="pt-1">

@@ -253,6 +253,11 @@ export function renderCategory({
           )}
 
           {/* Human Rights Sections (OWDIN + HRMI) */}
+
+
+
+
+
           {isHumanRights && (
             <div style={{ padding: "12px 18px" }}>
               {(() => {
@@ -352,6 +357,16 @@ export function renderCategory({
               })()}
             </div>
           )}
+
+
+
+
+
+
+
+
+
+
 
           {/* Generic analysis array */}
           {Array.isArray(content.analysis) && (
