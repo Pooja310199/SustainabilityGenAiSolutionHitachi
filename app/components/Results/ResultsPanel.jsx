@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Disclosure } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/24/solid";
 
@@ -10,8 +10,18 @@ import { capitalizeWords } from "../Common/Utils";
 import RenderProjectMacro from "./renderProjectMacro";
 import RenderTerritoryMacro from "./renderTerritoryMacro";
 
-export default function ResultsPanel({ resultsMap, viewMode, loading }) {
+export default function ResultsPanel({
+  resultsMap,
+  viewMode,
+  loading,
+  projectName,
+  territoryName,
+}) {
   /* COUNTRY */
+
+  const hasAnyResults = Object.values(resultsMap).some(
+    (section) => section && section.data && section.data.length > 0
+  );
   const [expandedSections, setExpandedSections] = useState({});
   const [expandedMetrics, setExpandedMetrics] = useState({});
   const [expandedSources, setExpandedSources] = useState({});
@@ -27,7 +37,7 @@ export default function ResultsPanel({ resultsMap, viewMode, loading }) {
   const [expandedCustomerSub, setExpandedCustomerSub] = useState({});
 
   /* TOP-LEVEL TOGGLES */
-  const [isCountryOpen, setIsCountryOpen] = useState(true);
+  const [isCountryOpen, setIsCountryOpen] = useState();
   const [isCustomerOpen, setIsCustomerOpen] = useState(true);
   const [isProjectOpen, setIsProjectOpen] = useState(false);
 
@@ -362,6 +372,24 @@ export default function ResultsPanel({ resultsMap, viewMode, loading }) {
   // ============================
   // MAIN UI
   // ============================
+
+  if (!loading && !hasAnyResults) {
+    return (
+      <div className="flex items-center justify-center h-full">
+        <div className="text-center">
+          <h2 className="text-xl font-semibold text-gray-700">
+            No results to display
+          </h2>
+          <p className="text-gray-500 mt-2">
+            Your search inputs were cleared or no data was found.
+            <br />
+            Please select inputs and run search again.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div id="print-container" className="space-y-8">
       <div className="flex gap-3 mb-4">
@@ -379,14 +407,20 @@ export default function ResultsPanel({ resultsMap, viewMode, loading }) {
           Collapse All
         </button>
       </div>
-
       {/* ===== COUNTRY ===== */}
       {(resultsMap.countryBasic || resultsMap.countryAdvanced) && (
         <Disclosure open={isCountryOpen} onChange={setIsCountryOpen}>
           {({ open }) => (
             <div className="border rounded-lg bg-white category-header">
               <Disclosure.Button className="w-full flex justify-between items-center px-4 py-3 bg-gray-100">
-                <span>Country</span>
+                <div className="px-4 py-2">
+                  <span>Country</span>
+                  {!open && (
+                    <div className="ml-3 mt-0.5 text-[11px] text-gray-400">
+                      Click to view Results
+                    </div>
+                  )}
+                </div>
                 <ChevronUpIcon
                   className={`${open ? "rotate-180" : ""} h-5 w-5`}
                 />
@@ -403,14 +437,21 @@ export default function ResultsPanel({ resultsMap, viewMode, loading }) {
           )}
         </Disclosure>
       )}
-
       {/* ===== CUSTOMER ===== */}
       {(resultsMap.customerBasic || resultsMap.customerAdvanced) && (
         <Disclosure open={isCustomerOpen} onChange={setIsCustomerOpen}>
           {({ open }) => (
             <div className="border rounded-lg bg-white category-header">
               <Disclosure.Button className="w-full flex justify-between items-center px-4 py-3 bg-gray-100">
-                <span>Customer</span>
+                <div className="px-4 py-2">
+                  <span>Customer</span>
+
+                  {!open && (
+                    <div className="ml-3 mt-0.5 text-[11px] text-gray-400">
+                      Click to view Results
+                    </div>
+                  )}
+                </div>
                 <ChevronUpIcon
                   className={`${open ? "rotate-180" : ""} h-5 w-5`}
                 />
@@ -427,7 +468,6 @@ export default function ResultsPanel({ resultsMap, viewMode, loading }) {
           )}
         </Disclosure>
       )}
-
       {/* ===== PROJECT + TERRITORY ===== */}
       {(resultsMap.projectBasic ||
         resultsMap.projectAdvanced ||
@@ -437,13 +477,40 @@ export default function ResultsPanel({ resultsMap, viewMode, loading }) {
           {({ open }) => (
             <div className="border rounded-lg bg-white category-header ">
               <Disclosure.Button className="w-full flex justify-between items-center px-4 py-3 bg-gray-100">
-                <span>Project</span>
+                <div className="px-4 py-2">
+                  <span>Project</span>
+                  {!open && (
+                    <div className="ml-3 mt-0.5 text-[11px] text-gray-400">
+                      Click to view Results
+                    </div>
+                  )}
+                </div>
                 <ChevronUpIcon
                   className={`${open ? "rotate-180" : ""} h-5 w-5`}
                 />
               </Disclosure.Button>
 
               <Disclosure.Panel className="p-4">
+                {/* 🔹 PROJECT CONTEXT HEADER (LIVE FROM SIDEBAR) */}
+                {(projectName?.trim() || territoryName?.trim()) && (
+                  <div>
+                    {projectName?.trim() && (
+                      <p className="text-s font-semibold text-gray-800 mb-4">
+                        {/* className="mb-4 p-3 rounded-lg bg-gray-50 border" */}
+                        Project Name:{" "}
+                        <span className="font-normal">{projectName}</span>
+                      </p>
+                    )}
+
+                    {territoryName?.trim() && (
+                      <p className="text-s font-semibold text-gray-800 mt-1 mb-4">
+                        Territory Name:{" "}
+                        <span className="font-normal">{territoryName}</span>
+                      </p>
+                    )}
+                  </div>
+                )}
+
                 {renderProjectAndTerritory(
                   viewMode === "basic"
                     ? resultsMap.projectBasic

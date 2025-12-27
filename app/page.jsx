@@ -109,7 +109,18 @@ export default function Page() {
     setLoading(true);
     setViewMode("basic");
 
-    const newResults = { ...resultsMap };
+    // const newResults = { ...resultsMap };
+
+    const newResults = {
+      countryBasic: null,
+      countryAdvanced: null,
+      customerBasic: null,
+      customerAdvanced: null,
+      projectBasic: null,
+      projectAdvanced: null,
+      territoryBasic: null,
+      territoryAdvanced: null,
+    };
 
     // COUNTRY BASIC
     if (selectedCountries.length > 0) {
@@ -304,6 +315,8 @@ export default function Page() {
             resultsMap={resultsMap}
             viewMode={viewMode}
             loading={loading}
+            projectName={projectName}
+            territoryName={territoryName}
           />
         )}
       </main>
