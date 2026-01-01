@@ -284,6 +284,10 @@ export default function ResultsPanel({
           content.results.forEach((result, ri) => {
             keys.customerSub[`cust-${si}-sub-${ri}`] = true;
 
+            if (result.sources && result.sources.length > 0) {
+              keys.customerSub[`cust-${si}-sub-${ri}-sources`] = true;
+            }
+
             if (result.analysis) {
               Object.keys(result.analysis).forEach((_, gi) => {
                 keys.customerSub[`cust-${si}-group-${ri}-${gi}`] = true;
@@ -302,10 +306,24 @@ export default function ResultsPanel({
 
     if (projEntry?.data) {
       projEntry.data.forEach((block, bi) => {
+        // Main
         keys.projectSub[`project-main-${bi}`] = true;
 
-        safe(block.results).forEach((_, ri) => {
+        (block.results || []).forEach((res, ri) => {
+          // Sub
           keys.projectSub[`project-sub-${bi}-${ri}`] = true;
+
+          // ✅ Sources (MISSING BEFORE)
+          if (res.sources && res.sources.length > 0) {
+            keys.projectSub[`project-src-${bi}-${ri}`] = true;
+          }
+
+          // Environment / analysis sections
+          if (res.analysis && typeof res.analysis === "object") {
+            Object.keys(res.analysis).forEach((_, vi) => {
+              keys.projectSub[`env-${bi}-${ri}-${vi}`] = true;
+            });
+          }
         });
       });
     }
@@ -318,10 +336,17 @@ export default function ResultsPanel({
 
     if (terrEntry?.data) {
       terrEntry.data.forEach((block, bi) => {
+        // Main
         keys.territorySub[`territory-main-${bi}`] = true;
 
-        safe(block.results).forEach((_, ri) => {
+        (block.results || []).forEach((res, ri) => {
+          // Sub
           keys.territorySub[`territory-sub-${bi}-${ri}`] = true;
+
+          // ✅ Sources (MISSING BEFORE)
+          if (res.sources && res.sources.some((s) => s && s !== "N/A")) {
+            keys.territorySub[`territory-src-${bi}-${ri}`] = true;
+          }
         });
       });
     }
@@ -373,6 +398,21 @@ export default function ResultsPanel({
   // MAIN UI
   // ============================
 
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-full">
+        <div className="text-center">
+          <div className="animate-pulse space-y-4">
+            <div className="h-4 bg-gray-300 rounded w-48 mx-auto"></div>
+            <div className="h-4 bg-gray-200 rounded w-64 mx-auto"></div>
+            <div className="h-4 bg-gray-200 rounded w-56 mx-auto"></div>
+          </div>
+          <p className="text-gray-500 mt-6">Fetching results…</p>
+        </div>
+      </div>
+    );
+  }
+
   if (!loading && !hasAnyResults) {
     return (
       <div className="flex items-center justify-center h-full">
@@ -395,14 +435,16 @@ export default function ResultsPanel({
       <div className="flex gap-3 mb-4">
         <button
           onClick={expandAll}
-          className="px-4 py-2 bg-green-600 text-white rounded-md category-header"
+          //
+          className="seg-btn"
         >
           Expand All
         </button>
 
         <button
           onClick={collapseAll}
-          className="px-4 py-2 bg-red-600 text-white rounded-md category-header"
+          // className="px-4 py-2 bg-red-600 text-white rounded-md category-header"
+          className="pill-btn"
         >
           Collapse All
         </button>
@@ -414,7 +456,18 @@ export default function ResultsPanel({
             <div className="border rounded-lg bg-white category-header">
               <Disclosure.Button className="w-full flex justify-between items-center px-4 py-3 bg-gray-100">
                 <div className="px-4 py-2">
-                  <span>Country</span>
+                  <span>
+                    Country
+                    {resultsMap.countryBasic?.selectedCountries?.length > 0 && (
+                      <span className="ml-2 text-sm font-normal text-gray-600">
+                        –{" "}
+                        {resultsMap.countryBasic.selectedCountries
+                          .map(capitalizeWords)
+                          .join(", ")}
+                      </span>
+                    )}
+                  </span>
+
                   {!open && (
                     <div className="ml-3 mt-0.5 text-[11px] text-gray-400">
                       Click to view Results
@@ -443,8 +496,28 @@ export default function ResultsPanel({
           {({ open }) => (
             <div className="border rounded-lg bg-white category-header">
               <Disclosure.Button className="w-full flex justify-between items-center px-4 py-3 bg-gray-100">
+                {/* 
+              <Disclosure.Button
+                className="w-full flex justify-between items-center px-6 py-4 
+           bg-gray-50 hover:bg-gray-100 cursor-pointer transition"
+              > */}
                 <div className="px-4 py-2">
-                  <span>Customer</span>
+                  <span>
+                    Customer
+                    {resultsMap.customerBasic && (
+                      <span className="ml-2 text-sm font-normal text-gray-600">
+                        –{" "}
+                        {[
+                          resultsMap.customerBasic.customer1,
+                          resultsMap.customerBasic.customer2,
+                          resultsMap.customerBasic.partnerName,
+                        ]
+                          .filter(Boolean)
+                          .map(capitalizeWords)
+                          .join(", ")}
+                      </span>
+                    )}
+                  </span>
 
                   {!open && (
                     <div className="ml-3 mt-0.5 text-[11px] text-gray-400">
@@ -453,7 +526,10 @@ export default function ResultsPanel({
                   )}
                 </div>
                 <ChevronUpIcon
-                  className={`${open ? "rotate-180" : ""} h-5 w-5`}
+                  // className={`${open ? "rotate-180" : ""} h-5 w-5`}
+                  className={`h-5 w-5 text-gray-400 transition-transform duration-200 ${
+                    open ? "rotate-180 text-gray-600" : ""
+                  }`}
                 />
               </Disclosure.Button>
 
@@ -478,7 +554,17 @@ export default function ResultsPanel({
             <div className="border rounded-lg bg-white category-header ">
               <Disclosure.Button className="w-full flex justify-between items-center px-4 py-3 bg-gray-100">
                 <div className="px-4 py-2">
-                  <span>Project</span>
+                  <span>
+                    Project
+                    {(projectName?.trim() || territoryName?.trim()) && (
+                      <span className="ml-2 text-sm font-normal text-gray-600">
+                        –{" "}
+                        {[projectName, territoryName]
+                          .filter(Boolean)
+                          .join(" / ")}
+                      </span>
+                    )}
+                  </span>
                   {!open && (
                     <div className="ml-3 mt-0.5 text-[11px] text-gray-400">
                       Click to view Results

@@ -104,3 +104,11 @@ html{
 
 font-size:10px;
 }
+.seg-btn {
+  @apply px-4 py-2
+         text-sm
+         text-gray-700
+         bg-white
+         hover:bg-gray-100
+         transition;
+}
