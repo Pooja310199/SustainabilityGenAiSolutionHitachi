@@ -104,11 +104,42 @@ html{
 
 font-size:10px;
 }
-.seg-btn {
-  @apply px-4 py-2
-         text-sm
-         text-gray-700
-         bg-white
-         hover:bg-gray-100
-         transition;
+
+@layer components{
+
+  .btn-learn-more{
+
+    @apply
+    inline-flex items-center justify-center
+    px-6 py-2
+    rounded-full
+
+    text-base leading-6 font-semibold
+    text-[#cc0000]
+
+    border-2 border-[#cc0000]
+    bg-transparent
+
+    transition-all duration-200
+    cursor-pointer
+
+    hover:bg-white
+    hover:text-[#2c2b2b]
+    hover:border-[#2c2b2b]
+     hover:outline-[2px]
+    
+
+    /* Click (ACTIVE) */
+    active:bg-white
+    active:text-[#2c2b2b]
+    active:border-[#f2f2f2]
+    active:outline
+    active:outline-[2px]
+    active:outline-[#1e88e5]
+    active:outline-offset-0
+
+    /* Remove default focus */
+    focus:outline-none
+  }
 }
+

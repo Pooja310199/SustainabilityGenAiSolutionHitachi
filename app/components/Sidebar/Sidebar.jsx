@@ -59,8 +59,8 @@ export default function Sidebar({
               onClick={() => setMacro(m)}
               className={`py-2 text-sm rounded-lg border transition-all ${
                 macro === m
-                  ? "bg-blue-600 text-white border-blue-600 shadow-sm"
-                  : "bg-gray-50 text-gray-700 border-gray-300 hover:bg-gray-100"
+                  ? "bg-red-700 text-white border-red-800 shadow-sm font-semibold"
+                  : "bg-gray-50 text-gray-800 border-gray-300 hover:bg-gray-100 text-red-700 font-semibold"
               }`}
             >
               {m}
@@ -293,15 +293,16 @@ export default function Sidebar({
       <div className="mt-8 flex flex-col gap-3">
         <button
           onClick={onBasicSearch}
-          className="bg-blue-600 text-white rounded-lg py-2 font-semibold text-sm"
+          // className="bg-blue-600 text-white rounded-lg py-2 font-semibold text-sm"
+          className="
+         btn-learn-more
+         
+         "
         >
           Basic Search
         </button>
 
-        <button
-          onClick={onAdvanceSearch}
-          className="bg-gray-700 text-white rounded-lg py-2 font-semibold text-sm"
-        >
+        <button onClick={onAdvanceSearch} className="btn-learn-more">
           Advance Search
         </button>
       </div>
