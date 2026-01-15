@@ -1,5 +1,6 @@
 import SeverityDot from "../Common/SeverityDot";
 import { allValuesNA, capitalizeWords, getCategoryColor } from "../Common/Utils";
+import HumanRightsSection from "../CountryMacro/HumanRightsSection";
 
 export function renderCategory({
   content,
@@ -23,7 +24,10 @@ export function renderCategory({
   const isCivil = category?.includes("Civil Liberties");
   const isGeo = category?.includes("UN Geoscheme");
   const isHumanRights = category?.includes("Human Rights");
+  // const isHumanRights = /human\s*rights/i.test(category || "");
+
   const isSensitive = category?.includes("Sensitive Country Protocol");
+
 
 
   const toggle = (setter, key) => setter((prev) => ({ ...prev, [key]: !prev[key] }));
@@ -86,15 +90,7 @@ export function renderCategory({
 
                       return (
                         <li key={i} style={{ marginBottom: 4 }}>
-                          {/* <SeverityDot
-                            level={
-                              status === "Decline"
-                                ? "RED"
-                                : status === "Act"
-                                  ? "ORANGE"
-                                  : "GREEN"
-                            }
-                          /> */}
+
                           <strong> {name}</strong> — {status}
                         </li>
                       );
@@ -242,145 +238,32 @@ export function renderCategory({
             </div>
           )}
 
+
+
+
+
+
           {/* Legal & Institutional Framework (Rule of Law only) */}
-          {isRuleOfLaw && content.analysis?.legal_and_institutional_framework && (
-            <div style={{ marginTop: 10, marginLeft: 18 }}>
-              <strong>Legal & Institutional Framework:</strong>
-              <ul style={{ marginTop: 5, marginLeft: 18 }}>
-                {content.analysis.legal_and_institutional_framework.map((t, i) => (<li key={i}>{t}</li>))}
-              </ul>
-            </div>
-          )}
+          {isRuleOfLaw && content.analysis?.legal_and_institutional_framework && (<div style={{ marginTop: 10, marginLeft: 18 }}> <strong>Legal & Institutional Framework:</strong> <ul style={{ marginTop: 5, marginLeft: 18 }}> {content.analysis.legal_and_institutional_framework.map((t, i) => (<li key={i}>{t}</li>))} </ul> </div>)}
 
           {/* Human Rights Sections (OWDIN + HRMI) */}
 
 
 
 
-
           {isHumanRights && (
-            <div style={{ padding: "12px 18px" }}>
-              {(() => {
-                const metricsKey = `${countryName}_${category}_metrics`;
-                return (
-                  <>
-                    <div onClick={() => toggle(setExpandedMetrics, metricsKey)} style={{ cursor: "pointer", fontWeight: 600, display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
-                      <span>Metrics</span>
-                      <span style={{ fontSize: 14, color: "#444" }}>{expandedMetrics[metricsKey] ? "▲" : "▼"}</span>
-                    </div>
-
-                    {expandedMetrics[metricsKey] && (
-                      <div style={{ marginLeft: 20, marginTop: 5 }}>
-                        {/* OWDIN */}
-                        {(() => {
-                          const owdinKey = `${countryName}_${category}_OWDIN`;
-                          return (
-                            <>
-                              <div onClick={() => toggle(setExpandedSubIndicators, owdinKey)} style={{ cursor: "pointer", display: "flex", alignItems: "center", gap: 8, fontWeight: 600, marginBottom: 6 }}>
-                                <span>Human Rights OWDIN</span>
-                                <span style={{ fontSize: 14, color: "#444" }}>{expandedSubIndicators[owdinKey] ? "▼" : "▲"}</span>
-                              </div>
-                              {expandedSubIndicators[owdinKey] && (
-                                <div style={{ marginLeft: 25, marginTop: 5 }}>
-                                  {(content.metrics?.human_rights_owdin || [])
-                                    .filter((item) => item && !["N/A", "No Data", "", null].includes(item.value) && !allValuesNA(item))
-                                    .map((item, i) => (
-                                      <div key={i} style={{ marginBottom: 6, lineHeight: "1.5em" }}>
-                                        <SeverityDot level={item.severity} /> <strong>{item.index}</strong> → {item.index_description && <>{item.index_description} </>}
-                                        {item.value && (<><strong>Value:</strong> {item.value},{" "}</>)}
-                                        {item.rescaled && (<><strong>Rescaled:</strong> {item.rescaled},{" "}</>)}
-                                        {item.risk_level && (<><strong>Risk:</strong> {item.risk_level}</>)}
-                                      </div>
-                                    ))}
-                                </div>
-                              )}
-                            </>
-                          );
-                        })()}
-
-                        {/* HRMI */}
-                        {(() => {
-                          const hrmiKey = `${countryName}_${category}_HRMI`;
-                          return (
-                            <>
-                              <div onClick={() => toggle(setExpandedSubIndicators, hrmiKey)} style={{ cursor: "pointer", display: "flex", alignItems: "center", gap: 8, fontWeight: 600, marginTop: 10 }}>
-                                <span>HRMI Rights Tracker</span>
-                                <span style={{ fontSize: 14, color: "#444" }}>{expandedSubIndicators[hrmiKey] ? "▼" : "▲"}</span>
-                              </div>
-                              {expandedSubIndicators[hrmiKey] && (
-                                <div style={{ marginLeft: 25, marginTop: 5 }}>
-                                  {Object.entries(content.metrics?.hrmi_rights_tracker || {})
-                                    .filter(([_, section]) => {
-                                      if (!section || allValuesNA(section)) return false;
-                                      if (Array.isArray(section.subindicators)) {
-                                        return section.subindicators.some((s) => s && s.value && !["N/A", "No Data", ""].includes(s.value) && !allValuesNA(s));
-                                      }
-                                      return true;
-                                    })
-                                    .map(([key, section], i) => {
-                                      const sectionKey = `${countryName}_${category}_${key}`;
-                                      return (
-                                        <div key={i} style={{ marginBottom: 10 }}>
-                                          <div onClick={() => toggle(setExpandedSubIndicators, sectionKey)} style={{ display: "flex", alignItems: "center", cursor: "pointer", fontWeight: 600, fontSize: 15, gap: 6 }}>
-                                            <SeverityDot level={section.severity} />
-                                            <span>
-                                              {capitalizeWords(key.replaceAll("_", " "))}{" "}
-                                              <span style={{ fontSize: 14, color: "#444" }}>{expandedSubIndicators[sectionKey] ? "▼" : "▲"}</span>{" "}
-                                              {section.summary_score && section.summary_score !== "N/A" && <>— <strong>Summary Score:</strong> {section.summary_score}</>}
-                                              {section.risk_level && section.risk_level !== "N/A" && <> (<strong>Risk:</strong> {section.risk_level})</>}
-                                            </span>
-                                          </div>
-
-                                          {expandedSubIndicators[sectionKey] && (
-                                            <div style={{ marginLeft: 25, marginTop: 5, lineHeight: "1.5em" }}>
-                                              {(section.subindicators || [])
-                                                .filter((s) => s && s.value && !["N/A", "No Data", ""].includes(s.value) && !allValuesNA(s))
-                                                .map((s, j) => (
-                                                  <div key={j} style={{ marginBottom: 4 }}>
-                                                    <SeverityDot level={s.severity} /> <strong>{s.name}</strong> – {s.value} ({s.risk_level})
-                                                  </div>
-                                                ))}
-                                            </div>
-                                          )}
-                                        </div>
-                                      );
-                                    })}
-                                </div>
-                              )}
-                            </>
-                          );
-                        })()}
-                      </div>
-                    )}
-                  </>
-                );
-              })()}
-            </div>
+            <HumanRightsSection
+              content={content}
+              countryName={countryName}
+              category={category}
+              expandedSubIndicators={expandedSubIndicators}
+              setExpandedSubIndicators={setExpandedSubIndicators}
+            />
           )}
 
 
 
 
-
-
-
-
-
-
-
-          {/* Generic analysis array */}
-          {Array.isArray(content.analysis) && (
-            <div style={{ marginTop: 15, marginLeft: 20 }}>
-              {content.analysis.map((section, i) => (
-                <div key={i} style={{ marginBottom: 12 }}>
-                  <strong>{section.topic}</strong>
-                  <ul style={{ marginTop: 5, marginLeft: 18 }}>
-                    {section.summary?.map((p, j) => <li key={j}>{p}</li>)}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          )}
 
           {/* Sources */}
           {Array.isArray(content.sources) && content.sources.length > 0 && (
@@ -409,6 +292,26 @@ export function renderCategory({
               );
             })()
           )}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         </div>
       )}
     </div>

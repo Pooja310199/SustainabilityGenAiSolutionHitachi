@@ -11,6 +11,47 @@ export const allValuesNA = (obj) => {
   });
 };
 
+
+
+// export const allValuesNA = (value) => {
+//   // null / undefined
+//   if (value == null) return true;
+
+//   // strings
+//   if (typeof value === "string") {
+//     const v = value.trim().toLowerCase();
+//     return v === "" || v === "n/a" || v === "no data";
+//   }
+
+//   // numbers → VALID DATA
+//   if (typeof value === "number") return false;
+
+//   // arrays
+//   if (Array.isArray(value)) {
+//     return (
+//       value.length === 0 ||
+//       value.every((item) => allValuesNA(item))
+//     );
+//   }
+
+//   // objects
+//   if (typeof value === "object") {
+//     return Object.values(value).every((v) => allValuesNA(v));
+//   }
+
+//   return true;
+// };
+
+
+
+
+
+
+
+
+
+
+
 export const getCategoryColor = (severity) => {
   switch (severity) {
     case "RED": return "#ffe6e6";

@@ -9,6 +9,7 @@ import CustomerRenderer from "./renderCustomer";
 import { capitalizeWords } from "../Common/Utils";
 import RenderProjectMacro from "./renderProjectMacro";
 import RenderTerritoryMacro from "./renderTerritoryMacro";
+// import useExpandCollapseAll from "../hooks/useExpandCollapseAll";
 
 export default function ResultsPanel({
   resultsMap,

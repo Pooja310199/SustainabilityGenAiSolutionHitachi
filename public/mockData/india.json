@@ -291,193 +291,451 @@
 },
 
 {
-  "category": "Human Rights General",
-  "metrics": {
-    "human_rights_owdin": [
+
+  "category":"Human Rights General",
+  "results":[
+  {
+    "sub_category":"European Court of Human Rights",
+    "analysis":{
+      "echr_judgements_violations":[
+           
+
+
+    
+],
+"severity":"RED",
+"risk_level":"High Risk"
+     },
+    "overall_severity":"RED",
+    "risk_level":"High Risk",
+    "sources":[
+
+      "http://fsdfsd",
+      "http://adasdsd",
+      "http://fgfg"
+    ]
+
+  },
+
+
+{
+  "sub_category":"Our world in Data",
+  "metrics":{
+
+    "human_rights_owdin":[
       {
-        "index": "Human Rights Index",
-        "value": 0.597,
-        "index_description": "Extent to which people are free from government torture, political killings, forced labor; property rights; freedoms of movement, religion, expression, and association.",
-        "rescaled": 5.97,
-        "severity": "ORANGE",
-        "risk_level": "Medium Risk"
+        "index":"fgfg gfgff juiy hgyg",
+        "value":0.936,
+        "index_description":"hfhhgffhg gfhgf hgyhf kjj hjk",
+        "rescaled":9.36,
+        "severity":"ORANGE",
+        "risk_level":"Low Risk"
       },
       {
-        "index": "Participatory Democracy Index",
-        "value": 0.248,
-        "index_description": "Suffrage, fair elections, association and expression freedoms, citizen engagement in government and civil society.",
-        "rescaled": 2.48,
-        "severity": "RED",
-        "risk_level": "High Risk"
+
+        "index":"fgfg gfgff juiy hgyg",
+        "value":0.936,
+        "index_description":"hfhhgfffhg gfhgf hgyhf kjj hjk",
+        "rescaled":9.36,
+        "severity":"GREEN",
+        "risk_level":"Low Risk"
       },
       {
-        "index": "Electoral Democracy Index",
-        "value": 0.398,
-        "index_description": "Political leaders elected under comprehensive suffrage in free, fair elections; association and expression freedoms.",
-        "rescaled": 3.98,
-        "severity": "RED",
-        "risk_level": "High Risk"
-      },
-      {
-        "index": "Freedom of Association Index",
-        "value": 0.593,
-        "index_description": "Ability of parties (including opposition) and civil society organizations to freely form, participate, and operate.",
-        "rescaled": 5.93,
-        "severity": "ORANGE",
-        "risk_level": "Medium Risk"
-      },
-      {
-        "index": "Freedom of Expression Index",
-        "value": 0.493,
-        "index_description": "Ability to discuss political matters; press, media, academic, and cultural freedom.",
-        "rescaled": 4.93,
-        "severity": "RED",
-        "risk_level": "High Risk"
+        "index":"fgfg gfgf juicvy hgyg",
+        "value":0.9336,
+        "index_description":"hfhhcxvgfhg gfhgf hgyhf kjj hjk",
+        "rescaled":9.336,
+        "severity":"GREEN",
+        "risk_level":"Low Risk"
       }
     ],
-    "hrmi_rights_tracker": {
-      "Quality_of_Life": {
-        "summary_score": 7.08,
-        "subindicators": [
+    "hrmi_rights_tracker":{
+
+      "Quality_of_Life":{
+         "summary_score":"8.9",
+        "subindicators":[
+
           {
-            "name": "Food",
-            "value": 6.1,
-            "severity": "ORANGE",
-            "risk_level": "Medium Risk"
+             "name":"FOOD",
+          "value":"7.8",
+          "severity":"RED",
+          "risk_level":"High Risk"
           },
           {
-            "name": "Health",
-            "value": 8.5,
-            "severity": "GREEN",
-            "risk_level": "Low Risk"
+
+            "name":"HEATH",
+          "value":"8.9",
+          "severity":"ORANGE",
+          "risk_level":"Medium Risk"
           },
+
           {
-            "name": "Housing",
-            "value": 7.47,
-            "severity": "ORANGE",
-            "risk_level": "Medium Risk"
-          },
-          {
-            "name": "Education",
-            "value": 7.59,
-            "severity": "ORANGE",
-            "risk_level": "Medium Risk"
-          },
-          {
-            "name": "Work",
-            "value": 5.77,
-            "severity": "ORANGE",
-            "risk_level": "Medium Risk"
+            "name":"gg ghfhg ghhh",
+          "value":"N/A",
+          "severity":"N/A",
+          "risk_level":"No Data"
           }
+
         ],
-        "severity": "ORANGE",
-        "risk_level": "Medium Risk"
+        "severity":"RED",
+        "risk_level":"No Data"
       },
-      "Safety_From_the_State_Rights": {
-        "summary_score": 4.7,
-        "subindicators": [
+      "Safety_From_the_State_Rights":{
+        "summary_score":"9.6",
+        "subindicators":[
+
           {
-            "name": "Freedom from Extrajudicial Execution",
-            "value": 5.1,
-            "severity": "ORANGE",
-            "risk_level": "Medium Risk"
+             "name":"PPOJA",
+          "value":"7.2",
+          "severity":"GREEN",
+          "risk_level":"Medium Risk"
           },
           {
-            "name": "Freedom from Arbitrary Arrest",
-            "value": 3.7,
-            "severity": "RED",
-            "risk_level": "High Risk"
+
+            "name":"gg ghfhg ghhh",
+          "value":"N/A",
+          "severity":"N/A",
+          "risk_level":"No Data"
           },
+
           {
-            "name": "Freedom from Disappearance",
-            "value": 6.1,
-            "severity": "ORANGE",
-            "risk_level": "Medium Risk"
-          },
-          {
-            "name": "Freedom from Torture",
-            "value": 4.0,
-            "severity": "RED",
-            "risk_level": "High Risk"
-          },
-          {
-            "name": "Freedom from Death Penalty Misuse",
-            "value": 10.0,
-            "severity": "GREEN",
-            "risk_level": "Low Risk"
+            "name":"gg ghfhg ghhh",
+          "value":"N/A",
+          "severity":"N/A",
+          "risk_level":"No Data"
           }
+
         ],
-        "severity": "RED",
-        "risk_level": "High Risk"
+        "severity":"N/A",
+        "risk_level":"No Data"
       },
-      "Empowerment_Rights": {
-        "summary_score": 3.6,
-        "subindicators": [
+      "Empowerment_Rights":{
+        "summary_score":"N/A",
+        "subindicators":[
+
           {
-            "name": "Right to Assembly",
-            "value": 3.6,
-            "severity": "RED",
-            "risk_level": "High Risk"
+             "name":"gg ghfhg ghhh",
+          "value":"N/A",
+          "severity":"N/A",
+          "risk_level":"No Data"
           },
           {
-            "name": "Right to Association",
-            "value": 3.6,
-            "severity": "RED",
-            "risk_level": "High Risk"
+
+            "name":"gg ghfhg ghhh",
+          "value":"N/A",
+          "severity":"N/A",
+          "risk_level":"No Data"
           },
+
           {
-            "name": "Right to Participation in Government",
-            "value": 4.4,
-            "severity": "RED",
-            "risk_level": "High Risk"
-          },
-          {
-            "name": "Freedom of Expression",
-            "value": 3.5,
-            "severity": "RED",
-            "risk_level": "High Risk"
+            "name":"gg ghfhg ghhh",
+          "value":"N/A",
+          "severity":"N/A",
+          "risk_level":"No Data"
           }
+
         ],
-        "severity": "RED",
-        "risk_level": "High Risk"
+        "severity":"N/A",
+        "risk_level":"No Data"
+        
       }
+
     }
+
   },
-  "analysis": [
-    {
-      "topic": "Country Ranking and Status",
-      "summary": [
-        "India remains ranked as 'Partly Free' by leading organizations such as Freedom House and HRMI, with declining scores in civil liberties and political rights.",
-        "Human rights indices show low to moderate scores in democratic freedoms, civil rights, and participation."
-      ]
+  "overall_severity":"ORANGE",
+  "sources":[
+    "http://fsdfsd",
+      "http://adasdsd",
+      "http://fgfg"
+  ]
+
+
+},
+
+{
+   "sub_category":"Human Rights watch",
+   "analysis":{
+   "allegations":{
+    "items":[
+      {
+        "title":"gdgdgdg bnvvv jgj",
+        "url":"https://fhgfhffy",
+        "date":"2024-12-04",
+        "summary":"gfhgf gtftyytr tyryr htytr"
+      },
+      {
+        
+        "title":"gdgdgdg bnvvv jgj",
+        "url":"https://fhgfhffy",
+        "date":"2024-12-04",
+        "summary":"gfhgf gtftyytr tyryr htytr"
+      },
+      {
+
+        
+        "title":"gdgdgdg bnvvv jgj",
+        "url":"https://fhgfhffy",
+        "date":"2024-12-04",
+        "summary":"gfhgf gtftyytr tyryr htytr"
+      }
+
+    ],
+    "severity":"ORANGE",
+    "risk_level":"Medium Risk"
+
+   },
+   "protests":{
+"items":[
+  {
+       "title":"gdgdgdg bnvvv jgj",
+        "url":"https://fhgfhffy",
+        "date":"2024-12-04",
+        "summary":"gfhgf gtftyytr tyryr htytr"
+  },
+  {
+       "title":"gdgdgdg bnvvv jgj",
+        "url":"https://fhgfhffy",
+        "date":"2024-12-04",
+        "summary":"gfhgf gtftyytr tyryr htytr"
+  },
+  {
+       "title":"gdgdgdg bnvvv jgj",
+        "url":"https://fhgfhffy",
+        "date":"2024-12-04",
+        "summary":"gfhgf gtftyytr tyryr htytr"
+  }
+
+],
+"severity":"ORANGE",
+"risk_level":"Medium Risk"
+
+
+
+   }
+
+
+   },
+   "overall_severity":"ORANGE",
+   "risk_level":"Medium Risk",
+   "sources":[
+
+    "https://defensefeeds.com/analysis/conflicts/india-pakistan-conflict",
+    "https://en.wikipedia.org/wiki/List_of_territorial_disputes",
+    "https://en.wikipedia.org/wiki/India"
+   ]
+
+},
+
+{
+  "sub_category":"World Courts",
+  "analysis":{
+
+    "human_rights_committee":{
+
+"results":[],
+"severity":"GREEN",
+"risk_level":"Medium Risk"
+
+
     },
-    {
-      "topic": "General State of Human Rights",
-      "summary": [
-        "India faces ongoing and significant human rights challenges, including discrimination and violence against minorities, political repression, and limited freedom of expression.",
-        "Civil society and activists experience political targeting and restrictions, with legal and administrative obstacles to dissent."
-      ]
+    "african_commission_on_human_and_people_rights":{
+      "results":[
+
+        {
+
+    "title":"N/A",
+    "link":"https://ghgdhgd",
+    "year":"2017"
+  },
+
+   {
+
+    "title":"dsfs fdfsfd gdgr",
+    "link":"https://ghgdhgd",
+    "year":"2017"
+  }
+
+      ],
+"severity":"GREEN",
+"risk_level":"Medium Risk"
+
+
     },
-    {
-      "topic": "Key Human Rights Trends, Challenges and Systemic Abuses",
-      "summary": [
-        "Systemic abuses include discrimination and violence against minorities, arbitrary detentions, and suppression of dissent.",
-        "Police brutality, custodial violence, and lack of accountability are widespread concerns.",
-        "Limited progress on legal safeguards, international criticism, and institutional failures contribute to ongoing risks for vulnerable groups."
-      ]
-    }
-  ],
-  "sources": [
-    "https://freedomhouse.org/country/india/freedom-world/2025",
-    "https://humanrightsmeasurement.org/wp-content/uploads/2025/06/HRMI-India-2025-Summary-Report.pdf",
-    "https://rightstracker.org/country/IND",
-    "https://www.eurasiaview.com/03102025-intensifying-global-scrutiny-of-indias-systemic-human-rights-abuses-oped/",
-    "https://www.hrw.org/world-report/2025/country-chapters/india",
-    "https://www.nationalheraldindia.com/opinion/whats-happening-in-india-in-2025-highlights-of-the-year-so-far",
-    "https://www.state.gov/wp-content/uploads/2025/07/642521-INDIA-2024-HUMAN-RIGHTS-REPORT.pdf",
-    "https://www.thenewsminute.com/news/first-ever-global-torture-index-flags-india-as-high-risk-country"
-  ],
-  "overall_severity": "RED"
+   "african_committee_of_expert_on_the_rights_and_welfare_of_the_child":{
+    "results":[
+      {
+
+    "title":"dsfs fdfsfd gdgr",
+    "link":"https://ghgdhgd",
+    "year":"2017"
+  },
+
+   {
+
+    "title":"dsfs fdfsfd gdgr",
+    "link":"https://ghgdhgd",
+    "year":"2017"
+  }
+
+    ],
+"severity":"GREEN",
+"risk_level":"Medium Risk"
+
+
+   },
+   "african_court_on_human_and_people_rights":{
+    "results":[
+      {
+
+    "title":"dsfs fdfsfd gdgr",
+    "link":"https://ghgdhgd",
+    "year":"2017"
+  },
+
+   {
+
+    "title":"dsfs fdfsfd gdgr",
+    "link":"https://ghgdhgd",
+    "year":"2017"
+  }
+],
+"severity":"GREEN",
+"risk_level":"Medium Risk"
+
+
+   },
+   "committee_on_the_elimination_of_descrimination_against_women":{
+
+    "results":[
+   {
+
+    "title":"dsfs fdfsfd gdgr",
+    "link":"https://ghgdhgd",
+    "year":"2017"
+  },
+
+   {
+
+    "title":"dsfs fdfsfd gdgr",
+    "link":"https://ghgdhgd",
+    "year":"2017"
+  }
+
+
+
+    ],
+"severity":"GREEN",
+"risk_level":"Medium Risk"
+   },
+   "committee_on_the_rights_of_persons_with_disabilities":{
+    "results":[
+
+
+      {
+
+    "title":"dsfs fdfsfd gdgr",
+    "link":"https://ghgdhgd",
+    "year":"2017"
+  },
+
+   {
+
+    "title":"dsfs fdfsfd gdgr",
+    "link":"https://ghgdhgd",
+    "year":"2017"
+  }
+
+    ],
+"severity":"GREEN",
+"risk_level":"Medium Risk"
+
+   },
+   "inter_american_commission_on_human_rights":{
+    "results":[
+
+
+      {
+
+    "title":"dsfs fdfsfd gdgr",
+    "link":"https://ghgdhgd",
+    "year":"2017"
+  },
+
+   {
+
+    "title":"dsfs fdfsfd gdgr",
+    "link":"https://ghgdhgd",
+    "year":"2017"
+  }
+
+    ],
+"severity":"GREEN",
+"risk_level":"Medium Risk"
+
+   }
+
+  },
+  "overall_severity":"GREEN",
+  "risk_level":"Low Risk",
+  "sources":[
+
+    "https://hjjhfhjf",
+    "https://gcccccccc",
+    "https://gcgxfsddadad"
+  ]
+
+},
+
+{
+
+"sub_category":"BHR Law Court Cases",
+"analysis":{
+
+  "court_cases":{
+    "items":[
+
+      {
+
+        "title":"ftyytr ddsf wfsf",
+        "status":"ongoing",
+        "url": "https://jhkjhkhk",
+        "date":"2021-08-9",
+        "tags":"Human Rights,Environment"
+      },
+      {
+          "title":"ghgh chfh fhfgh",
+        "status":"finalized",
+        "url":"https://hghjghhj",
+        "date":"2022-09-3",
+        "tags":"Human Rights, Forced labor, treatment of workers labor rights"
+
+
+      }
+
+     
+    ]
+
+  },
+  "severity":"RED",
+  "risk_level":"High Risk"
+
+
+
+},
+"overall_severity":"RED",
+"risk_level":"High Risk",
+"sources":[
+  "https://jhkjhkhk",
+  "https://hghjghhj"
+]
+}
+
+],
+  "errors":null,
+  "overall_severity":"RED",
+  "overall_risk_level":"No data"
+
 }
 
 
