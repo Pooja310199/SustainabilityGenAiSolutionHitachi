@@ -4,6 +4,7 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import ResultsPanel from "./components/Results/ResultsPanel";
 
 export default function Page() {
+  console.count("Page rendered");
   const [macro, setMacro] = useState("Country");
 
   const [selectedCountries, setSelectedCountries] = useState([]);
@@ -125,7 +126,7 @@ export default function Page() {
     // COUNTRY BASIC
     if (selectedCountries.length > 0) {
       const basic = await Promise.all(
-        selectedCountries.map((c) => fetchCountryData(c, "basic"))
+        selectedCountries.map((c) => fetchCountryData(c, "basic")),
       );
 
       newResults.countryBasic = {
@@ -205,7 +206,7 @@ export default function Page() {
       const [basic, adv] = await Promise.all([
         Promise.all(selectedCountries.map((c) => fetchCountryData(c, "basic"))),
         Promise.all(
-          selectedCountries.map((c) => fetchCountryData(c, "advanced"))
+          selectedCountries.map((c) => fetchCountryData(c, "advanced")),
         ),
       ]);
 
@@ -230,7 +231,7 @@ export default function Page() {
       const names = [customer1, customer2 || partnerName].filter(Boolean);
 
       const results = await Promise.all(
-        names.map((n) => fetchCustomerFile(n.toLowerCase()))
+        names.map((n) => fetchCustomerFile(n.toLowerCase())),
       );
 
       newResults.customerBasic = {

@@ -18,10 +18,18 @@ export default function ResultsPanel({
   projectName,
   territoryName,
 }) {
-  /* COUNTRY */
+  useEffect(() => {
+    console.log("resultsMap changed");
+  }, [resultsMap]);
 
+  useEffect(() => {
+    console.log("viewMode changed");
+  }, [viewMode]);
+
+  /* COUNTRY */
+  console.count("ResultsPanel rendered");
   const hasAnyResults = Object.values(resultsMap).some(
-    (section) => section && section.data && section.data.length > 0
+    (section) => section && section.data && section.data.length > 0,
   );
   const [expandedSections, setExpandedSections] = useState({});
   const [expandedMetrics, setExpandedMetrics] = useState({});
@@ -72,7 +80,7 @@ export default function ResultsPanel({
               setExpandedSources,
               expandedSubIndicators,
               setExpandedSubIndicators,
-            })
+            }),
           )}
 
         {entry.selectedCountries.length === 2 && (
@@ -92,7 +100,7 @@ export default function ResultsPanel({
                     setExpandedSources,
                     expandedSubIndicators,
                     setExpandedSubIndicators,
-                  })
+                  }),
                 )}
               </div>
             ))}
@@ -209,7 +217,6 @@ export default function ResultsPanel({
           setExpandedProjectSub={setExpandedProjectSub}
         />
       ))}
-
       {territoryEntry?.data?.map((content, idx) => (
         <RenderTerritoryMacro
           key={`terr-${idx}`}
@@ -261,6 +268,13 @@ export default function ResultsPanel({
           if (content.metrics) {
             Object.keys(content.metrics).forEach((mKey) => {
               keys.subIndicators[`${sectionKey}_${mKey}`] = true;
+            });
+          }
+
+          if (Array.isArray(content.results)) {
+            content.results.forEach((_, i) => {
+              const hrKey = `${countryEntry.selectedCountries[bi]}_${cat}_HR_${i}`;
+              keys.subIndicators[hrKey] = true;
             });
           }
         });
@@ -484,7 +498,7 @@ export default function ResultsPanel({
                 {renderCountryContent(
                   viewMode === "basic"
                     ? resultsMap.countryBasic
-                    : resultsMap.countryAdvanced
+                    : resultsMap.countryAdvanced,
                 )}
               </Disclosure.Panel>
             </div>
@@ -538,7 +552,7 @@ export default function ResultsPanel({
                 {renderCustomerContent(
                   viewMode === "basic"
                     ? resultsMap.customerBasic
-                    : resultsMap.customerAdvanced
+                    : resultsMap.customerAdvanced,
                 )}
               </Disclosure.Panel>
             </div>
@@ -604,7 +618,7 @@ export default function ResultsPanel({
                     : resultsMap.projectAdvanced,
                   viewMode === "basic"
                     ? resultsMap.territoryBasic
-                    : resultsMap.territoryAdvanced
+                    : resultsMap.territoryAdvanced,
                 )}
               </Disclosure.Panel>
             </div>

@@ -10,6 +10,7 @@ export default function RenderProjectMacro({
   expandedProjectSub,
   setExpandedProjectSub,
 }) {
+  console.count("RenderProjectMacro rendered");
   if (!content || allValuesNA(content)) return null;
 
   const mainKey = `project-main-${index}`;
@@ -224,7 +225,8 @@ export default function RenderProjectMacro({
                                     Array.isArray(value.results) &&
                                     value.results.some(
                                       (r) =>
-                                        typeof r === "string" && r.trim() !== ""
+                                        typeof r === "string" &&
+                                        r.trim() !== "",
                                     )
                                   ))
                               )
@@ -277,7 +279,7 @@ export default function RenderProjectMacro({
                                     <span className="flex items-center gap-2">
                                       <SeverityDot level={value.severity} />
                                       {capitalizeWords(
-                                        key.replaceAll("_", " ")
+                                        key.replaceAll("_", " "),
                                       )}
                                     </span>
 
@@ -361,7 +363,7 @@ export default function RenderProjectMacro({
                                   )}
                                 </div>
                               );
-                            }
+                            },
                           )}
                         </div>
                       )}

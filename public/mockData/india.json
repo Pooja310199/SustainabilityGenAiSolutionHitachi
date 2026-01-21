@@ -729,6 +729,217 @@
   "https://jhkjhkhk",
   "https://hghjghhj"
 ]
+},
+
+{
+
+  "sub_category":"European Social Charter",
+  "analysis":{
+    "cases":{
+      "items":[
+        {
+
+          "title":"fhgfhg gfhfhf fhfhf ghfehf",
+          "url":"https://hghjghhaj",
+          "date":"2022-09-1"
+        },
+        {
+
+          "title":"fhgfhg gfhfhf fhfhff ghfhf",
+          "url":"https://hghjghbhj",
+          "date":"2022-09-2"
+
+        },
+        {
+
+"title":"fhgfhg gfhfhf fhfhgf ghfhf",
+          "url":"https://hghjgchhj",
+          "date":"2022-09-3"
+        },
+        {
+
+"title":"fhgfhg gfhfhf hfhfhf ghfhf",
+          "url":"https://hghjghdhj",
+          "date":"2022-09-4"
+        }
+      ]
+
+    },
+    "severity":"RED",
+    "risk_level":"High Risk"
+
+
+  },
+  "overall_severity":"RED",
+  "risk_level":"High Risk",
+  "sources":[
+    "https://defensefeeds.com/analysis/conflicts/india-pakistan-conflict",
+    "https://en.wikipedia.org/wiki/India",
+    "https://en.wikipedia.org/wiki/2025_India%E2%80%93Pakistan_conflict",
+    "https://en.wikipedia.org/wiki/India"
+
+  ]
+},
+
+{
+
+  "sub_category":"International Labor Organization",
+  "analysis":{
+    "cases":{
+      "items":[
+
+      {
+          "title":"ttetretr trytv ytyryry",
+          "url":"https://hghjghdhj"
+
+      },
+      {
+"title":"ttetretr trytv ytyryry",
+          "url":"https://hghjghdhj"
+
+      },
+     {
+
+      "title":"ttetretr trytv ytyryry",
+          "url":"https://hghjghdhj"
+     }
+      ]
+
+    },
+    "severity":"RED",
+    "risk_level":"High Risk"
+
+  },
+  "overall_severity":"RED",
+  "risk_level":"High Risk",
+  "sources":[
+
+    "https://en.wikipedia.org/wiki/2025_India%E2%80%93Pakistan_conflict",
+"https://defensefeeds.com/analysis/conflicts/india-pakistan-conflict",
+"https://en.wikipedia.org/wiki/India",
+"https://en.wikipedia.org/wiki/2025_India%E2%80%93Pakistan_conflict"
+  ]
+
+
+},
+
+{
+"sub_category":"African Commision on Human and people's Rights",
+"analysis":{
+
+  "lawsuit":{
+    "items":[
+      {
+ 
+        "title":"ffffffff ggggggggagg ggggggggggggg",
+        "url":"https://hghjghhaj",
+        "date":"Nov 18, 2025",
+        "country":"Subdan",
+        "decision_outcome":"ghfhg ghfhgf ghhf",
+        "session":"fdgf gdh hgfhf"
+      },
+      {
+   "title":"ffffffff gggggggsggg ggggggggggggg",
+        "url":"https://hghjghhaj",
+        "date":"Nov 18, 2025",
+        "country":"Sudan",
+        "decision_outcome":"ghfhg ghfhgf ghhf",
+        "session":"fdgf gdh hgfhf"
+      },
+      {
+
+           "title":"ffffffff gggggfggggg ggggggggggggg",
+        "url":"https://hghjghhaj",
+        "date":"Nov 18, 2025",
+        "country":"Sudanm",
+        "decision_outcome":"ghfhg ghfhgf ghhf",
+        "session":"fdgf gdh hgfhf"
+      }
+    ]
+
+
+  },
+  "severity":"RED",
+  "risk_level":"High Risk"
+
+} ,
+"overall_severity":"RED",
+"risk_level":"High Risk",
+"sources":[
+  "https://defensefeeds.com/analysis/conflicts/india-pakistan-conflict",
+  "https://en.wikipedia.org/wiki/India",
+  "https://defensefeeds.com/analysis/conflicts/india-pakistan-conflict",
+  "https://en.wikipedia.org/wiki/India"
+]
+},
+
+{
+
+  "sub_category":"African Human Rights Case Law Analyser",
+  "analysis":{
+    "caselaw":{
+      "items":[
+       {
+         "title":"gggggggg ghhhhhhhhhhh gggggggg",
+          "url":"https://hghjghhj",
+          "type_of_document":"Decision",
+          "keywords":[
+            "jurisdiction",
+            "com[laint afgainst no onrxvx"
+          ],
+          "case_headnotes":"in his appplication the applicant",
+           "country":"Sudan",
+          "year_decided":"Sep 02, 2011",
+          "outcome":"Decided on Metrics",
+          "duration_of_procedure":"Mar 04, 2011 to aug 08, 2020"
+       },
+       {
+         "title":"gggggggg ghhhhhhhhhhh gggggggg",
+          "url":"https://hghjghhj",
+          "type_of_document":"fggggg",
+          "keywords":[
+            "jurisdiction",
+            "fdgf gfgh ghhdg"
+          ],
+          "case_headnotes":"df fsfd fdfs",
+          "country":"Sudanm",
+          "year_decided":"Sep 02, 2011",
+          "outcome":"fgfg gfgfgf",
+          "duration_of_procedure":"gfg gffggf ghfg"
+      
+
+       },
+
+       {
+        "title":"gggggggg ghhhhhhhhhhh gggggggg",
+          "url":"https://hghjghhj",
+          "type_of_document":"fggggg",
+          "keywords":[
+            "jurisdiction",
+            "fdgf gfgh ghhdg"
+          ],
+          "case_headnotes":"df fsfd fdfs",
+           "country":"Sudanm",
+          "year_decided":"Sep 02, 2011",
+          "outcome":"fgfg gfgfgf",
+          "duration_of_procedure":"gfg gffggf ghfg"
+       }
+      ]
+
+    },
+    "severity":"RED",
+    "risk_level":"High Risk"
+
+  },
+  "overall_severity":"RED",
+  "risk_level":"High Risk",
+  "sources":[
+
+    "https://defensefeeds.com/analysis/conflicts/india-pakistan-conflict",
+    "https://en.wikipedia.org/wiki/India",
+    "https://defensefeeds.com/analysis/conflicts/india-pakistan-conflict",
+    "https://en.wikipedia.org/wiki/2025_India%E2%80%93Pakistan_conflict"
+  ]
 }
 
 ],

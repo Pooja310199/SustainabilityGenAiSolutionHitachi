@@ -115,6 +115,9 @@ export default function CustomerRenderer({
   expandedCustomerSub,
   setExpandedCustomerSub,
 }) {
+
+
+  console.count("CustomerRenderer rendered");
   if (!content || !content.results) {
     return (
       <p className="text-gray-600 text-center">No customer results found.</p>

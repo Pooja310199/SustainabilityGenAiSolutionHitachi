@@ -20,6 +20,7 @@ export default function Sidebar({
   onAdvanceSearch,
   clearResultsForMacro, // ⭐ NEW
 }) {
+  console.count("Sidebar rendered");
   const [countries, setCountries] = useState([]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [searchText, setSearchText] = useState("");
@@ -98,7 +99,7 @@ export default function Sidebar({
 
               {countries
                 .filter((c) =>
-                  c.toLowerCase().includes(searchText.toLowerCase())
+                  c.toLowerCase().includes(searchText.toLowerCase()),
                 )
                 .map((c) => (
                   <label

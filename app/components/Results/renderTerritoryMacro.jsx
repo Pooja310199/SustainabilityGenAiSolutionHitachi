@@ -10,6 +10,7 @@ export default function RenderTerritoryMacro({
   expandedTerritorySub,
   setExpandedTerritorySub,
 }) {
+  console.count("RenderTerritoryMacro rendered");
   if (!content || allValuesNA(content)) return null;
 
   const mainKey = `territory-main-${index}`;
@@ -199,7 +200,7 @@ export default function RenderTerritoryMacro({
                     {/* ================================== */}
                     {res.analysis?.allegations &&
                       res.analysis.allegations.some(
-                        (item) => !allValuesNA(item)
+                        (item) => !allValuesNA(item),
                       ) && (
                         <div className="space-y-3">
                           <h4 className="font-semibold text-gray-800">
@@ -223,13 +224,13 @@ export default function RenderTerritoryMacro({
                                     <p key={field}>
                                       <span className="font-bold">
                                         {capitalizeWords(
-                                          field.replace(/_/g, " ")
+                                          field.replace(/_/g, " "),
                                         )}
                                         :
                                       </span>{" "}
                                       {String(val)}
                                     </p>
-                                  )
+                                  ),
                                 )}
                               </div>
                             );
@@ -241,7 +242,7 @@ export default function RenderTerritoryMacro({
 
                     {Object.entries(res.analysis || {})
                       .filter(
-                        ([key]) => key !== "allegations" && key !== "queries"
+                        ([key]) => key !== "allegations" && key !== "queries",
                       )
                       .map(([key, items]) => {
                         if (
@@ -290,7 +291,7 @@ export default function RenderTerritoryMacro({
                                               <p key={field}>
                                                 <span className="font-semibold">
                                                   {capitalizeWords(
-                                                    field.replace(/_/g, " ")
+                                                    field.replace(/_/g, " "),
                                                   )}
                                                   :
                                                 </span>{" "}
@@ -303,7 +304,7 @@ export default function RenderTerritoryMacro({
                                                   String(val)
                                                 )}
                                               </p>
-                                            )
+                                            ),
                                           )}
                                       </div>
                                     ))}
@@ -317,7 +318,7 @@ export default function RenderTerritoryMacro({
                         if (!Array.isArray(items)) return null;
 
                         const filteredItems = items.filter(
-                          (item) => !allValuesNA(item)
+                          (item) => !allValuesNA(item),
                         );
                         if (filteredItems.length === 0) return null;
 
@@ -342,13 +343,13 @@ export default function RenderTerritoryMacro({
                                       <p key={field}>
                                         <span className="font-semibold">
                                           {capitalizeWords(
-                                            field.replace(/_/g, " ")
+                                            field.replace(/_/g, " "),
                                           )}
                                           :
                                         </span>{" "}
                                         {String(val)}
                                       </p>
-                                    )
+                                    ),
                                   )}
                                 </div>
                               );

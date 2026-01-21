@@ -26,6 +26,55 @@ const HumanRightsSection = ({
     val.trim().toLowerCase() !== "n/a" &&
     val.trim().toLowerCase() !== "no data";
 
+  const extractItemsBlock = (val) => {
+    if (!val || typeof val !== "object") return null;
+
+    // Direct items
+    if (Array.isArray(val.items)) return val;
+
+    // Nested items (cases, lawsuit, caselaw, court_cases, etc.)
+    for (const v of Object.values(val)) {
+      if (v && typeof v === "object" && Array.isArray(v.items)) {
+        return v;
+      }
+    }
+
+    return null;
+  };
+
+  const renderExtraFields = (item) =>
+    Object.entries(item)
+      .filter(([key, val]) => {
+        // Already rendered fields → skip
+        // if (["title", "url", "link", "date", "status", "summary"].includes(key))
+
+        if (
+          [
+            "title",
+            "url",
+            "link",
+            "date",
+            "status",
+            "summary",
+            "keywords",
+            "country",
+          ].includes(key)
+        )
+          return false;
+
+        // Skip empty / useless values
+        if (val == null) return false;
+        if (typeof val === "string" && !isValidText(val)) return false;
+
+        return true;
+      })
+      .map(([key, val], idx) => (
+        <div key={idx} style={{ fontSize: 12, marginTop: 4 }}>
+          <strong>{capitalizeWords(key.replaceAll("_", " "))}:</strong>{" "}
+          {Array.isArray(val) ? val.join(", ") : val}
+        </div>
+      ));
+
   return (
     <div style={{ marginTop: 16, marginLeft: 18 }}>
       {content.results.map((res, i) => {
@@ -93,7 +142,9 @@ const HumanRightsSection = ({
                     })
 
                     .map(([sectionKey, sectionVal], idx) => {
-                      const isGridItems = Array.isArray(sectionVal?.items);
+                      const itemsBlock = extractItemsBlock(sectionVal);
+                      const isGridItems = Array.isArray(itemsBlock?.items);
+
                       const showSummary =
                         sectionKey === "allegations" ||
                         sectionKey === "protests";
@@ -213,7 +264,7 @@ const HumanRightsSection = ({
                                     listStyle: "none",
                                   }}
                                 >
-                                  {sectionVal.items.map((item, j) => (
+                                  {itemsBlock.items.map((item, j) => (
                                     <li
                                       key={j}
                                       style={{
@@ -256,6 +307,8 @@ const HumanRightsSection = ({
                                             {item.summary}
                                           </div>
                                         )}
+
+                                      {renderExtraFields(item)}
 
                                       {(item.url || item.link) && (
                                         <div style={{ marginTop: 6 }}>
@@ -476,7 +529,7 @@ const HumanRightsSection = ({
 
                       {(() => {
                         const hrmiEntries = Object.entries(
-                          res.metrics.hrmi_rights_tracker || {}
+                          res.metrics.hrmi_rights_tracker || {},
                         );
 
                         const validHrmiCards = hrmiEntries.filter(
@@ -487,18 +540,18 @@ const HumanRightsSection = ({
                               [];
 
                             const hasValidSummary = isRealValue(
-                              rightVal.summary_score
+                              rightVal.summary_score,
                             );
 
                             const validIndicators = subIndicators.filter(
                               (s) =>
-                                isRealValue(s?.name) && isRealValue(s?.value)
+                                isRealValue(s?.name) && isRealValue(s?.value),
                             );
 
                             return (
                               hasValidSummary || validIndicators.length > 0
                             );
-                          }
+                          },
                         );
 
                         return (
@@ -525,11 +578,11 @@ const HumanRightsSection = ({
                                 const validIndicators = subIndicators.filter(
                                   (s) =>
                                     isRealValue(s?.name) &&
-                                    isRealValue(s?.value)
+                                    isRealValue(s?.value),
                                 );
 
                                 const hasValidSummary = isRealValue(
-                                  rightVal.summary_score
+                                  rightVal.summary_score,
                                 );
 
                                 return (
@@ -553,7 +606,7 @@ const HumanRightsSection = ({
                                     >
                                       <SeverityDot level={rightVal.severity} />
                                       {capitalizeWords(
-                                        rightKey.replaceAll("_", " ")
+                                        rightKey.replaceAll("_", " "),
                                       )}
                                     </div>
 
@@ -668,7 +721,7 @@ const HumanRightsSection = ({
                           </ul>
                         </div>
                       );
-                    }
+                    },
                   )}
 
                 {/* ================= SOURCES ================= */}
@@ -689,7 +742,7 @@ const HumanRightsSection = ({
                           (s) =>
                             typeof s === "string" &&
                             s.trim() !== "" &&
-                            s.startsWith("http")
+                            s.startsWith("http"),
                         )
                         .map((s, i) => (
                           <li key={i}>

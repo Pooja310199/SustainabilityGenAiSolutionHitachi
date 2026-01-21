@@ -15,6 +15,7 @@ export function renderCategory({
   expandedSubIndicators,
   setExpandedSubIndicators,
 }) {
+  console.count(`Category ${content.category} rendered`);
   const category = content.category;
   const bgColor = getCategoryColor(content.overall_severity);
   const categoryKey = `${countryName}_${category}`;

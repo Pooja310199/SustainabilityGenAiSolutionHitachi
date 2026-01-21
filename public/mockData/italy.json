@@ -247,7 +247,670 @@
     "https://www.nriaffairs.com/indias-freedom-status-declines-in-freedom-houses-2025-report-while-kashmir-sees-improvement/"
   ],
   "overall_severity": "GREEN"
+},
+
+{
+
+  "category":"Human Rights General",
+  "results":[
+  {
+    "sub_category":"European Court of Human Rights",
+    "analysis":{
+      "echr_judgements_violations":[
+           
+
+
+    
+],
+"severity":"RED",
+"risk_level":"High Risk"
+     },
+    "overall_severity":"RED",
+    "risk_level":"High Risk",
+    "sources":[
+
+      "http://fsdfsd",
+      "http://adasdsd",
+      "http://fgfg"
+    ]
+
+  },
+
+
+{
+  "sub_category":"Our world in Data",
+  "metrics":{
+
+    "human_rights_owdin":[
+      {
+        "index":"fgfg gfgff juiy hgyg",
+        "value":0.936,
+        "index_description":"hfhhgffhg gfhgf hgyhf kjj hjk",
+        "rescaled":9.36,
+        "severity":"ORANGE",
+        "risk_level":"Low Risk"
+      },
+      {
+
+        "index":"fgfg gfgff juiy hgyg",
+        "value":0.936,
+        "index_description":"hfhhgfffhg gfhgf hgyhf kjj hjk",
+        "rescaled":9.36,
+        "severity":"GREEN",
+        "risk_level":"Low Risk"
+      },
+      {
+        "index":"fgfg gfgf juicvy hgyg",
+        "value":0.9336,
+        "index_description":"hfhhcxvgfhg gfhgf hgyhf kjj hjk",
+        "rescaled":9.336,
+        "severity":"GREEN",
+        "risk_level":"Low Risk"
+      }
+    ],
+    "hrmi_rights_tracker":{
+
+      "Quality_of_Life":{
+         "summary_score":"8.9",
+        "subindicators":[
+
+          {
+             "name":"FOOD",
+          "value":"7.8",
+          "severity":"RED",
+          "risk_level":"High Risk"
+          },
+          {
+
+            "name":"HEATH",
+          "value":"8.9",
+          "severity":"ORANGE",
+          "risk_level":"Medium Risk"
+          },
+
+          {
+            "name":"gg ghfhg ghhh",
+          "value":"N/A",
+          "severity":"N/A",
+          "risk_level":"No Data"
+          }
+
+        ],
+        "severity":"RED",
+        "risk_level":"No Data"
+      },
+      "Safety_From_the_State_Rights":{
+        "summary_score":"9.6",
+        "subindicators":[
+
+          {
+             "name":"PPOJA",
+          "value":"7.2",
+          "severity":"GREEN",
+          "risk_level":"Medium Risk"
+          },
+          {
+
+            "name":"gg ghfhg ghhh",
+          "value":"N/A",
+          "severity":"N/A",
+          "risk_level":"No Data"
+          },
+
+          {
+            "name":"gg ghfhg ghhh",
+          "value":"N/A",
+          "severity":"N/A",
+          "risk_level":"No Data"
+          }
+
+        ],
+        "severity":"N/A",
+        "risk_level":"No Data"
+      },
+      "Empowerment_Rights":{
+        "summary_score":"N/A",
+        "subindicators":[
+
+          {
+             "name":"gg ghfhg ghhh",
+          "value":"N/A",
+          "severity":"N/A",
+          "risk_level":"No Data"
+          },
+          {
+
+            "name":"gg ghfhg ghhh",
+          "value":"N/A",
+          "severity":"N/A",
+          "risk_level":"No Data"
+          },
+
+          {
+            "name":"gg ghfhg ghhh",
+          "value":"N/A",
+          "severity":"N/A",
+          "risk_level":"No Data"
+          }
+
+        ],
+        "severity":"N/A",
+        "risk_level":"No Data"
+        
+      }
+
+    }
+
+  },
+  "overall_severity":"ORANGE",
+  "sources":[
+    "http://fsdfsd",
+      "http://adasdsd",
+      "http://fgfg"
+  ]
+
+
+},
+
+{
+   "sub_category":"Human Rights watch",
+   "analysis":{
+   "allegations":{
+    "items":[
+      {
+        "title":"gdgdgdg bnvvv jgj",
+        "url":"https://fhgfhffy",
+        "date":"2024-12-04",
+        "summary":"gfhgf gtftyytr tyryr htytr"
+      },
+      {
+        
+        "title":"gdgdgdg bnvvv jgj",
+        "url":"https://fhgfhffy",
+        "date":"2024-12-04",
+        "summary":"gfhgf gtftyytr tyryr htytr"
+      },
+      {
+
+        
+        "title":"gdgdgdg bnvvv jgj",
+        "url":"https://fhgfhffy",
+        "date":"2024-12-04",
+        "summary":"gfhgf gtftyytr tyryr htytr"
+      }
+
+    ],
+    "severity":"ORANGE",
+    "risk_level":"Medium Risk"
+
+   },
+   "protests":{
+"items":[
+  {
+       "title":"gdgdgdg bnvvv jgj",
+        "url":"https://fhgfhffy",
+        "date":"2024-12-04",
+        "summary":"gfhgf gtftyytr tyryr htytr"
+  },
+  {
+       "title":"gdgdgdg bnvvv jgj",
+        "url":"https://fhgfhffy",
+        "date":"2024-12-04",
+        "summary":"gfhgf gtftyytr tyryr htytr"
+  },
+  {
+       "title":"gdgdgdg bnvvv jgj",
+        "url":"https://fhgfhffy",
+        "date":"2024-12-04",
+        "summary":"gfhgf gtftyytr tyryr htytr"
+  }
+
+],
+"severity":"ORANGE",
+"risk_level":"Medium Risk"
+
+
+
+   }
+
+
+   },
+   "overall_severity":"ORANGE",
+   "risk_level":"Medium Risk",
+   "sources":[
+
+    "https://defensefeeds.com/analysis/conflicts/india-pakistan-conflict",
+    "https://en.wikipedia.org/wiki/List_of_territorial_disputes",
+    "https://en.wikipedia.org/wiki/India"
+   ]
+
+},
+
+{
+  "sub_category":"World Courts",
+  "analysis":{
+
+    "human_rights_committee":{
+
+"results":[],
+"severity":"GREEN",
+"risk_level":"Medium Risk"
+
+
+    },
+    "african_commission_on_human_and_people_rights":{
+      "results":[
+
+        {
+
+    "title":"N/A",
+    "link":"https://ghgdhgd",
+    "year":"2017"
+  },
+
+   {
+
+    "title":"dsfs fdfsfd gdgr",
+    "link":"https://ghgdhgd",
+    "year":"2017"
+  }
+
+      ],
+"severity":"GREEN",
+"risk_level":"Medium Risk"
+
+
+    },
+   "african_committee_of_expert_on_the_rights_and_welfare_of_the_child":{
+    "results":[
+      {
+
+    "title":"dsfs fdfsfd gdgr",
+    "link":"https://ghgdhgd",
+    "year":"2017"
+  },
+
+   {
+
+    "title":"dsfs fdfsfd gdgr",
+    "link":"https://ghgdhgd",
+    "year":"2017"
+  }
+
+    ],
+"severity":"GREEN",
+"risk_level":"Medium Risk"
+
+
+   },
+   "african_court_on_human_and_people_rights":{
+    "results":[
+      {
+
+    "title":"dsfs fdfsfd gdgr",
+    "link":"https://ghgdhgd",
+    "year":"2017"
+  },
+
+   {
+
+    "title":"dsfs fdfsfd gdgr",
+    "link":"https://ghgdhgd",
+    "year":"2017"
+  }
+],
+"severity":"GREEN",
+"risk_level":"Medium Risk"
+
+
+   },
+   "committee_on_the_elimination_of_descrimination_against_women":{
+
+    "results":[
+   {
+
+    "title":"dsfs fdfsfd gdgr",
+    "link":"https://ghgdhgd",
+    "year":"2017"
+  },
+
+   {
+
+    "title":"dsfs fdfsfd gdgr",
+    "link":"https://ghgdhgd",
+    "year":"2017"
+  }
+
+
+
+    ],
+"severity":"GREEN",
+"risk_level":"Medium Risk"
+   },
+   "committee_on_the_rights_of_persons_with_disabilities":{
+    "results":[
+
+
+      {
+
+    "title":"dsfs fdfsfd gdgr",
+    "link":"https://ghgdhgd",
+    "year":"2017"
+  },
+
+   {
+
+    "title":"dsfs fdfsfd gdgr",
+    "link":"https://ghgdhgd",
+    "year":"2017"
+  }
+
+    ],
+"severity":"GREEN",
+"risk_level":"Medium Risk"
+
+   },
+   "inter_american_commission_on_human_rights":{
+    "results":[
+
+
+      {
+
+    "title":"dsfs fdfsfd gdgr",
+    "link":"https://ghgdhgd",
+    "year":"2017"
+  },
+
+   {
+
+    "title":"dsfs fdfsfd gdgr",
+    "link":"https://ghgdhgd",
+    "year":"2017"
+  }
+
+    ],
+"severity":"GREEN",
+"risk_level":"Medium Risk"
+
+   }
+
+  },
+  "overall_severity":"GREEN",
+  "risk_level":"Low Risk",
+  "sources":[
+
+    "https://hjjhfhjf",
+    "https://gcccccccc",
+    "https://gcgxfsddadad"
+  ]
+
+},
+
+{
+
+"sub_category":"BHR Law Court Cases",
+"analysis":{
+
+  "court_cases":{
+    "items":[
+
+      {
+
+        "title":"ftyytr ddsf wfsf",
+        "status":"ongoing",
+        "url": "https://jhkjhkhk",
+        "date":"2021-08-9",
+        "tags":"Human Rights,Environment"
+      },
+      {
+          "title":"ghgh chfh fhfgh",
+        "status":"finalized",
+        "url":"https://hghjghhj",
+        "date":"2022-09-3",
+        "tags":"Human Rights, Forced labor, treatment of workers labor rights"
+
+
+      }
+
+     
+    ]
+
+  },
+  "severity":"RED",
+  "risk_level":"High Risk"
+
+
+
+},
+"overall_severity":"RED",
+"risk_level":"High Risk",
+"sources":[
+  "https://jhkjhkhk",
+  "https://hghjghhj"
+]
+},
+
+
+
+{
+
+  "sub_category":"International Labor Organization",
+  "analysis":{
+    "cases":{
+      "items":[
+
+      {
+          "title":"ttetretr trytv ytyryry",
+          "url":"https://hghjghdhj"
+
+      },
+      {
+"title":"ttetretr trytv ytyryry",
+          "url":"https://hghjghdhj"
+
+      },
+     {
+
+      "title":"ttetretr trytv ytyryry",
+          "url":"https://hghjghdhj"
+     }
+      ]
+
+    },
+    "severity":"RED",
+    "risk_level":"High Risk"
+
+  },
+  "overall_severity":"RED",
+  "risk_level":"High Risk",
+  "sources":[
+
+    "https://en.wikipedia.org/wiki/2025_India%E2%80%93Pakistan_conflict",
+"https://defensefeeds.com/analysis/conflicts/india-pakistan-conflict",
+"https://en.wikipedia.org/wiki/India",
+"https://en.wikipedia.org/wiki/2025_India%E2%80%93Pakistan_conflict"
+  ]
+
+
+},
+
+{
+
+  "sub_category":"European Social Charter",
+  "analysis":{
+    "cases":{
+      "items":[
+        {
+
+          "title":"fhgfhg gfhfhf fhfhf ghfehf",
+          "url":"https://hghjghhaj",
+          "date":"2022-09-1"
+        },
+        {
+
+          "title":"fhgfhg gfhfhf fhfhff ghfhf",
+          "url":"https://hghjghbhj",
+          "date":"2022-09-2"
+
+        },
+        {
+
+"title":"fhgfhg gfhfhf fhfhgf ghfhf",
+          "url":"https://hghjgchhj",
+          "date":"2022-09-3"
+        },
+        {
+
+"title":"fhgfhg gfhfhf hfhfhf ghfhf",
+          "url":"https://hghjghdhj",
+          "date":"2022-09-4"
+        }
+      ]
+
+    },
+    "severity":"RED",
+    "risk_level":"High Risk"
+
+
+  },
+  "overall_severity":"RED",
+  "risk_level":"High Risk",
+  "sources":[
+    "https://defensefeeds.com/analysis/conflicts/india-pakistan-conflict",
+    "https://en.wikipedia.org/wiki/India",
+    "https://en.wikipedia.org/wiki/2025_India%E2%80%93Pakistan_conflict",
+    "https://en.wikipedia.org/wiki/India"
+
+  ]
+},
+
+
+
+{
+
+  "sub_category":"African Human Rights Case Law Analyser",
+  "analysis":{
+    "caselaw":{
+      "items":[
+       {
+         "title":"gggggggg ghhhhhhhhhhh gggggggg",
+          "url":"https://hghjghhj",
+          "type_of_document":"fggggg",
+          "keywords":[
+            "jurisdiction",
+            "fdgf gfgh ghhdg"
+          ],
+          "case_headnotes":"df fsfd fdfs",
+           "country":"Sudanm",
+          "year_decided":"Sep 02, 2011",
+          "outcome":"fgfg gfgfgf",
+          "duration_of_procedure":"gfg gffggf ghfg"
+       },
+       {
+         "title":"gggggggg ghhhhhhhhhhh gggggggg",
+          "url":"https://hghjghhj",
+          "type_of_document":"fggggg",
+          "keywords":[
+            "jurisdiction",
+            "fdgf gfgh ghhdg"
+          ],
+          "case_headnotes":"df fsfd fdfs",
+          "country":"Sudanm",
+          "year_decided":"Sep 02, 2011",
+          "outcome":"fgfg gfgfgf",
+          "duration_of_procedure":"gfg gffggf ghfg"
+      
+
+       },
+
+       {
+        "title":"gggggggg ghhhhhhhhhhh gggggggg",
+          "url":"https://hghjghhj",
+          "type_of_document":"fggggg",
+          "keywords":[
+            "jurisdiction",
+            "fdgf gfgh ghhdg"
+          ],
+          "case_headnotes":"df fsfd fdfs",
+           "country":"Sudanm",
+          "year_decided":"Sep 02, 2011",
+          "outcome":"fgfg gfgfgf",
+          "duration_of_procedure":"gfg gffggf ghfg"
+       }
+      ]
+
+    },
+    "severity":"RED",
+    "risk_level":"High Risk"
+
+  },
+  "overall_severity":"RED",
+  "risk_level":"High Risk",
+  "sources":[
+
+    "https://defensefeeds.com/analysis/conflicts/india-pakistan-conflict",
+    "https://en.wikipedia.org/wiki/India",
+    "https://defensefeeds.com/analysis/conflicts/india-pakistan-conflict",
+    "https://en.wikipedia.org/wiki/2025_India%E2%80%93Pakistan_conflict"
+  ]
+},
+{
+"sub_category":"African Commision on Human and people's Rights",
+"analysis":{
+
+  "lawsuit":{
+    "items":[
+      {
+ 
+        "title":"ffffffff ggggggggagg ggggggggggggg",
+        "url":"https://hghjghhaj",
+        "date":"Nov 18, 2025",
+        "country":"Subdan",
+        "decision_outcome":"ghfhg ghfhgf ghhf",
+        "session":"fdgf gdh hgfhf"
+      },
+      {
+   "title":"ffffffff gggggggsggg ggggggggggggg",
+        "url":"https://hghjghhaj",
+        "date":"Nov 18, 2025",
+        "country":"Sudan",
+        "decision_outcome":"ghfhg ghfhgf ghhf",
+        "session":"fdgf gdh hgfhf"
+      },
+      {
+
+           "title":"ffffffff gggggfggggg ggggggggggggg",
+        "url":"https://hghjghhaj",
+        "date":"Nov 18, 2025",
+        "country":"Sudanm",
+        "decision_outcome":"ghfhg ghfhgf ghhf",
+        "session":"fdgf gdh hgfhf"
+      }
+    ]
+
+
+  },
+  "severity":"RED",
+  "risk_level":"High Risk"
+
+} ,
+"overall_severity":"RED",
+"risk_level":"High Risk",
+"sources":[
+  "https://defensefeeds.com/analysis/conflicts/india-pakistan-conflict",
+  "https://en.wikipedia.org/wiki/India",
+  "https://defensefeeds.com/analysis/conflicts/india-pakistan-conflict",
+  "https://en.wikipedia.org/wiki/India"
+]
 }
+
+],
+  "errors":null,
+  "overall_severity":"RED",
+  "overall_risk_level":"No data"
+
+}
+
 
  
 
