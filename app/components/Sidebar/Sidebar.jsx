@@ -1,30 +1,27 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 
-export default function Sidebar({
-  macro,
-  setMacro,
-  selectedCountries,
-  setSelectedCountries,
-  customer1,
-  setCustomer1,
-  customer2,
-  setCustomer2,
-  partnerName,
-  setPartnerName,
-  projectName,
-  setProjectName,
-  territoryName,
-  setTerritoryName,
+export default React.memo(function Sidebar({
+  // macro,
+  // setMacro,
   onBasicSearch,
   onAdvanceSearch,
   clearResultsForMacro, // ⭐ NEW
 }) {
   console.count("Sidebar rendered");
+  const [macro, setMacro] = useState("Country");
   const [countries, setCountries] = useState([]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [searchText, setSearchText] = useState("");
   const dropdownRef = useRef(null);
+
+  const [selectedCountries, setSelectedCountries] = useState([]);
+  const [customer1, setCustomer1] = useState("");
+  const [customer2, setCustomer2] = useState("");
+  const [partnerName, setPartnerName] = useState("");
+  const [projectName, setProjectName] = useState("");
+
+  const [territoryName, setTerritoryName] = useState("");
 
   useEffect(() => {
     fetch("https://restcountries.com/v3.1/all?fields=name")
@@ -40,6 +37,19 @@ export default function Sidebar({
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
   }, []);
+
+  const handleBasicSearch = () => {
+    onBasicSearch({
+      macro,
+      setMacro,
+      selectedCountries,
+      customer1,
+      customer2,
+      partnerName,
+      projectName,
+      territoryName,
+    });
+  };
 
   return (
     <aside className="w-72 bg-white border-r border-gray-200 p-6 fixed inset-y-0 shadow-sm print:hidden">
@@ -158,48 +168,6 @@ export default function Sidebar({
             />
           </div>
 
-          {/* Customer 2 */}
-          {/* <div>
-            <label className="block text-sm font-medium mb-1 text-gray-700">
-              Customer Name 2:
-            </label>
-            <input
-              className="w-full border rounded-lg px-3 py-2 text-sm bg-gray-50"
-              placeholder="e.g., Enel"
-              value={customer2}
-              onChange={(e) => {
-                const v = e.target.value;
-                setCustomer2(v);
-
-                if (!customer1.trim() && !v.trim() && !partnerName.trim()) {
-                  clearResultsForMacro("Customer");
-                }
-              }}
-              disabled={!!partnerName}
-            />
-          </div> */}
-
-          {/* Partner */}
-          {/* <div>
-            <label className="block text-sm font-medium mb-1 text-gray-700">
-              Consortium Partner:
-            </label>
-            <input
-              className="w-full border rounded-lg px-3 py-2 text-sm bg-gray-50"
-              placeholder="e.g., Schneider"
-              value={partnerName}
-              onChange={(e) => {
-                const v = e.target.value;
-                setPartnerName(v);
-
-                if (!customer1.trim() && !customer2.trim() && !v.trim()) {
-                  clearResultsForMacro("Customer");
-                }
-              }}
-              disabled={!!customer1 && !!customer2}
-            />
-          </div> */}
-
           {/* CUSTOMER 2 */}
           <div>
             <label className="block text-sm font-medium mb-1 text-gray-700">
@@ -293,7 +261,7 @@ export default function Sidebar({
       {/* BUTTONS */}
       <div className="mt-8 flex flex-col gap-3">
         <button
-          onClick={onBasicSearch}
+          onClick={handleBasicSearch}
           // className="bg-blue-600 text-white rounded-lg py-2 font-semibold text-sm"
           className="
          btn-learn-more
@@ -309,4 +277,4 @@ export default function Sidebar({
       </div>
     </aside>
   );
-}
+});

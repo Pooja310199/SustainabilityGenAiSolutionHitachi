@@ -9,14 +9,16 @@ import CustomerRenderer from "./renderCustomer";
 import { capitalizeWords } from "../Common/Utils";
 import RenderProjectMacro from "./renderProjectMacro";
 import RenderTerritoryMacro from "./renderTerritoryMacro";
+import CountrySection from "./macroRender/CountrySection";
+
 // import useExpandCollapseAll from "../hooks/useExpandCollapseAll";
 
 export default function ResultsPanel({
   resultsMap,
   viewMode,
   loading,
-  projectName,
-  territoryName,
+  // projectName,
+  // territoryName,
 }) {
   useEffect(() => {
     console.log("resultsMap changed");
@@ -409,6 +411,16 @@ export default function ResultsPanel({
     setExpandedCustomerSub({}); // ⭐ NEW
   };
 
+  const projectName =
+    resultsMap.projectBasic?.projectName ||
+    resultsMap.projectAdvanced?.projectName ||
+    "";
+
+  const territoryName =
+    resultsMap.territoryBasic?.territoryName ||
+    resultsMap.territoryAdvanced?.territoryName ||
+    "";
+
   // ============================
   // MAIN UI
   // ============================
@@ -465,46 +477,29 @@ export default function ResultsPanel({
         </button>
       </div>
       {/* ===== COUNTRY ===== */}
-      {(resultsMap.countryBasic || resultsMap.countryAdvanced) && (
-        <Disclosure open={isCountryOpen} onChange={setIsCountryOpen}>
-          {({ open }) => (
-            <div className="border rounded-lg bg-white category-header">
-              <Disclosure.Button className="w-full flex justify-between items-center px-4 py-3 bg-gray-100">
-                <div className="px-4 py-2">
-                  <span>
-                    Country
-                    {resultsMap.countryBasic?.selectedCountries?.length > 0 && (
-                      <span className="ml-2 text-sm font-normal text-gray-600">
-                        –{" "}
-                        {resultsMap.countryBasic.selectedCountries
-                          .map(capitalizeWords)
-                          .join(", ")}
-                      </span>
-                    )}
-                  </span>
+      <CountrySection
+        entry={
+          viewMode === "basic"
+            ? resultsMap.countryBasic
+            : resultsMap.countryAdvanced
+        }
+        viewMode={viewMode}
+        isOpen={isCountryOpen}
+        setIsOpen={setIsCountryOpen}
+        expandedSections={expandedSections}
+        setExpandedSections={setExpandedSections}
+        expandedMetrics={expandedMetrics}
+        setExpandedMetrics={setExpandedMetrics}
+        expandedSources={expandedSources}
+        setExpandedSources={setExpandedSources}
+        expandedSubIndicators={expandedSubIndicators}
+        setExpandedSubIndicators={setExpandedSubIndicators}
+        expandedAdvSections={expandedAdvSections}
+        setExpandedAdvSections={setExpandedAdvSections}
+        expandedQueries={expandedQueries}
+        setExpandedQueries={setExpandedQueries}
+      />
 
-                  {!open && (
-                    <div className="ml-3 mt-0.5 text-[11px] text-gray-400">
-                      Click to view Results
-                    </div>
-                  )}
-                </div>
-                <ChevronUpIcon
-                  className={`${open ? "rotate-180" : ""} h-5 w-5`}
-                />
-              </Disclosure.Button>
-
-              <Disclosure.Panel className="p-4">
-                {renderCountryContent(
-                  viewMode === "basic"
-                    ? resultsMap.countryBasic
-                    : resultsMap.countryAdvanced,
-                )}
-              </Disclosure.Panel>
-            </div>
-          )}
-        </Disclosure>
-      )}
       {/* ===== CUSTOMER ===== */}
       {(resultsMap.customerBasic || resultsMap.customerAdvanced) && (
         <Disclosure open={isCustomerOpen} onChange={setIsCustomerOpen}>

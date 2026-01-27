@@ -1,19 +1,11 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import Sidebar from "./components/Sidebar/Sidebar";
 import ResultsPanel from "./components/Results/ResultsPanel";
 
 export default function Page() {
   console.count("Page rendered");
-  const [macro, setMacro] = useState("Country");
-
-  const [selectedCountries, setSelectedCountries] = useState([]);
-  const [customer1, setCustomer1] = useState("");
-  const [customer2, setCustomer2] = useState("");
-  const [partnerName, setPartnerName] = useState("");
-  const [projectName, setProjectName] = useState("");
-
-  const [territoryName, setTerritoryName] = useState("");
+  // const [macro, setMacro] = useState("Country");
 
   const [loading, setLoading] = useState(false);
 
@@ -87,7 +79,8 @@ export default function Page() {
   };
 
   // RESET RESULTS PER MACRO
-  const clearResultsForMacro = (macro) => {
+  const clearResultsForMacro = useCallback((macro) => {
+    console.log("clear macro created");
     setResultsMap((prev) => ({
       ...prev,
       ...(macro === "Country" && { countryBasic: null, countryAdvanced: null }),
@@ -102,15 +95,24 @@ export default function Page() {
         territoryAdvanced: null,
       }),
     }));
-  };
+  }, []);
 
   // ----------- BASIC SEARCH -----------
-  const onBasicSearch = async () => {
+  const onBasicSearch = useCallback(async (formData) => {
+    const {
+      macro,
+      setMacro,
+      selectedCountries,
+      customer1,
+      customer2,
+      partnerName,
+      projectName,
+      territoryName,
+    } = formData;
+
     setHasSearched(true);
     setLoading(true);
     setViewMode("basic");
-
-    // const newResults = { ...resultsMap };
 
     const newResults = {
       countryBasic: null,
@@ -123,7 +125,7 @@ export default function Page() {
       territoryAdvanced: null,
     };
 
-    // COUNTRY BASIC
+    // COUNTRY
     if (selectedCountries.length > 0) {
       const basic = await Promise.all(
         selectedCountries.map((c) => fetchCountryData(c, "basic")),
@@ -132,19 +134,14 @@ export default function Page() {
       newResults.countryBasic = {
         macro: "Country",
         mode: "Basic",
-        selectedCountries: [...selectedCountries],
+        selectedCountries,
         data: basic,
       };
-
-      newResults.countryAdvanced = null;
     }
 
-    // CUSTOMER BASIC
+    // CUSTOMER
     if (customer1 || customer2 || partnerName) {
-      const names = [customer1, customer2, partnerName]
-        .filter(Boolean)
-        .map((x) => x.toLowerCase());
-
+      const names = [customer1, customer2, partnerName].filter(Boolean);
       const basic = await Promise.all(names.map(fetchCustomerFile));
 
       newResults.customerBasic = {
@@ -155,32 +152,24 @@ export default function Page() {
         customer2,
         partnerName,
       };
-
-      newResults.customerAdvanced = null;
     }
 
-    // PROJECT ADVANCED + TERRITORY
-    if (projectName.trim()) {
+    // PROJECT
+    if (projectName?.trim()) {
       const basic = await fetchProjectFile(projectName, "basic");
-      const adv = await fetchProjectFile(projectName, "advanced");
-
-      // >>> ADD THIS <<<
 
       newResults.projectBasic = {
         macro: "Project",
         mode: "Basic",
+        projectName,
         data: Array.isArray(basic) ? basic : [basic],
-      };
-
-      newResults.projectAdvanced = {
-        macro: "Project",
-        mode: "Advanced",
-        data: Array.isArray(adv) ? adv : [adv],
       };
     }
 
-    if (territoryName.trim()) {
+    // TERRITORY
+    if (territoryName?.trim()) {
       const basic = await fetchTerritoryFile(territoryName, "basic");
+
       newResults.territoryBasic = {
         macro: "Territory",
         mode: "Basic",
@@ -191,10 +180,11 @@ export default function Page() {
 
     setResultsMap(newResults);
     setLoading(false);
-  };
+  }, []); // ✅ EMPTY dependency array
 
   // ----------- ADVANCED SEARCH -----------
-  const onAdvanceSearch = async () => {
+  const onAdvanceSearch = useCallback(async () => {
+    console.log("advance search created");
     setHasSearched(true);
     setLoading(true);
     setViewMode("advanced");
@@ -274,29 +264,17 @@ export default function Page() {
 
     setResultsMap(newResults);
     setLoading(false);
-  };
+  }, []);
 
   return (
     <div className="flex h-screen bg-gray-50 print-force-column">
       <div className="print-hide">
         <Sidebar
-          macro={macro}
-          setMacro={setMacro}
-          selectedCountries={selectedCountries}
-          setSelectedCountries={setSelectedCountries}
-          customer1={customer1}
-          setCustomer1={setCustomer1}
-          customer2={customer2}
-          setCustomer2={setCustomer2}
-          partnerName={partnerName}
-          setPartnerName={setPartnerName}
-          projectName={projectName}
-          setProjectName={setProjectName}
+          // macro={macro}
+          // setMacro={setMacro}
           onBasicSearch={onBasicSearch}
           onAdvanceSearch={onAdvanceSearch}
           clearResultsForMacro={clearResultsForMacro}
-          territoryName={territoryName}
-          setTerritoryName={setTerritoryName}
         />
       </div>
 
@@ -316,8 +294,8 @@ export default function Page() {
             resultsMap={resultsMap}
             viewMode={viewMode}
             loading={loading}
-            projectName={projectName}
-            territoryName={territoryName}
+            // projectName={projectName}
+            // territoryName={territoryName}
           />
         )}
       </main>
