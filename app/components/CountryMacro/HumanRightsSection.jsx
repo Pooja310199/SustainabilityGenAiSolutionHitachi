@@ -69,7 +69,15 @@ const HumanRightsSection = ({
         return true;
       })
       .map(([key, val], idx) => (
-        <div key={idx} style={{ fontSize: 12, marginTop: 4 }}>
+        <div
+          key={idx}
+          style={{
+            fontSize: 12,
+            marginTop: 4,
+            wordBreak: "break-word", // ✅ ADD HERE
+            overflowWrap: "anywhere",
+          }}
+        >
           <strong>{capitalizeWords(key.replaceAll("_", " "))}:</strong>{" "}
           {Array.isArray(val) ? val.join(", ") : val}
         </div>
@@ -147,7 +155,8 @@ const HumanRightsSection = ({
 
                       const showSummary =
                         sectionKey === "allegations" ||
-                        sectionKey === "protests";
+                        sectionKey === "protests" ||
+                        sectionKey === "cases";
 
                       return (
                         <div
@@ -295,6 +304,8 @@ const HumanRightsSection = ({
                                         </div>
                                       )}
 
+                                      {renderExtraFields(item)}
+
                                       {showSummary &&
                                         isValidText(item.summary) && (
                                           <div
@@ -307,8 +318,6 @@ const HumanRightsSection = ({
                                             {item.summary}
                                           </div>
                                         )}
-
-                                      {renderExtraFields(item)}
 
                                       {(item.url || item.link) && (
                                         <div style={{ marginTop: 6 }}>

@@ -117,156 +117,174 @@
         "https://www.alliander.com/nl/over-alliander/corporate-governance/gedragscode/"
       ]
     }
+    
   ],
   "errors": null,
-  "overall_severity": "GREEN",
+  "overall_severity": "RED",
   "overall_risk_level": "Low Risk"
 },
 {
   "category": "Involvement in environmental and or human rights breaches",
   "results": [
-    {
-      "sub_category": "Human Rights Issues Bing",
-      "analysis": {
-        "human_rights_allegations": [
-          {
-            "title": "Indigenous Communities Protest and Grievance over Land Rights – Colombia Windpeshi Project",
-            "timeline": "Local Indigenous communities in La Guajira, Colombia, protested for three years against ENEL's Windpeshi Wind Farm, citing lack of consultation and violation of land rights. Project construction was indefinitely suspended in 2025 after successful grievances and dialogue.",
-            "date": "2025-02-18",
-            "type_of_allegation": "Violation of Indigenous rights, lack of free, prior, informed consent",
-            "severity": "ORANGE",
-            "source_type": "Protest",
-            "source_link": "https://www.business-humanrights.org/en/latest-news/colombia-after-a-series-of-protests-by-local-communities-enel-indefinitely-suspends-the-construction-of-wind-farm-in-la-guajira/"
-          },
-          {
-            "title": "Land Grabbing Allegations by Indigenous and Quilombola Communities – Brazil",
-            "timeline": "Brazilian Indigenous and Quilombola groups alleged that ENEL and intermediaries forcibly took land for wind and solar farms, negatively impacting local livelihoods. Lawsuits and investigations are ongoing, with some communities claiming lack of due process and documentation.",
-            "date": "2025-03-15",
-            "severity": "RED",
-            "type_of_allegation": "Violation of Indigenous and minority group rights, forced dispossession, lack of consultation",
-            "source_type": "Allegation",
-            "source_link": "https://news.mongabay.com/2025/03/brazil-communities-accuse-companies-of-green-grabbing-for-wind-energy/"
-          }
-        ],
-        "environmental_allegations": [
-          {
-            "title": "Environmental Degradation and Pollution – Brazil Land Rights Cases",
-            "timeline": "Communities report negative impact on ecosystems and local resources due to disruption of traditional land use in Brazil.",
-            "date": "2025-03-15",
-            "severity": "ORANGE",
-            "type_of_allegation": "Land conversion, disruption of local ecosystems, biodiversity loss",
-            "source_type": "Allegation",
-            "source_link": "https://www.wind-watch.org/news/2025/03/15/brazil-communities-accuse-companies-of-green-grabbing-for-wind-energy/"
-          },
-          {
-            "title": "Environmental Impact Concerns – US Osage Wind Farm",
-            "timeline": "Court findings on ENEL's wind turbines in Osage territory included environmental and land degradation concerns raised by the Osage Nation, linked to improper permitting and lack of consultation regarding mineral extraction and ecological impacts.",
-            "date": "2025-01-24",
-            "severity": "ORANGE",
-            "type_of_allegation": "Land degradation, impact on water and local environment",
-            "source_type": "Court Case",
-            "source_link": "https://renewablesnow.com/news/enel-to-challenge-ruling-to-remove-150-mw-wind-farm-in-oklahoma-1268797/"
-          }
-        ],
-        "court_cases": [
-          {
-            "title": "United States Federal Court – Osage Wind Farm Ruling",
-            "timeline": "After more than a decade of litigation by the Osage Nation, a federal judge ordered ENEL to remove 84 wind turbines from Osage Mineral Estate by December 1, 2025. The company was found liable for trespass and conversion, with $4 million in damages awarded and tribal sovereignty emphasized.",
-            "date": "2025-01-24",
-            "severity": "RED",
-            "type_of_case": "Indigenous rights violation, trespass on tribal land",
-            "source_link": "https://osagenews.org/historic-win-judge-orders-enel-to-remove-turbines-by-december-2025/"
-          }
-        ]
+   
+   
+     {
+
+      "sub_category":"Amnesty Corporate Crimes Handbook",
+      "analysis":{
+      "cases":{
+          "items":[
+
+            {
+              "case_title":"ggfgg ghfhgfhg hgfhgf hgfhf",
+              "judgement_date":"16 January 2024",
+              "summary":"gffffffff yffffffffffff bbbbbbbbb httttttttttttt"
+
+
+            },
+            {
+"case_title":"ggfgg ghfhgfhg hgfhgf hgfhf",
+              "judgement_date":"16 January 2024",
+              "summary":"gffffffff yffffffffffff bbbbbbbbb httttttttttttt"
+
+            },
+            {
+"case_title":"ggfgg ghfhgfhg hgfhgf hgfhf",
+              "judgement_date":"16 January 2024",
+              "summary":"gffffffff yffffffffffff bbbbbbbbb httttttttttttt"
+
+
+            }
+          ]
+
+
+        },
+        "severity":"RED",
+        "risk_level":"High Risk"
+
       },
-      "sources": [
-        "https://enkiai.com/what-is-enel-doing-for-sustainability-key-initiatives-and-impact-explained",
-        "https://news.mongabay.com/2025/03/brazil-communities-accuse-companies-of-green-grabbing-for-wind-energy/",
-        "https://osagenews.org/historic-win-judge-orders-enel-to-remove-turbines-by-december-2025/",
-        "https://renewablesnow.com/news/enel-to-challenge-ruling-to-remove-150-mw-wind-farm-in-oklahoma-1268797/",
-        "https://www.business-humanrights.org/en/latest-news/colombia-after-a-series-of-protests-by-local-communities-enel-indefinitely-suspends-the-construction-of-wind-farm-in-la-guajira/"
-      ],
-      "overall_severity": "ORANGE"
-    },
+      "overall_severity":"RED",
+      "risk_level":"High Risk",
+      "sources":[
+
+        "https://annualreport.alliander.com/annual-reports/annual-report-2024/about-alliander-1/objectives-and-results",
+        "https://annualreport.alliander.com/annual-reports/annual-report-2024/sustainability-statement-1/social/workers-in-the-value-chain-s2",
+        "https://annualreport.alliander.com/annual-reports/annual-report-2023/profile-of-alliander-1/our-strategy"
+      ]
+    }
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   , {
+
+    "sub_category":"Business & Human Rights Resource center",
+    "analysis":{
+
+"allegations":{
+  "items":[
+
     {
-      "sub_category": "Business & Human Rights Resource Center",
-      "analysis": {
-        "lawsuits": [
-          {
-            "title": "Osage Wind and Enel lawsuit (USA, wind farm project)",
-            "link": "https://www.business-humanrights.org/en/latest-news/osage-wind-lawsuit-re-windfarm-project-usa/",
-            "published_date": "2023-12-01",
-            "description": "Indigenous Osage Nation and the US initiated litigation against Osage Wind and Enel, alleging unauthorized mining during a wind farm project in Oklahoma. In December 2023, the court ordered removal of 84 wind turbines; trial for damages is pending. Case ongoing."
-          }
-        ],
-        "allegations": [
-          {
-            "title": "Brazil: Communities say that Enel and Maestro Holding de Energia stripped them of their territory for renewable energy goals",
+       "title": "Brazil: Communities say that Enel and Maestro Holding de Energia stripped them of their territory for renewable energy goals",
             "link": "https://www.business-humanrights.org/en/latest-news/brazil-communities-say-that-enel-and-maestro-holding-de-energia-stripped-them-of-their-territory-to-pursue-their-renewable-energy-goals-incl-companies-comments/",
             "published_date": "2025-03-07",
             "description": "Communities allege that Enel and Maestro Holding de Energia stripped them of their territory to pursue renewable energy goals."
-          },
-          {
-            "title": "USA (Osage Nation): District court orders removal of Osage Wind Farm turbines to protect Osage Nation's sovereignty",
-            "link": "https://www.business-humanrights.org/en/latest-news/usa-oklahoma-district-court-orders-removal-of-operating-osage-wind-farm-turbines-to-protect-osage-nations-sovereignty/",
-            "published_date": "2024-01-04",
-            "description": "A district court ordered the removal of operating turbines at Osage Wind Farm to protect Osage Nation’s sovereignty."
-          },
-          {
-            "title": "Colombia: NGO publica nuevo informe sobre impactos de eólicas en La Guajira",
-            "link": "https://www.business-humanrights.org/en/latest-news/colombia-ong-publica-nuevo-informe-sobre-impactos-de-e%C3%B3licas-en-la-guajira/",
-            "published_date": "2023-08-16",
-            "description": "A new NGO report highlights the impacts of wind energy projects, involving Enel, on communities in La Guajira."
-          }
-        ],
-        "hrd_attacks_and_slapps": [
-          {
-            "title": "Isidoro Bautista Asoquimbo",
-            "link": "https://www.business-humanrights.org/en/latest-news/isidoro-bautista-asoquimbo/",
-            "published_date": "2024-11-16",
-            "description": "Information on attacks against Isidoro Bautista, a human rights defender associated with ASOQUIMBO and advocacy related to Enel's El Quimbo hydroelectric project."
-          },
-          {
-            "title": "Alirio Perdomo ASOQUIMBO (El Quimbo Hydroelectric Project)",
-            "link": "https://www.business-humanrights.org/en/latest-news/alirio-perdomo-asoquimbo-association-of-people-affected-by-el-quimbo-hydroelectric-project/",
-            "published_date": "2023-03-28",
-            "description": "Attacks reported against Alirio Perdomo, associated with ASOQUIMBO, regarding advocacy and defense of people affected by Enel’s El Quimbo hydroelectric project."
-          },
-          {
-            "title": "Elsa Ardila",
-            "link": "https://www.business-humanrights.org/en/latest-news/elsa-ardila/",
-            "published_date": "2015-11-01",
-            "description": "Reported incident involving Elsa Ardila, with links to opposition against Enel-related development projects."
-          },
-          {
-            "title": "Sebastian Córdova Sajic",
-            "link": "https://www.business-humanrights.org/en/latest-news/sebastian-c%C3%B3rdova-sajic/",
-            "published_date": "2015-09-11",
-            "description": "Reported attack on Sebastian Córdova Sajic in connection with activism regarding projects involving Enel."
-          }
-        ],
-        "associated_top_issues": [
-          "Clean, Healthy & Sustainable Environment",
-          "Just Transition",
-          "Lawsuits & Regulatory Action",
-          "Indigenous Peoples",
-          "Climate Crisis"
-        ]
-      },
-      "sources": [
-        "https://www.business-humanrights.org/en/latest-news/alirio-perdomo-asoquimbo-association-of-people-affected-by-el-quimbo-hydroelectric-project/",
-        "https://www.business-humanrights.org/en/latest-news/brazil-communities-say-that-enel-and-maestro-holding-de-energia-stripped-them-of-their-territory-to-pursue-their-renewable-energy-goals-incl-companies-comments/",
-        "https://www.business-humanrights.org/en/latest-news/elsa-ardila/",
-        "https://www.business-humanrights.org/en/latest-news/colombia-ong-publica-nuevo-informe-sobre-impactos-de-e%C3%B3licas-en-la-guajira/",
-        "https://www.business-humanrights.org/en/latest-news/isidoro-bautista-asoquimbo/",
-        "https://www.business-humanrights.org/en/latest-news/osage-wind-lawsuit-re-windfarm-project-usa/",
-        "https://www.business-humanrights.org/en/latest-news/sebastian-c%C3%B3rdova-sajic/",
-        "https://www.business-humanrights.org/en/latest-news/usa-oklahoma-district-court-orders-removal-of-operating-osage-wind-farm-turbines-to-protect-osage-nations-sovereignty/"
-      ]
+
+    },
+    {
+
+
+       "title": "Brazil: Communities say that Enel and Maestro Holding de Energia stripped them of their territory for renewable energy goals",
+            "link": "https://www.business-humanrights.org/en/latest-news/brazil-communities-say-that-enel-and-maestro-holding-de-energia-stripped-them-of-their-territory-to-pursue-their-renewable-energy-goals-incl-companies-comments/",
+            "published_date": "2025-03-07",
+            "description": "Communities allege that Enel and Maestro Holding de Energia stripped them of their territory to pursue renewable energy goals."
+
     }
+
+  ],
+  "severity":"ORANGE",
+  "risk_level":"Medium Risk"
+
+},
+
+      "lawsuits":{
+        "items":[
+          {
+         "title": "Osage Wind and Enel lawsuit (USA, wind farm project)",
+            "link": "https://www.business-humanrights.org/en/latest-news/osage-wind-lawsuit-re-windfarm-project-usa/",
+            "published_date": "2023-12-01",
+            "description": "Indigenous Osage Nation and the US initiated litigation against Osage Wind and Enel, alleging unauthorized mining during a wind farm project in Oklahoma. In December 2023, the court ordered removal of 84 wind turbines; trial for damages is pending. Case ongoing."
+        },
+        {
+  
+         "title": "Osage Wind and Enel lawsuit (USA, wind farm project)",
+            "link": "https://www.business-humanrights.org/en/latest-news/osage-wind-lawsuit-re-windfarm-project-usa/",
+            "published_date": "2023-12-01",
+            "description": "Indigenous Osage Nation and the US initiated litigation against Osage Wind and Enel, alleging unauthorized mining during a wind farm project in Oklahoma. In December 2023, the court ordered removal of 84 wind turbines; trial for damages is pending. Case ongoing."
+        }
+
+        
+        ],
+        "severity":"RED",
+        "risk_level":"High Risk"
+
+      },
+      "hrd_attacks_and_slapps":{
+        "items":[
+          {
+
+             "title": "Brazil: Communities say that Enel and Maestro Holding de Energia stripped them of their territory for renewable energy goals",
+            "link": "https://www.business-humanrights.org/en/latest-news/brazil-communities-say-that-enel-and-maestro-holding-de-energia-stripped-them-of-their-territory-to-pursue-their-renewable-energy-goals-incl-companies-comments/",
+            "published_date": "2025-03-07",
+            "description": "Communities allege that Enel and Maestro Holding de Energia stripped them of their territory to pursue renewable energy goals."
+
+          },
+          {
+
+             "title": "Brazil: Communities say that Enel and Maestro Holding de Energia stripped them of their territory for renewable energy goals",
+            "link": "https://www.business-humanrights.org/en/latest-news/brazil-communities-say-that-enel-and-maestro-holding-de-energia-stripped-them-of-their-territory-to-pursue-their-renewable-energy-goals-incl-companies-comments/",
+            "published_date": "2025-03-07",
+            "description": "Communities allege that Enel and Maestro Holding de Energia stripped them of their territory to pursue renewable energy goals."
+
+          }
+        ],
+        "severity":"ORANGE",
+        "risk_level":"Medium Risk"
+
+      },
+      "associated_top_issues":[
+
+
+        "fdfdfd fdfd fdgdfgd",
+        "dfsdfsd dfdg dff"
+
+      ]
+
+
+    },
+    "overall_severity":"RED",
+    "risk_level":"High Risk",
+    "sources":[
+      "https://annualreport.alliander.com/annual-reports/annual-report-2024/sustainability-statement-1/general-disclosures/strategy-business-model-and-value-chain",
+      "https://annualreport.alliander.com/annual-reports/annual-report-2024/sustainability-statement-1/general-disclosures/strategy-business-model-and-value-chain",
+      "https://annualreport.alliander.com/annual-reports/annual-report-2024/sustainability-statement-1/environment/climate-change-e1"
+    ]
+
+  
+
+   }
+  
   ],
   "errors": null,
-  "overall_severity": "ORANGE",
+  "overall_severity": "RED",
   "overall_risk_level": "No Data"
 }
 

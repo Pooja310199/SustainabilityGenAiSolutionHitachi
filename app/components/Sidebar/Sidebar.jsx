@@ -59,7 +59,7 @@ export default React.memo(function Sidebar({
 
       {/* MACRO BUTTONS */}
       <div className="mb-6">
-        <label className="block text-sm font-medium mb-3 text-gray-700">
+        <label className="block text-base font-medium mb-3 text-gray-700">
           Choose Source Macro:
         </label>
 
