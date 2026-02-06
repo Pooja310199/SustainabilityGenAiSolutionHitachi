@@ -9,7 +9,7 @@ export default React.memo(function Sidebar({
   clearResultsForMacro, // ⭐ NEW
 }) {
   console.count("Sidebar rendered");
-  const [macro, setMacro] = useState("Country");
+  // const [macro, setMacro] = useState("");
   const [countries, setCountries] = useState([]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [searchText, setSearchText] = useState("");
@@ -20,6 +20,18 @@ export default React.memo(function Sidebar({
   const [customer2, setCustomer2] = useState("");
   const [partnerName, setPartnerName] = useState("");
   const [projectName, setProjectName] = useState("");
+  const [openMacro, setOpenMacro] = useState({
+    country: true,
+    partner: true,
+    project: true,
+  });
+
+  const toggleMacro = (key) => {
+    setOpenMacro((prev) => ({
+      ...prev,
+      [key]: !prev[key],
+    }));
+  };
 
   const [territoryName, setTerritoryName] = useState("");
 
@@ -40,8 +52,8 @@ export default React.memo(function Sidebar({
 
   const handleBasicSearch = () => {
     onBasicSearch({
-      macro,
-      setMacro,
+      // macro,
+      // setMacro,
       selectedCountries,
       customer1,
       customer2,
@@ -52,7 +64,7 @@ export default React.memo(function Sidebar({
   };
 
   return (
-    <aside className="w-72 bg-white border-r border-gray-200 p-6 fixed inset-y-0 shadow-sm print:hidden">
+    <aside className="w-72 bg-white border-r border-gray-200 p-6 overflow-y-auto fixed inset-y-0 shadow-sm print:hidden">
       <h2 className="text-xl font-semibold mb-6 text-gray-800">
         Source Selector
       </h2>
@@ -62,201 +74,227 @@ export default React.memo(function Sidebar({
         <label className="block text-base font-medium mb-3 text-gray-700">
           Choose Source Macro:
         </label>
-
-        <div className="grid grid-cols-3 gap-2">
-          {["Country", "Customer", "Project"].map((m) => (
-            <button
-              key={m}
-              onClick={() => setMacro(m)}
-              className={`py-2 text-sm rounded-lg border transition-all ${
-                macro === m
-                  ? "bg-red-700 text-white border-red-800 shadow-sm font-semibold"
-                  : "bg-gray-50 text-gray-800 border-gray-300 hover:bg-gray-100 text-red-700 font-semibold"
-              }`}
-            >
-              {m}
-            </button>
-          ))}
-        </div>
       </div>
 
-      {/* COUNTRY UI */}
-      {macro === "Country" && (
-        <div className="mb-6" ref={dropdownRef}>
-          <label className="block text-sm font-medium mb-2 text-gray-700">
-            Select Country (max 2):
-          </label>
-
-          <div
-            className="border rounded-lg px-3 py-2 text-sm bg-gray-50 cursor-pointer flex justify-between items-center hover:bg-gray-100"
-            onClick={() => setDropdownOpen((p) => !p)}
-          >
-            {selectedCountries.length
-              ? selectedCountries.join(", ")
-              : "Choose Country..."}
-            <span>{dropdownOpen ? "▲" : "▼"}</span>
-          </div>
-
-          {dropdownOpen && (
-            <div className="absolute bg-white border mt-1 w-60 rounded-lg shadow-lg max-h-56 overflow-y-auto">
-              <input
-                type="text"
-                placeholder="Search country..."
-                value={searchText}
-                onChange={(e) => setSearchText(e.target.value)}
-                className="w-full border-b p-2 text-sm"
-              />
-
-              {countries
-                .filter((c) =>
-                  c.toLowerCase().includes(searchText.toLowerCase()),
-                )
-                .map((c) => (
-                  <label
-                    key={c}
-                    className="flex items-center px-3 py-2 text-sm hover:bg-gray-100 gap-2"
-                  >
-                    <input
-                      type="checkbox"
-                      checked={selectedCountries.includes(c)}
-                      onChange={() => {
-                        let updated;
-                        if (selectedCountries.includes(c)) {
-                          updated = selectedCountries.filter((x) => x !== c);
-                        } else if (selectedCountries.length < 2) {
-                          updated = [...selectedCountries, c];
-                        } else {
-                          alert("Max 2 countries allowed");
-                          return;
-                        }
-
-                        setSelectedCountries(updated);
-
-                        // ⭐ If empty, clear country results
-                        if (updated.length === 0)
-                          clearResultsForMacro("Country");
-                      }}
-                    />
-                    {c}
-                  </label>
-                ))}
-            </div>
-          )}
+      {/* COUNTRY MACRO */}
+      <div className="mb-8" ref={dropdownRef}>
+        <div
+          className="flex justify-between items-center text-sm font-medium text-gray-800 cursor-pointer mb-1"
+          onClick={() => setOpenMacro((o) => ({ ...o, country: !o.country }))}
+        >
+          <span className="bg-red-600 text-white">Country</span>
+          <span className="ml-2">{openMacro.country ? "▲" : "▼"}</span>
         </div>
-      )}
+        {openMacro.country && (
+          <div>
+            <label className="block text-sm font-medium mb-2 text-gray-700">
+              Select Country (max 2):
+            </label>
+
+            <div
+              className="border rounded-lg px-3 py-2 text-sm bg-gray-50 cursor-pointer flex justify-between items-center hover:bg-gray-100"
+              onClick={() => setDropdownOpen((p) => !p)}
+            >
+              {selectedCountries.length
+                ? selectedCountries.join(", ")
+                : "Choose Country..."}
+              <span>{dropdownOpen ? "▲" : "▼"}</span>
+            </div>
+
+            {dropdownOpen && (
+              <div className="absolute bg-white border mt-1 w-60 rounded-lg shadow-lg max-h-56 overflow-y-auto">
+                <input
+                  type="text"
+                  placeholder="Search country..."
+                  value={searchText}
+                  onChange={(e) => setSearchText(e.target.value)}
+                  className="w-full border-b p-2 text-sm"
+                />
+
+                {countries
+                  .filter((c) =>
+                    c.toLowerCase().includes(searchText.toLowerCase()),
+                  )
+                  .map((c) => (
+                    <label
+                      key={c}
+                      className="flex items-center px-3 py-2 text-sm hover:bg-gray-100 gap-2"
+                    >
+                      <input
+                        type="checkbox"
+                        checked={selectedCountries.includes(c)}
+                        onChange={() => {
+                          let updated;
+                          if (selectedCountries.includes(c)) {
+                            updated = selectedCountries.filter((x) => x !== c);
+                          } else if (selectedCountries.length < 2) {
+                            updated = [...selectedCountries, c];
+                          } else {
+                            alert("Max 2 countries allowed");
+                            return;
+                          }
+
+                          setSelectedCountries(updated);
+
+                          // ⭐ If empty, clear country results
+                          if (updated.length === 0)
+                            clearResultsForMacro("Country");
+                        }}
+                      />
+                      {c}
+                    </label>
+                  ))}
+              </div>
+            )}
+
+            {/* your existing dropdown code stays SAME */}
+          </div>
+        )}
+      </div>
 
       {/* CUSTOMER UI */}
-      {macro === "Customer" && (
-        <div className="mb-6 space-y-4">
-          {/* Customer 1 */}
+
+      {/* PARTNER MACRO */}
+      <div className="mb-8 space-y-4">
+        <div
+          className="flex justify-between items-center cursor-pointer select-none"
+          onClick={() => toggleMacro("partner")}
+        >
+          <h3 className="text-sm font-semibold text-gray-800">Partner</h3>
+          <span className="text-xs">{openMacro.partner ? "▲" : "▼"}</span>
+        </div>
+        {/* Partner Name 1 */}
+        {/* Partner Name 2 */}
+        {/* Consortium Partner */}
+        {openMacro.partner && (
           <div>
-            <label className="block text-sm font-medium mb-1 text-gray-700">
-              Customer Name 1:
-            </label>
-            <input
-              className="w-full border rounded-lg px-3 py-2 text-sm bg-gray-50"
-              placeholder="e.g., Alliander"
-              value={customer1}
-              onChange={(e) => {
-                const v = e.target.value;
-                setCustomer1(v);
+            <p className="text-xs text-blue-800 flex gap-1 items-start">
+              <span>ℹ️</span>
+              <span>
+                Use this macro to compare risk between customers or consortium
+                partners.
+              </span>
+            </p>
 
-                if (!v.trim() && !customer2.trim() && !partnerName.trim()) {
-                  clearResultsForMacro("Customer");
-                }
-              }}
-            />
-          </div>
+            <div>
+              <label className="block text-sm font-medium mb-1 text-gray-700">
+                Partner Name 1:
+              </label>
+              <input
+                className="w-full border rounded-lg px-3 py-2 text-sm bg-gray-50"
+                placeholder="e.g., Alliander"
+                value={customer1}
+                onChange={(e) => {
+                  const v = e.target.value;
+                  setCustomer1(v);
 
-          {/* CUSTOMER 2 */}
-          <div>
-            <label className="block text-sm font-medium mb-1 text-gray-700">
-              Customer Name 2:
-            </label>
+                  if (!v.trim() && !customer2.trim() && !partnerName.trim()) {
+                    clearResultsForMacro("Customer");
+                  }
+                }}
+              />
+            </div>
 
-            <input
-              className={`w-full border rounded-lg px-3 py-2 text-sm bg-gray-50 
+            {/* CUSTOMER 2 */}
+            <div>
+              <label className="block text-sm font-medium mb-1 text-gray-700">
+                Partner Name 2:
+              </label>
+
+              <input
+                className={`w-full border rounded-lg px-3 py-2 text-sm bg-gray-50 
       ${partnerName ? "bg-gray-200 cursor-not-allowed" : ""}`}
-              placeholder="e.g., Enel"
-              value={customer2}
-              onChange={(e) => setCustomer2(e.target.value)}
-              disabled={!!partnerName}
-            />
+                placeholder="e.g., Enel"
+                value={customer2}
+                onChange={(e) => setCustomer2(e.target.value)}
+                disabled={!!partnerName}
+              />
 
-            {partnerName && (
-              <p className="text-xs text-red-600 mt-1">
-                Consortium Partner entered — Customer 2 disabled.
-              </p>
-            )}
-          </div>
+              {partnerName && (
+                <p className="text-xs text-red-600 mt-1">
+                  Consortium Partner entered — Customer 2 disabled.
+                </p>
+              )}
+            </div>
 
-          {/* CONSORTIUM PARTNER */}
-          <div>
-            <label className="block text-sm font-medium mb-1 text-gray-700">
-              Consortium Partner:
-            </label>
+            {/* CONSORTIUM PARTNER */}
+            <div>
+              <label className="block text-sm font-medium mb-1 text-gray-700">
+                Consortium Partner:
+              </label>
 
-            <input
-              className={`w-full border rounded-lg px-3 py-2 text-sm bg-gray-50 
+              <input
+                className={`w-full border rounded-lg px-3 py-2 text-sm bg-gray-50 
       ${customer1 && customer2 ? "bg-gray-200 cursor-not-allowed" : ""}`}
-              placeholder="e.g., Schneider"
-              value={partnerName}
-              onChange={(e) => setPartnerName(e.target.value)}
-              disabled={!!customer1 && !!customer2}
-            />
+                placeholder="e.g., Schneider"
+                value={partnerName}
+                onChange={(e) => setPartnerName(e.target.value)}
+                disabled={!!customer1 && !!customer2}
+              />
 
-            {customer1 && customer2 && (
-              <p className="text-xs text-red-600 mt-1">
-                Both customers selected — Partner disabled.
-              </p>
-            )}
+              {customer1 && customer2 && (
+                <p className="text-xs text-red-600 mt-1">
+                  Both customers selected — Partner disabled.
+                </p>
+              )}
+            </div>
           </div>
+        )}
+      </div>
+
+      {/* PROJECT MACRO */}
+
+      <div className="mb-8 space-y-4">
+        <div
+          className="flex justify-between items-center cursor-pointer"
+          onClick={() => toggleMacro("project")}
+        >
+          <h3 className="text-sm font-semibold text-gray-800">Project</h3>
+          <span className="text-xs">{openMacro.project ? "▲" : "▼"}</span>
         </div>
-      )}
 
-      {/* PROJECT UI */}
-      {macro === "Project" && (
-        <div className="mb-6 space-y-4">
-          {/* Project Name */}
+        {openMacro.project && (
           <div>
-            <label className="block text-sm font-medium mb-1 text-gray-700">
-              Project Name:
-            </label>
-            <input
-              className="w-full border rounded-lg px-3 py-2 text-sm bg-gray-50"
-              placeholder="Enter project"
-              value={projectName}
-              onChange={(e) => {
-                const v = e.target.value;
-                setProjectName(v);
+            <div>
+              <label className="block text-sm font-medium mb-1 text-gray-700">
+                Project Name:
+              </label>
+              <input
+                className="w-full border rounded-lg px-3 py-2 text-sm bg-gray-50"
+                placeholder="Enter project"
+                value={projectName}
+                onChange={(e) => {
+                  const v = e.target.value;
+                  setProjectName(v);
 
-                if (!v.trim()) clearResultsForMacro("Project");
-              }}
-            />
+                  if (!v.trim()) clearResultsForMacro("Project");
+                }}
+              />
+            </div>
+
+            {/* Territory Name – ⭐ NEW FIELD */}
+            {/* Territory Name */}
+            <div>
+              <label className="block text-sm font-medium mb-1 text-gray-700">
+                Territory Name:
+              </label>
+              <input
+                className="w-full border rounded-lg px-3 py-2 text-sm bg-gray-50"
+                placeholder="Enter territory name"
+                value={territoryName}
+                onChange={(e) => {
+                  const v = e.target.value;
+                  setTerritoryName(v);
+
+                  if (!v.trim() && !projectName.trim()) {
+                    clearResultsForMacro("Project");
+                  }
+                }}
+              />
+            </div>
           </div>
-
-          {/* Territory Name – ⭐ NEW FIELD */}
-          {/* Territory Name */}
-          <div>
-            <label className="block text-sm font-medium mb-1 text-gray-700">
-              Territory Name:
-            </label>
-            <input
-              className="w-full border rounded-lg px-3 py-2 text-sm bg-gray-50"
-              placeholder="Enter territory name"
-              value={territoryName}
-              onChange={(e) => {
-                const v = e.target.value;
-                setTerritoryName(v);
-
-                if (!v.trim() && !projectName.trim()) {
-                  clearResultsForMacro("Project");
-                }
-              }}
-            />
-          </div>
-        </div>
-      )}
+        )}
+      </div>
 
       {/* BUTTONS */}
       <div className="mt-8 flex flex-col gap-3">

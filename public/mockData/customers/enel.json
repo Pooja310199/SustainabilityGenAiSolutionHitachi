@@ -120,7 +120,7 @@
     
   ],
   "errors": null,
-  "overall_severity": "RED",
+  "overall_severity": "ORANGE",
   "overall_risk_level": "Low Risk"
 },
 {
@@ -284,7 +284,7 @@
   
   ],
   "errors": null,
-  "overall_severity": "RED",
+  "overall_severity": "GREEN",
   "overall_risk_level": "No Data"
 }
 

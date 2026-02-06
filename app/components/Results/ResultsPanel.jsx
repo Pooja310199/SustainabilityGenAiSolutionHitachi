@@ -7,9 +7,15 @@ import { renderCategory } from "./renderers";
 import { renderAdvanced } from "./renderAdvanced";
 import CustomerRenderer from "./renderCustomer";
 import { capitalizeWords } from "../Common/Utils";
+
 import RenderProjectMacro from "./renderProjectMacro";
 import RenderTerritoryMacro from "./renderTerritoryMacro";
 import CountrySection from "./macroRender/CountrySection";
+import SeverityDot from "../Common/SeverityDot";
+import {
+  calculateOverallRiskFromCategories,
+  calculateWorstCaseRisk,
+} from "../Common/riskUtils";
 
 // import useExpandCollapseAll from "../hooks/useExpandCollapseAll";
 
@@ -27,6 +33,70 @@ export default function ResultsPanel({
   useEffect(() => {
     console.log("viewMode changed");
   }, [viewMode]);
+
+  const countryEntry =
+    viewMode === "basic" ? resultsMap.countryBasic : resultsMap.countryAdvanced;
+
+  const projectEntry =
+    viewMode === "basic" ? resultsMap.projectBasic : resultsMap.projectAdvanced;
+
+  const territoryEntry =
+    viewMode === "basic"
+      ? resultsMap.territoryBasic
+      : resultsMap.territoryAdvanced;
+
+  // OVERALL COUNTRY RISK
+  // ============================
+  const overallCountryRisk = countryEntry?.data?.[0]
+    ? calculateOverallRiskFromCategories(countryEntry.data[0])
+    : null;
+
+  // CUSTOMER ENTRY (GLOBAL)
+  // ============================
+  const customerEntry =
+    viewMode === "basic"
+      ? resultsMap.customerBasic
+      : resultsMap.customerAdvanced;
+
+  // OVERALL CUSTOMER RISK
+  // ============================
+
+  // ============================
+  const overallCustomerRisk =
+    customerEntry?.data?.length > 0
+      ? calculateOverallRiskFromCategories(
+          customerEntry.data.flat(1), // 🔥 THIS FIX
+        )
+      : null;
+
+  const projectNameSeverity =
+    projectEntry?.data?.length > 0
+      ? calculateOverallRiskFromCategories(projectEntry.data)
+      : null;
+
+  const territoryNameSeverity =
+    territoryEntry?.data?.length > 0
+      ? calculateOverallRiskFromCategories(territoryEntry.data)
+      : null;
+
+  // ✅ FINAL PROJECT MACRO SEVERITY
+  const projectMacroOverallSeverity = calculateWorstCaseRisk([
+    projectNameSeverity,
+    territoryNameSeverity,
+  ]);
+
+  const dueDiligenceCategories = [
+    overallCountryRisk && { overall_severity: overallCountryRisk },
+    overallCustomerRisk && { overall_severity: overallCustomerRisk },
+    projectMacroOverallSeverity && {
+      overall_severity: projectMacroOverallSeverity,
+    },
+  ].filter(Boolean);
+
+  const overallDueDiligenceRisk =
+    dueDiligenceCategories.length > 0
+      ? calculateOverallRiskFromCategories(dueDiligenceCategories)
+      : null;
 
   /* COUNTRY */
   console.count("ResultsPanel rendered");
@@ -51,10 +121,99 @@ export default function ResultsPanel({
   const [isCountryOpen, setIsCountryOpen] = useState();
   const [isCustomerOpen, setIsCustomerOpen] = useState(true);
   const [isProjectOpen, setIsProjectOpen] = useState(false);
+  const [showDueDiligence, setShowDueDiligence] = useState(false);
 
   // ============================
   // COUNTRY RENDER
   // ============================
+
+  // const renderCountryContent = (entry) => {
+  //   if (!entry) return null;
+
+  //   return (
+  //     <div>
+  //       <div className="grid grid-cols-2 gap-4 mb-4">
+  //         {entry.selectedCountries.map((c, idx) => (
+  //           <h2 key={idx} className="text-sm font-semibold text-gray-700">
+  //             Results for {capitalizeWords(c)}
+  //           </h2>
+  //         ))}
+  //       </div>
+
+  //       {entry.selectedCountries.length === 1 &&
+  //         entry.data[0].map((content, i) =>
+  //           renderCategory({
+  //             content,
+  //             index: i,
+  //             countryName: entry.selectedCountries[0],
+  //             expandedSections,
+  //             setExpandedSections,
+  //             expandedMetrics,
+  //             setExpandedMetrics,
+  //             expandedSources,
+  //             setExpandedSources,
+  //             expandedSubIndicators,
+  //             setExpandedSubIndicators,
+  //           }),
+  //         )}
+
+  //       {entry.selectedCountries.length === 2 && (
+  //         <div className="grid grid-cols-2 gap-4">
+  //           {entry.data.map((dataItem, i) => (
+  //             <div key={i}>
+  //               {dataItem.map((content, idx) =>
+  //                 renderCategory({
+  //                   content,
+  //                   index: idx,
+  //                   countryName: entry.selectedCountries[i],
+  //                   expandedSections,
+  //                   setExpandedSections,
+  //                   expandedMetrics,
+  //                   setExpandedMetrics,
+  //                   expandedSources,
+  //                   setExpandedSources,
+  //                   expandedSubIndicators,
+  //                   setExpandedSubIndicators,
+  //                 }),
+  //               )}
+  //             </div>
+  //           ))}
+  //         </div>
+  //       )}
+
+  //       {viewMode === "advanced" && (
+  //         <div className="mt-6">
+  //           {entry.selectedCountries.length === 1 ? (
+  //             renderAdvanced({
+  //               data: entry.advancedData[0],
+  //               countryName: entry.selectedCountries[0],
+  //               expandedAdvSections,
+  //               setExpandedAdvSections,
+  //               expandedQueries,
+  //               setExpandedQueries,
+  //             })
+  //           ) : (
+  //             <div className="grid grid-cols-2 gap-4">
+  //               {entry.selectedCountries.map((country, i) => (
+  //                 <div key={i}>
+  //                   {renderAdvanced({
+  //                     data: entry.advancedData[i],
+  //                     countryName: country,
+  //                     expandedAdvSections,
+  //                     setExpandedAdvSections,
+  //                     expandedQueries,
+  //                     setExpandedQueries,
+  //                   })}
+  //                 </div>
+  //               ))}
+  //             </div>
+  //           )}
+  //         </div>
+  //       )}
+  //     </div>
+  //   );
+  // };
+
   const renderCountryContent = (entry) => {
     if (!entry) return null;
 
@@ -457,6 +616,46 @@ export default function ResultsPanel({
     );
   }
 
+  const getRiskLabel = (severity) => {
+    switch (severity) {
+      case "RED":
+        return "High Risk";
+      case "ORANGE":
+        return "Medium Risk";
+      case "GREEN":
+        return "Low Risk";
+      default:
+        return "No Data";
+    }
+  };
+
+  const hasSingleCountry =
+    resultsMap.countryBasic?.selectedCountries?.length === 1;
+
+  const hasSingleCustomer = (() => {
+    const cust =
+      viewMode === "basic"
+        ? resultsMap.customerBasic
+        : resultsMap.customerAdvanced;
+
+    if (!cust) return false;
+
+    const count = [cust.customer1, cust.customer2, cust.partnerName].filter(
+      Boolean,
+    ).length;
+
+    return count === 1;
+  })();
+
+  const hasSingleProject = Boolean(projectName?.trim());
+  const hasSingleTerritory = Boolean(territoryName?.trim());
+
+  const canShowDueDiligenceButton =
+    hasSingleCountry &&
+    hasSingleCustomer &&
+    hasSingleProject &&
+    hasSingleTerritory;
+
   return (
     <div id="print-container" className="space-y-8">
       <div className="flex gap-3 mb-4">
@@ -475,8 +674,161 @@ export default function ResultsPanel({
         >
           Collapse All
         </button>
+
+        <button
+          disabled={!canShowDueDiligenceButton}
+          onClick={() =>
+            canShowDueDiligenceButton && setShowDueDiligence((prev) => !prev)
+          }
+          className={`px-4 py-2 rounded-md text-sm font-semibold transition
+    ${
+      canShowDueDiligenceButton
+        ? "bg-blue-600 text-white hover:bg-blue-700 cursor-pointer"
+        : "bg-gray-300 text-gray-500 cursor-not-allowed"
+    }
+  `}
+          title={
+            canShowDueDiligenceButton
+              ? "View Due Diligence Report"
+              : "Select exactly 1 Country, 1 Partner, 1 Project and 1 Territory to enable"
+          }
+        >
+          {showDueDiligence
+            ? "Hide Due Diligence Report"
+            : "View Due Diligence Report"}
+        </button>
       </div>
+
+      {showDueDiligence && overallDueDiligenceRisk && (
+        <div
+          id="due-diligence-summary"
+          className="border rounded-lg bg-white shadow-sm p-4"
+        >
+          <h2 className="text-md font-semibold mb-3">
+            Due Diligence Report Summary
+          </h2>
+
+          <div className="space-y-3 text-sm">
+            {overallCountryRisk && (
+              <div className="flex justify-between items-center">
+                <span>
+                  <b>Country:</b>{" "}
+                  {resultsMap.countryBasic?.selectedCountries?.join(", ")}
+                </span>
+                <span className="flex items-center gap-2">
+                  <SeverityDot level={overallCountryRisk} />
+                  {overallCountryRisk} – {getRiskLabel(overallCountryRisk)}
+                </span>
+              </div>
+            )}
+
+            {overallCustomerRisk && (
+              <div className="flex justify-between items-center">
+                <span>
+                  {/* <b>Partner:</b> Customer / Partner */}
+                  <b>Partner:</b>{" "}
+                  {[
+                    resultsMap.customerBasic.customer1,
+                    resultsMap.customerBasic.customer2,
+                    resultsMap.customerBasic.partnerName,
+                  ]
+                    .filter(Boolean)
+                    .map(capitalizeWords)
+                    .join(", ")}
+                </span>
+                <span className="flex items-center gap-2">
+                  <SeverityDot level={overallCustomerRisk} />
+                  {overallCustomerRisk} – {getRiskLabel(overallCustomerRisk)}
+                </span>
+              </div>
+            )}
+
+            {/* {projectMacroOverallSeverity && (
+              <div className="flex justify-between items-center">
+                <span>
+                  <b>Project:</b>{" "}
+                  {[projectName, territoryName].filter(Boolean).join(" / ")}
+                </span>
+                <span className="flex items-center gap-2">
+                  <SeverityDot level={projectMacroOverallSeverity} />
+                  {projectMacroOverallSeverity} –{" "}
+                  {getRiskLabel(projectMacroOverallSeverity)}
+                </span>
+              </div>
+            )} */}
+
+            {projectMacroOverallSeverity && (
+              <div className="space-y-1">
+                <div className="flex justify-between items-start">
+                  <span>
+                    <b>Project:</b>{" "}
+                    {[projectName, territoryName].filter(Boolean).join(" / ")}
+                    <p className="text-gray-600">
+                      Combined severity based on highest risk across Project and
+                      Territory
+                    </p>
+                  </span>
+
+                  <span className="flex items-center gap-2">
+                    <SeverityDot level={projectMacroOverallSeverity} />
+                    {projectMacroOverallSeverity} –{" "}
+                    {getRiskLabel(projectMacroOverallSeverity)}
+                  </span>
+                </div>
+
+                {/* Project Name Severity */}
+                {projectNameSeverity && (
+                  <div className="flex justify-between items-center text-xs text-gray-600 pl-4">
+                    <span>Project Name</span>
+                    <span className="flex items-center gap-2">
+                      <SeverityDot level={projectNameSeverity} />
+                      {projectNameSeverity}
+                    </span>
+                  </div>
+                )}
+
+                {/* Territory Severity */}
+                {territoryNameSeverity && (
+                  <div className="flex justify-between items-center text-xs text-gray-600 pl-4">
+                    <span>Territory</span>
+                    <span className="flex items-center gap-2">
+                      <SeverityDot level={territoryNameSeverity} />
+                      {territoryNameSeverity}
+                    </span>
+                  </div>
+                )}
+              </div>
+            )}
+
+            <hr />
+
+            <div className="flex justify-between items-center font-semibold">
+              <span>Overall Severity</span>
+              <span className="flex items-center gap-2">
+                <SeverityDot level={overallDueDiligenceRisk} />
+                {overallDueDiligenceRisk} –{" "}
+                {getRiskLabel(overallDueDiligenceRisk)}
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* ===== COUNTRY ===== */}
+
+      {/* ===== OVERALL COUNTRY RISK ===== */}
+      {overallCountryRisk && (
+        <div className="flex items-center gap-2 mb-4 p-3 rounded-lg border bg-white">
+          <span className="text-sm font-semibold text-gray-700">
+            Overall Country Risk:
+          </span>
+          <span className="flex items-center gap-2">
+            <SeverityDot level={overallCountryRisk} />
+            <span className="font-semibold">{overallCountryRisk}</span>
+          </span>
+        </div>
+      )}
+
       <CountrySection
         entry={
           viewMode === "basic"
@@ -500,6 +852,19 @@ export default function ResultsPanel({
         setExpandedQueries={setExpandedQueries}
       />
 
+      {/* ===== OVERALL CUSTOMER RISK ===== */}
+      {overallCustomerRisk && (
+        <div className="flex items-center gap-2 mb-4 p-3 rounded-lg border bg-white">
+          <span className="text-sm font-semibold text-gray-700">
+            Overall Customer Risk:
+          </span>
+          <span className="flex items-center gap-2">
+            <SeverityDot level={overallCustomerRisk} />
+            <span className="font-semibold">{overallCustomerRisk}</span>
+          </span>
+        </div>
+      )}
+
       {/* ===== CUSTOMER ===== */}
       {(resultsMap.customerBasic || resultsMap.customerAdvanced) && (
         <Disclosure open={isCustomerOpen} onChange={setIsCustomerOpen}>
@@ -513,7 +878,7 @@ export default function ResultsPanel({
               > */}
                 <div className="px-4 py-2">
                   <span>
-                    Customer
+                    Partner
                     {resultsMap.customerBasic && (
                       <span className="ml-2 text-sm font-normal text-gray-600">
                         –{" "}
@@ -554,6 +919,20 @@ export default function ResultsPanel({
           )}
         </Disclosure>
       )}
+
+      {projectMacroOverallSeverity && (
+        <div className="flex items-center gap-2 mb-4 p-3 rounded-lg border bg-white">
+          <span className="text-sm font-semibold text-gray-700">
+            Overall Project Macro Risk:
+          </span>
+
+          <span className="flex items-center gap-2">
+            <SeverityDot level={projectMacroOverallSeverity} />
+            <span className="font-semibold">{projectMacroOverallSeverity}</span>
+          </span>
+        </div>
+      )}
+
       {/* ===== PROJECT + TERRITORY ===== */}
       {(resultsMap.projectBasic ||
         resultsMap.projectAdvanced ||

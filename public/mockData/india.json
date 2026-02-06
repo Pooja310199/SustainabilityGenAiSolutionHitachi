@@ -50,7 +50,7 @@
     "gfhhhhhhhhhhhhh",
     "ggggggggggggggggggggggggggggggggg"
   ],
-  "overall_severity": "RED"
+  "overall_severity": "GREEN"
 },
 
 {
@@ -92,7 +92,7 @@
     "https://www.wikimond.com/en/articles/territorial_disputes_of_India",
     "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm"
   ],
-  "overall_severity": "RED"
+  "overall_severity": "GREEN"
 },
 
 
@@ -287,7 +287,7 @@
     "https://powercorridors.in/indias-democracy-dims-classified-partly-free-again-in-2025-freedom-report/",
     "https://www.nriaffairs.com/indias-freedom-status-declines-in-freedom-houses-2025-report-while-kashmir-sees-improvement/"
   ],
-  "overall_severity": "ORANGE"
+  "overall_severity": "GREEN"
 },
 
 {
@@ -1096,7 +1096,7 @@
 
 ],
   "errors":null,
-  "overall_severity":"RED",
+  "overall_severity":"GREEN",
   "overall_risk_level":"No data"
 
 }

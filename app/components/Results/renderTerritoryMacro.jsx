@@ -66,6 +66,24 @@ export default function RenderTerritoryMacro({
   //   setExpandedTerritorySub({});
   // };
 
+  const normalizeSection = (section) => {
+    if (!section || typeof section !== "object") return null;
+
+    const list = Array.isArray(section.items)
+      ? section.items
+      : Array.isArray(section.results)
+        ? section.results
+        : [];
+
+    if (list.length === 0) return null;
+
+    return {
+      list,
+      severity: section.severity,
+      risk_level: section.risk_level,
+    };
+  };
+
   return (
     <div className="mb-5 rounded-xl border border-gray-200 bg-white shadow-sm">
       {/* MAIN HEADER */}
@@ -75,7 +93,13 @@ export default function RenderTerritoryMacro({
                    bg-gray-50 hover:bg-gray-100 border-b rounded-t-xl
                    text-left text-sm font-semibold text-gray-800 transition"
       >
-        <span>{capitalizeWords(content.category || "Territory Section")}</span>
+        <div className="flex items-center gap-2">
+          <SeverityDot level={content.overall_severity} />
+          <span>
+            {capitalizeWords(content.category || "Territory Section")}
+          </span>
+        </div>
+
         <ChevronUpIcon
           className={`h-4 w-5 transition-transform ${
             expandedTerritorySub[mainKey] ? "rotate-180" : ""
@@ -106,7 +130,10 @@ export default function RenderTerritoryMacro({
                              bg-gray-100 hover:bg-gray-200 border-b rounded-t-lg
                              text-left text-sm font-semibold text-gray-800 transition"
                 >
-                  <span>{res.sub_category}</span>
+                  <div className="flex items-center gap-2">
+                    <SeverityDot level={res.overall_severity} />
+                    <span>{res.sub_category}</span>
+                  </div>
                   <ChevronUpIcon
                     className={`h-4 w-4 transition-transform ${
                       expandedTerritorySub[subKey] ? "rotate-180" : ""
@@ -115,248 +142,78 @@ export default function RenderTerritoryMacro({
                 </button>
 
                 {expandedTerritorySub[subKey] && (
+                  // <div className="p-4 space-y-5 text-sm text-gray-700">
                   <div className="p-4 space-y-5 text-sm text-gray-700">
-                    {/* ================================== */}
-                    {/*        SEARCH QUERIES              */}
-                    {/* ================================== */}
-                    {res.analysis?.queries &&
-                      res.analysis.queries.some((q) => !allValuesNA(q)) && (
-                        <div className="space-y-3">
-                          <h4 className="font-semibold text-gray-800">
-                            Search Queries
-                          </h4>
-
-                          {res.analysis.queries.map((q, qi) => {
-                            if (allValuesNA(q)) return null;
-
-                            return (
-                              <div
-                                key={qi}
-                                className="border p-4 rounded-lg bg-white shadow-sm space-y-3"
-                              >
-                                {/* Question */}
-                                {!isNAValue(q.questions || q.question) && (
-                                  <p>
-                                    <span className="font-medium">
-                                      Question:
-                                    </span>{" "}
-                                    {q.questions || q.question}
-                                  </p>
-                                )}
-
-                                {/* Result block */}
-                                {q.result?.map((r, ri) => {
-                                  if (allValuesNA(r)) return null;
-
-                                  const cleanTimeline = filterArray(r.timeline);
-
-                                  return (
-                                    <div
-                                      key={ri}
-                                      className="mt-2 space-y-2 text-gray-700"
-                                    >
-                                      {/* Summary */}
-                                      {!isNAValue(r.summary) && (
-                                        <p>
-                                          <span className="font-medium">
-                                            Summary:
-                                          </span>{" "}
-                                          {r.summary}
-                                        </p>
-                                      )}
-
-                                      {/* Timeline */}
-                                      {cleanTimeline.length > 0 && (
-                                        <div className="text-xs mt-1 text-gray-700 space-y-1">
-                                          <p className="font-semibold">
-                                            Timeline:
-                                          </p>
-                                          {cleanTimeline.map((t, ti) => (
-                                            <p key={ti}>• {t}</p>
-                                          ))}
-                                        </div>
-                                      )}
-
-                                      {/* Allegation Type */}
-                                      {!isNAValue(r.allegation_type) && (
-                                        <p className="text-xs text-gray-700">
-                                          <span className="font-semibold">
-                                            Allegation Type:
-                                          </span>{" "}
-                                          {r.allegation_type}
-                                        </p>
-                                      )}
-                                    </div>
-                                  );
-                                })}
-                              </div>
-                            );
-                          })}
-                        </div>
-                      )}
-
-                    {/* ================================== */}
-                    {/*           ALLEGATIONS             */}
-                    {/* ================================== */}
-                    {res.analysis?.allegations &&
-                      res.analysis.allegations.some(
-                        (item) => !allValuesNA(item),
-                      ) && (
-                        <div className="space-y-3">
-                          <h4 className="font-semibold text-gray-800">
-                            Allegations
-                          </h4>
-
-                          {res.analysis.allegations.map((item, i) => {
-                            if (allValuesNA(item)) return null;
-
-                            const cleanItem = filterObject(item);
-                            if (Object.keys(cleanItem).length === 0)
-                              return null;
-
-                            return (
-                              <div
-                                key={i}
-                                className="border p-3 rounded-lg bg-white shadow-sm space-y-2"
-                              >
-                                {Object.entries(cleanItem).map(
-                                  ([field, val]) => (
-                                    <p key={field}>
-                                      <span className="font-bold">
-                                        {capitalizeWords(
-                                          field.replace(/_/g, " "),
-                                        )}
-                                        :
-                                      </span>{" "}
-                                      {String(val)}
-                                    </p>
-                                  ),
-                                )}
-                              </div>
-                            );
-                          })}
-                        </div>
-                      )}
-
                     {/*       OTHER ANALYSIS ARRAYS        */}
+                    {Object.entries(res.analysis || {}).map(
+                      ([key, section]) => {
+                        if (key === "queries") return null;
 
-                    {Object.entries(res.analysis || {})
-                      .filter(
-                        ([key]) => key !== "allegations" && key !== "queries",
-                      )
-                      .map(([key, items]) => {
-                        if (
-                          typeof items === "object" &&
-                          items !== null &&
-                          Array.isArray(items.results)
-                        ) {
-                          if (items.results.length === 0) return null;
-
-                          return (
-                            <Disclosure key={key} defaultOpen={true}>
-                              {({ open }) => (
-                                <div className="border rounded-lg bg-gray-50">
-                                  {/* HEADER */}
-                                  <Disclosure.Button className="w-full flex items-center justify-between px-4 py-3 text-left">
-                                    <div className="flex items-center gap-2 font-semibold text-gray-800">
-                                      {/* 🔴 Severity dot on LEFT */}
-                                      <SeverityDot level={items.severity} />
-
-                                      {capitalizeWords(key.replace(/_/g, " "))}
-                                    </div>
-
-                                    {/* ⬆️⬇️ Arrow */}
-                                    <ChevronUpIcon
-                                      className={`h-5 w-5 text-gray-500 transition-transform ${
-                                        open ? "rotate-180" : ""
-                                      }`}
-                                    />
-                                  </Disclosure.Button>
-
-                                  {/* CONTENT */}
-                                  <Disclosure.Panel className="px-4 pb-4 space-y-3">
-                                    {items.results.map((item, ii) => (
-                                      <div
-                                        key={ii}
-                                        className="border p-3 rounded-lg bg-white shadow-sm space-y-1"
-                                      >
-                                        {typeof item === "string" && (
-                                          <p>• {item}</p>
-                                        )}
-
-                                        {typeof item === "object" &&
-                                          item !== null &&
-                                          Object.entries(item).map(
-                                            ([field, val]) => (
-                                              <p key={field}>
-                                                <span className="font-semibold">
-                                                  {capitalizeWords(
-                                                    field.replace(/_/g, " "),
-                                                  )}
-                                                  :
-                                                </span>{" "}
-                                                {field === "severity" ? (
-                                                  <SeverityDot level={val} />
-                                                ) : field === "distance" &&
-                                                  val !== "N/A" ? (
-                                                  `${val} km`
-                                                ) : (
-                                                  String(val)
-                                                )}
-                                              </p>
-                                            ),
-                                          )}
-                                      </div>
-                                    ))}
-                                  </Disclosure.Panel>
-                                </div>
-                              )}
-                            </Disclosure>
-                          );
-                        }
-
-                        if (!Array.isArray(items)) return null;
-
-                        const filteredItems = items.filter(
-                          (item) => !allValuesNA(item),
-                        );
-                        if (filteredItems.length === 0) return null;
+                        const normalized = normalizeSection(section);
+                        if (!normalized) return null;
 
                         return (
-                          <div key={key} className="space-y-3">
-                            <h4 className="font-semibold text-gray-800">
-                              {capitalizeWords(key.replace(/_/g, " "))}
-                            </h4>
+                          <Disclosure key={key} defaultOpen={true}>
+                            {({ open }) => (
+                              <div className="border rounded-lg bg-gray-50">
+                                {/* HEADER */}
+                                <Disclosure.Button className="w-full flex items-center justify-between px-4 py-3">
+                                  <div className="flex items-center gap-2 font-semibold text-gray-800">
+                                    <SeverityDot level={normalized.severity} />
+                                    {capitalizeWords(key.replace(/_/g, " "))}
+                                  </div>
 
-                            {filteredItems.map((item, ii) => {
-                              const cleanObj = filterObject(item);
-                              if (Object.keys(cleanObj).length === 0)
-                                return null;
+                                  <ChevronUpIcon
+                                    className={`h-5 w-5 transition-transform ${
+                                      open ? "rotate-180" : ""
+                                    }`}
+                                  />
+                                </Disclosure.Button>
 
-                              return (
-                                <div
-                                  key={ii}
-                                  className="border p-3 rounded-lg bg-white shadow-sm space-y-2"
+                                {/* CONTENT */}
+                                <Disclosure.Panel
+                                  className=" px-4 pb-4
+    grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3
+    gap-4"
                                 >
-                                  {Object.entries(cleanObj).map(
-                                    ([field, val]) => (
-                                      <p key={field}>
-                                        <span className="font-semibold">
-                                          {capitalizeWords(
-                                            field.replace(/_/g, " "),
-                                          )}
-                                          :
-                                        </span>{" "}
-                                        {String(val)}
-                                      </p>
-                                    ),
-                                  )}
-                                </div>
-                              );
-                            })}
-                          </div>
+                                  {normalized.list.map((item, ii) => (
+                                    <div
+                                      key={ii}
+                                      className="border p-3 rounded-lg bg-white shadow-sm space-y-1"
+                                    >
+                                      {typeof item === "string" && (
+                                        <p>• {item}</p>
+                                      )}
+
+                                      {typeof item === "object" &&
+                                        Object.entries(item).map(
+                                          ([field, val]) => (
+                                            <p key={field}>
+                                              <span className="font-semibold">
+                                                {capitalizeWords(
+                                                  field.replace(/_/g, " "),
+                                                )}
+                                                :
+                                              </span>{" "}
+                                              {field === "severity" ? (
+                                                <SeverityDot level={val} />
+                                              ) : field === "distance" ? (
+                                                `${val} km`
+                                              ) : (
+                                                String(val)
+                                              )}
+                                            </p>
+                                          ),
+                                        )}
+                                    </div>
+                                  ))}
+                                </Disclosure.Panel>
+                              </div>
+                            )}
+                          </Disclosure>
                         );
-                      })}
+                      },
+                    )}
 
                     {/*   SOURCES     */}
 

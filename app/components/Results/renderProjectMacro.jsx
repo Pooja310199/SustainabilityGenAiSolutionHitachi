@@ -25,6 +25,7 @@ export default function RenderProjectMacro({
   return (
     <div className="mb-5 rounded-xl border border-gray-200 bg-white shadow-sm category-header ">
       {/* MAIN HEADER */}
+
       <button
         onClick={() => toggle(mainKey)}
         className="w-full flex justify-between items-center px-5 py-3
@@ -65,7 +66,10 @@ export default function RenderProjectMacro({
                              bg-gray-100 hover:bg-gray-200 border-b rounded-t-lg
                              text-left text-sm font-semibold text-gray-800 transition"
                 >
-                  <span>{res.sub_category}</span>
+                  <span className="flex items-center gap-2">
+                    <SeverityDot level={res.overall_severity} />
+                    {res.sub_category}
+                  </span>
                   <ChevronUpIcon
                     className={`h-4 w-4 transition-transform ${
                       expandedProjectSub[subKey] ? "rotate-180" : ""
@@ -76,33 +80,28 @@ export default function RenderProjectMacro({
                 {expandedProjectSub[subKey] && (
                   <div className="p-4 space-y-5 text-sm text-gray-700">
                     {/* ALLEGATIONS */}
-                    {res.analysis?.allegations &&
-                      res.analysis.allegations.some((a) => !allValuesNA(a)) && (
-                        <div className="space-y-3">
-                          <h4 className="font-semibold text-gray-800">
-                            Allegations
-                          </h4>
 
-                          {res.analysis.allegations.map((a, i) => {
+                    {/* ALLEGATIONS */}
+                    {res.analysis?.allegations?.items &&
+                      res.analysis.allegations.items.some(
+                        (a) => !allValuesNA(a),
+                      ) && (
+                        <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                          {res.analysis.allegations.items.map((a, i) => {
                             if (allValuesNA(a)) return null;
 
                             return (
                               <div
                                 key={i}
-                                className="border p-3 rounded-lg bg-white shadow-sm space-y-2"
+                                className="h-full w-full border rounded-lg bg-white shadow-sm p-4 space-y-2"
                               >
-                                {a.title && (
-                                  <p>
-                                    <span className="font-semibold">
-                                      Title:
-                                    </span>{" "}
-                                    {a.title}
-                                  </p>
-                                )}
+                                <p>
+                                  <b>Title:</b> {a.title}
+                                </p>
 
-                                {a.link && a.link !== "N/A" && (
+                                {a.link && (
                                   <p>
-                                    <span className="font-medium">Link:</span>{" "}
+                                    <b>Link:</b>{" "}
                                     <a
                                       href={a.link}
                                       target="_blank"
@@ -113,96 +112,12 @@ export default function RenderProjectMacro({
                                   </p>
                                 )}
 
-                                {a.published_date && (
-                                  <p>
-                                    <span className="font-medium">
-                                      Published Date:
-                                    </span>{" "}
-                                    {a.published_date}
-                                  </p>
-                                )}
-
-                                {a.description && (
-                                  <p>
-                                    <span className="font-medium">
-                                      Description:
-                                    </span>{" "}
-                                    {a.description}
-                                  </p>
-                                )}
-                              </div>
-                            );
-                          })}
-                        </div>
-                      )}
-
-                    {/* QUERIES */}
-                    {res.analysis?.queries &&
-                      res.analysis.queries.some((q) => !allValuesNA(q)) && (
-                        <div className="space-y-3">
-                          <h4 className="font-semibold text-gray-800">
-                            Search Queries
-                          </h4>
-
-                          {res.analysis.queries.map((q, qi) => {
-                            if (allValuesNA(q)) return null;
-
-                            return (
-                              <div
-                                key={qi}
-                                className="border p-4 rounded-lg bg-white shadow-sm space-y-3"
-                              >
-                                {q.question && (
-                                  <p>
-                                    <span className="font-medium">
-                                      Question:
-                                    </span>{" "}
-                                    {q.question}
-                                  </p>
-                                )}
-
-                                {q.result?.map((r, ri) => {
-                                  if (allValuesNA(r)) return null;
-
-                                  return (
-                                    <div
-                                      key={ri}
-                                      className="mt-2 space-y-2 text-gray-700"
-                                    >
-                                      {r.summary && (
-                                        <p>
-                                          <span className="font-medium">
-                                            Summary:
-                                          </span>{" "}
-                                          {r.summary}
-                                        </p>
-                                      )}
-
-                                      {r.timeline && r.timeline.length > 0 && (
-                                        <div className="text-xs mt-1 text-gray-700 space-y-1">
-                                          <p className="font-semibold">
-                                            Timeline:
-                                          </p>
-                                          {r.timeline.map((t, ti) => (
-                                            <p key={ti}>• {t}</p>
-                                          ))}
-                                        </div>
-                                      )}
-
-                                      {/* IMPORTANT: Hide if null or N/A */}
-                                      {r.allegation_type &&
-                                        r.allegation_type !== "null" &&
-                                        r.allegation_type !== "N/A" && (
-                                          <p className="text-xs text-gray-700">
-                                            <span className="font-semibold">
-                                              Allegation Type:
-                                            </span>{" "}
-                                            {r.allegation_type}
-                                          </p>
-                                        )}
-                                    </div>
-                                  );
-                                })}
+                                <p>
+                                  <b>Published Date:</b> {a.published_date}
+                                </p>
+                                <p>
+                                  <b>Description:</b> {a.description}
+                                </p>
                               </div>
                             );
                           })}
@@ -294,7 +209,7 @@ export default function RenderProjectMacro({
                                   </button>
 
                                   {expandedProjectSub[envKey] && (
-                                    <div className="p-4 space-y-3 text-sm">
+                                    <div className="p-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 text-sm">
                                       {Array.isArray(value.results) &&
                                         value.results.map((item, ii) => (
                                           <div

@@ -1,158 +1,74 @@
 [
-
 {
 
-  "category":"project name human rights",
-  "results":[
-{
-  "sub_category":"BHRC Allegations",
-  "analysis":{
-    "allegations":[
-      {
-        "title":"allegationshhhhhh",
+"category":"Project Name Human Rights Allegations",
+"results":[
+
+  {
+
+    "sub_category":"BHRRC Allegations",
+    "analysis":{
+      "allegations":{
+
+        "items":[
+          {
+
+
+            "title":"allegationshhhhhh",
         "link":"hhhhhhhhhhhhh",
         "published_date":"2022-06-01",
         "description":"reports gghhjjjjjjjjj."
 
-      },
-      {
-         "title":"allegationshhhhhh",
-        "link":"gggggggggggg",
+          },
+          {
+"title":"allegationshhhhhh",
+        "link":"hhhhhhhhhhhhh",
         "published_date":"2022-06-01",
         "description":"reports gghhjjjjjjjjj."
 
-      },
-      {
-                 "title":"allegationshhhhhh",
-        "link":"hhhhhhhhhhhhhhhhhhhh",
+
+          },
+          {
+
+"title":"allegationshhhhhh",
+        "link":"hhhhhhhhhhhhh",
         "published_date":"2022-06-01",
         "description":"reports gghhjjjjjjjjj."
 
-      }
-
-    ]
-
-  },
-  "sources":[
-    "https/wwww",
-    "https/wwww",
-    "https/wwww",
-    "https/wwww"
-
-  ]
-
-},
-{
-        "sub_category":"Bing Search",
-        "analysis":{
-          "queries":[
-            {
-              "question":"questionhhhhhh?",
-              "result":[
-                {
-                  "summary":"ffffffffffffff",
-                  "timeline":[
-
-                    "ffffffffffffffffffffffffff",
-                    "ggggggggggggggggggg",
-                    "fgggggggggggggggg",
-                    "ghhhhhhhhhhhhhhhhh"
-                  ],
-                  "allegation_type":"null"
-
-                }
-                
-              ]
-              
-            },
-            {
-
-               "question":"questionhhhhhh?",
-              "result":[
-                {
-                  "summary":"ffffffffffffff",
-                  "timeline":[
-
-                    "ffffffffffffffffffffffffff",
-                    "ggggggggggggggggggg",
-                    "fgggggggggggggggg",
-                    "ghhhhhhhhhhhhhhhhh"
-                  ],
-                  "allegation_type":"gffffffffffffffffffffffff"
-
-                }
-                
-              ]
-            },
-            {
-
-               "question":"questionhhhhhh?",
-              "result":[
-                {
-                  "summary":"ffffffffffffff",
-                  "timeline":[
-
-                    "ffffffffffffffffffffffffff",
-                    "ggggggggggggggggggg",
-                    "fgggggggggggggggg",
-                    "ghhhhhhhhhhhhhhhhh"
-                  ],
-                  "allegation_type":"gffffffffffffffffffffffff"
-
-                }
-                
-              ]
-            },
-            {
-               "question":"questionhhhhhh?",
-              "result":[
-                {
-                  "summary":"ffffffffffffff",
-                  "timeline":[
-
-                    "ffffffffffffffffffffffffff",
-                    "ggggggggggggggggggg",
-                    "fgggggggggggggggg",
-                    "ghhhhhhhhhhhhhhhhh"
-                  ],
-                  "allegation_type":null
-
-                }
-                
-              ]
-            }
-
-
-          ]
-
-        },
-        "sources":[
-          "https/wwww",
-          "https/wwww",
-          "https/wwww",
-          "https/wwww"
-
+          }
         ]
+      },
+      "severity":"ORANGE",
+      "risk_level":"High Risk"
 
-}
+    },
+    "overall_severity":"ORANGE",
+    "risk_level":"High Risk",
+    "sources":[
 
-
-  ],
-  "errors":null,
-  "overall_severity":"N/A",
-  "overall_risk_level":"No Data"
+      "https://www.hfhgfgfhgfvgh",
+      "https://www.hgfhgfhfhgfhgfhg",
+      "https://www.ghfhgdhgd"
+    ]
+  }
   
+],
+"errors":null,
+"overall_severity":"ORANGE",
+"overall_risk_level":"No Data"
+
+
 
 },
-
 {
 
-  "category":"Project Site Boi",
-  "results":[
+"category":"Project Site Biodiversity",
+"results":[
+  {
 
-{
-  "sub_category":"Bing search",
-  "analysis":{
+    "sub_category":"Bing Search",
+    "analysis":{
+
 "UNESCO_Heritage_Sites":{
   "results":[
 
@@ -343,31 +259,40 @@
 
 
 
-  },
-  "overall_severity":"GREEN",
-  "overall_risk_level":"Low Risk",
-  "sources":[
-
-    "https://eeeeeeeeeeeeeeeeeeeeeeeeee",
-    "https://aaaaaaaaaaaaaaaaaaaa",
-    "https://vvvvvvvvvvvvvvvvvvvv",
-    "https://ccccccccccccccccccc"
 
 
-  ]
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    },
+    "overall_severity":"ORANGE",
+    "overall_risk_level":"Low Risk",
+    "sources":[
+      "https://www.hfhgfgfhgfvgh",
+      "https://www.hgfhgfhfhgfhgfhg",
+      "https://www.hgfhgfhfhgfhgfhg"
+
+    ]
+  }
+
+],
+"errors":null,
+"overall_severity":"ORANGE",
+"overall_risk_level":"Low Risk"
 
 }
-
-  ],
-  "errors":null,
-  "overall_severity":"RED",
-  "overall_risk_level":"Low Risk"
-
-
-
-}
-
-
 ]

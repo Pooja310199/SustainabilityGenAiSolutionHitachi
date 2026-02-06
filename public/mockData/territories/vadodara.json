@@ -1,194 +1,145 @@
 [
   {
 
-    "category":"territory human rights londommmmmmmm",
-    "results":[
+"category":"Territory Human Rights Allegations",
+"results":[
 
 
 
-{
-    "sub_category":"Bing search",
+  {
+
+    "sub_category":"Business & Human Rights Resource Center",
     "analysis":{
-      "queries":[
 
-        {
-
-
-          "questions":"is london dsfsfs fdfdsf?",
-          "result":[
+      "ongoing_lawsuits":{
+        "items":[
+    {
 
 
-            {
-                      "summary":"sdf dssssssssssssssssss sdfsdfsdfsd sdfd",
-                      "timeline":[
-
-                       "N/A"
-                      ],
-                      "allegation_type":"N/A"  
-            }
-           
-          ]
-        },
-           {
-
-
-          "questions":"is london dsfsfs fdfdsf?",
-          "result":[
-
-
-            {
-                      "summary":"sdf dssssssssssssssssss sdfsdfsdfsd sdfd",
-                      "timeline":[
-
-                        "sdfsdfsdfsdfsd",
-                        "sdfsdfsdfsdfsd",
-                        "sdfsdfsdfsdfsd",
-                        "sdfsdfsdfsdfsd"
-                      ],
-                      "allegation_type":"Type 1"  
-            }
-           
-          ]
-        },
-
-           {
-
-
-          "questions":"is london dsfsfs fdfdsf?",
-          "result":[
-
-
-            {
-                      "summary":"sdf dssssssssssssssssss sdfsdfsdfsd sdfd",
-                      "timeline":[
-
-                        "sdfsdfsdfsdfsd",
-                        "sdfsdfsdfsdfsd",
-                        "sdfsdfsdfsdfsd",
-                        "sdfsdfsdfsdfsd"
-                      ],
-                      "allegation_type":"Type 1"  
-            }
-           
-          ]
-        }
-       
-      ]
-
+      "title":"hfhgfhf hgfhf hgfh",
+      "link":"https://www.hjgjhgjgj.com",
+      "published_date":"2024-06-03",
+      "description":"gfgfdgfdgfdgdg"
     },
+    {
+
+
+      
+      "title":"hfhgfhf hgfhf hgfh",
+      "link":"https://www.hjgjhgjgj.com",
+      "published_date":"2024-06-03",
+      "description":"gfgfdgfdgfdgdg"
+    },
+    {
+
+      "title":"hfhgfhf hgfhf hgfh",
+      "link":"https://www.hjgjhgjgj.com",
+      "published_date":"2024-06-03",
+      "description":"gfgfdgfdgfdgdg"
+
+    }
+  ],
+  "severity":"ORANGE",
+  "risk_level":"Low_Risk"
+
+
+
+      }
+,
+"allegations":{
+
+  "items":[
+    {
+
+
+      "title":"hfhgfhf hgfhf hgfh",
+      "link":"https://www.hjgjhgjgj.com",
+      "published_date":"2024-06-03",
+      "description":"gfgfdgfdgfdgdg"
+    },
+    {
+
+
+      
+      "title":"hfhgfhf hgfhf hgfh",
+      "link":"https://www.hjgjhgjgj.com",
+      "published_date":"2024-06-03",
+      "description":"gfgfdgfdgfdgdg"
+    },
+    {
+
+      "title":"hfhgfhf hgfhf hgfh",
+      "link":"https://www.hjgjhgjgj.com",
+      "published_date":"2024-06-03",
+      "description":"gfgfdgfdgfdgdg"
+
+    }
+  ],
+  "severity":"ORANGE",
+  "risk_level":"Low_Risk"
+
+},
+"ongoing_slapps_and_hrd_attacks":{
+
+  "items":[
+    {
+
+
+      "title":"hfhgfhf hgfhf hgfh",
+      "link":"https://www.hjgjhgjgj.com",
+      "published_date":"2024-06-03",
+      "description":"gfgfdgfdgfdgdg"
+    },
+    {
+
+
+      
+      "title":"hfhgfhf hgfhf hgfh",
+      "link":"https://www.hjgjhgjgj.com",
+      "published_date":"2024-06-03",
+      "description":"gfgfdgfdgfdgdg"
+    },
+    {
+
+      "title":"hfhgfhf hgfhf hgfh",
+      "link":"https://www.hjgjhgjgj.com",
+      "published_date":"2024-06-03",
+      "description":"gfgfdgfdgfdgdg"
+
+    }
+  ],
+  "severity":"ORANGE",
+  "risk_level":"Low_Risk"
+
+}
+    },
+    "overall_severity":"GREEN",
+    "risk_level":"Low_Risk",
     "sources":[
 
-      "httttttps/sghfghfj",
-      "httttttps/sghfghfj",   
-      "httttttps/sghfghfj",
-      "httttttps/sghfghfj"
+      "https://www.hjgjhg.com",
+      "https://www.jgjhg.com"
     ]
-},
-
-
-{
-
-
-
-  "sub_category":"Business & human rights resource center",
-  "analysis":{
-"ongoin-lawsuits":[
-  {
-  "title":"ffffffffffff",
-  "link":"xxxxxxxxxxxxxxxxxxxxxxxxxx",
-  "published_date":"2022-06-01",
-  "description":"reports gghhjjjjjjjjj."
-  },
-    {
-  "title":"ffffffffffff",
-  "link":"xxxxxxxxxxxxxxxxxxxxxxxxxx",
-  "published_date":"2022-06-01",
-  "description":"reports gghhjjjjjjjjj."
-  },
-    {
-  "title":"ffffffffffff",
-  "link":"https/xxxxxxxxxxxxxxxxxxxxxxxxxx",
-  "published_date":"2022-06-01",
-  "description":"reports gghhjjjjjjjjj."
-  },
-    {
-  "title":"ffffffffffff",
-  "link":"xxxxxxxxxxxxxxxxxxxxxxxxxx",
-  "published_date":"2022-06-01",
-  "description":"reports gghhjjjjjjjjj."
   }
-
 ],
-"allegations":[
-
-],
-"ongoing_slaps_and":[
-
-
-]
+"errors":"null",
+"overall_severity":"GREEN",
+"overall_risk_level":"No data"
 
   },
-  "sources":[ 
-
-    "httttttps/sghfghfj",
-    "httttttps/sghfghfj",   
-    "httttttps/sghfghfj",
-    "httttttps/sghfghfj"
-  ]
-
-},
-{
-"sub_category":"Amnesty & BHR law",
-"analysis":{
-
-  "amnesty":[
-{
-"titile":"gggggggggggggg",
-"summury":"sssssssssssss"
-},
-{
-"titile":"gggggggggggggg",
-"summury":"sssssssssssss"
-
-},
-{
-  "titile":"gggggggggggggg",
-"summury":"sssssssssssss"
-}
-
-  ],
-
-  "bhr law":[]
-},
-"sources":[
-
-    "httttttps/sghfghfj",
-    "httttttps/sghfghfj",   
-    "httttttps/sghfghfj",
-    "httttttps/sghfghfj"
-  
-  ]
+  {
 
 
-}
 
-],
-    "errors":null,
-    "overall_severity":"N/A",
-    "overall_risk_level":"No data"
- 
-  },
+"category":"Territory Biodiversity",
+"results":[
 
-{
+  {
 
-  "category":"Territory Biodiversity",
-  "results":[
-    {
-      "sub_category":"Bing Search 2",
-      "analysis":{
-
+    "sub_category":"Bing Search 2",
+    "analysis":{
         "iucn_green_list":{
-          "results":[
+           "results":[
             {
               "name":"bcvbcvb fgggggggfg dffffgdg",
       "distance":"450",
@@ -215,10 +166,11 @@
           "severity":"GREEN",
           "risk_level":"Low Risk"
 
-        },
 
+        },
         "national_red_list_species":{
-          "results":[
+
+           "results":[
 
             "sdfsdfsf",
             "fsddddddddddddd",
@@ -229,17 +181,24 @@
         },
         "iucn_global_threatened_species":{
 
-          "results":[
+           "results":[
             "fdddddddddddd",
             "sdffffffffffffff",
             "sdfffffffffffffffffffffffff",
             "sfdddddddddddddddd"
           ]
 
+
+
         },
         "national_parks":{
 
-        "results":[
+
+
+
+
+
+           "results":[
 
          {
               "name":"bcvbcvb fgggggggfg dffffgdg",
@@ -271,11 +230,10 @@
           "risk_level":"Low Risk"
 
 
-
         },
-         "unesco_heritage_sites":{
+        "unesco_heritage_sites":{
 
-          "results":[
+                  "results":[
 {
               "name":"bcvbcvb fgggggggfg dffffgdg",
       "distance":"450",
@@ -303,12 +261,17 @@
           "severity":"GREEN",
           "risk_level":"Low Risk"
 
+
+
         },
+        
+      
 
-         "indigenous_territories_land":{
+          "indigenous_territories_land":{
 
+            
 
-          "results":[
+ "results":[
 
             {
               "name":"bcvbcvb fgggggggfg dffffgdg",
@@ -335,29 +298,28 @@
           "severity":"GREEN",
           "risk_level":"Low Risk"
 
+          }
+        
 
-        }
-      },
-
-      "overall_severity":"GREEN",
-      "overall_risk_level":"Low Risk",
-      "sources":[
-        "https://jhgjhg",
-        "https://ghgfhhhhh",
-        "https://jhgggggggj",
-        "https://mmmmmmmmmmmmmmmmmmmm"
-
-      ]
     },
-    {
+    "overall_severity":"GREEN",
+    "overall_risk_level":"Low Risk",
+    "sources":[
+      "https://www.hjgjhg.com",
+      "https://www.jgjhg.com",
+      "https://www.jgjhg.com"
+    ]
 
-     "sub_category":"Bing serach 1",
-     "analysis":{
 
-"marine_protected_areas":{
-    "results":[
 
-    {
+  },
+  {
+
+ "sub_category":"Bing Search 1",
+    "analysis":{
+        "marine_protected_areas":{
+           "results":[
+            {
               "name":"bcvbcvb fgggggggfg dffffgdg",
       "distance":"450",
       "severity":"RED",
@@ -378,18 +340,17 @@
       "severity":"RED",
       "risk_level":"Low_Risk"
             }
-  ],
-  "severity":"GREEN",
-  "risk_level":"Low Risk"
+
+          ],
+          "severity":"GREEN",
+          "risk_level":"Low Risk"
 
 
+        },
+        "terrestrial_protected_areas":{
 
-},
-"terrestrial_protected_areas":{
-
-    "results":[
-
-    {
+           "results":[
+              {
               "name":"bcvbcvb fgggggggfg dffffgdg",
       "distance":"450",
       "severity":"RED",
@@ -410,18 +371,15 @@
       "severity":"RED",
       "risk_level":"Low_Risk"
             }
-  ],
-  "severity":"GREEN",
-  "risk_level":"Low Risk"
 
+          ],
+          "severity":"GREEN",
+          "risk_level":"Low Risk"
 
-
-},
-"important_bird_areas":{
-
-    "results":[
-
-    {
+        },
+        "important_bird_areas":{
+     "results":[
+              {
               "name":"bcvbcvb fgggggggfg dffffgdg",
       "distance":"450",
       "severity":"RED",
@@ -442,18 +400,23 @@
       "severity":"RED",
       "risk_level":"Low_Risk"
             }
-  ],
-  "severity":"GREEN",
-  "risk_level":"Low Risk"
+
+          ],
+          "severity":"GREEN",
+          "risk_level":"Low Risk"
+
+
+        },
+        "key_biodiversity_areas":{
 
 
 
-},
-"key_biodiversity_area":{
 
-    "results":[
 
-    {
+
+           "results":[
+
+         {
               "name":"bcvbcvb fgggggggfg dffffgdg",
       "distance":"450",
       "severity":"RED",
@@ -474,17 +437,20 @@
       "severity":"RED",
       "risk_level":"Low_Risk"
             }
-  ],
-  "severity":"GREEN",
-  "risk_level":"Low Risk"
 
 
 
-},
-"alliandce_for_zero_extinvtiom":{
-  "results":[
 
-    {
+                    ],
+        "severity":"GREEN",
+          "risk_level":"Low Risk"
+
+
+        },
+        "alliance_for_zero_extinction_sites":{
+
+                  "results":[
+{
               "name":"bcvbcvb fgggggggfg dffffgdg",
       "distance":"450",
       "severity":"RED",
@@ -505,18 +471,25 @@
       "severity":"RED",
       "risk_level":"Low_Risk"
             }
-  ],
-  "severity":"GREEN",
-  "risk_level":"Low Risk"
+
+
+          ],
+          "severity":"GREEN",
+          "risk_level":"Low Risk"
 
 
 
-},
+        },
+        
+      
 
-"ramsar_wetlands":{
-  "results":[
+          "ramsar_wetlands":{
 
-    {
+            
+
+ "results":[
+
+            {
               "name":"bcvbcvb fgggggggfg dffffgdg",
       "distance":"450",
       "severity":"RED",
@@ -537,33 +510,48 @@
       "severity":"RED",
       "risk_level":"Low_Risk"
             }
-  ],
-  "severity":"GREEN",
-  "risk_level":"Low Risk"
+          ],
+          "severity":"GREEN",
+          "risk_level":"Low Risk"
+
+          }
+        
+
+    },
+    "overall_severity":"GREEN",
+    "overall_risk_level":"Low Risk",
+    "sources":[
+      "https://www.hjgjhg.com",
+      "https://www.jgjhg.com",
+      "https://www.jgjhg.com"
+    ]
 
 
-}
 
 
-  
 
-      },
-     "overall_severity":"GREEN",
-     "overall_risk_level":"Low Risk",
-     "sources":[
 
-      "https://dfgdgdgf",
-      "https://dfddddddddddddddddddddddd",
-      "https://erwwwwwwwwwwwwwwwww"
-]
 
-    }
-  
-  ],
-  "errors":null,
-  "overall_severity":"GREEN",
-  "overall_risk_level":"Low Risk"
 
-}
 
+
+
+
+
+
+
+  }
+],
+"errors":"null",
+"overall_severity":"GREEN",
+"overall_risk_level":"No data"
+
+
+
+
+
+
+
+
+  }
 ]
