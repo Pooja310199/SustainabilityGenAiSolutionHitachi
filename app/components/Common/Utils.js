@@ -1,5 +1,8 @@
 export const capitalizeWords = (str = "") =>
-  str.replaceAll("_", " ").replace(/\b\w/g, (c) => c.toUpperCase());
+  String(str ?? "")
+    .replace(/_/g, " ")
+    .replace(/\b\w/g, (c) => c.toUpperCase());
+
 
 export const allValuesNA = (obj) => {
   if (!obj || typeof obj !== "object") return true;

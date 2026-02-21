@@ -11,21 +11,18 @@ import { capitalizeWords } from "../Common/Utils";
 import RenderProjectMacro from "./renderProjectMacro";
 import RenderTerritoryMacro from "./renderTerritoryMacro";
 import CountrySection from "./macroRender/CountrySection";
+import CustomerSection from "./macroRender/CustomerSection";
 import SeverityDot from "../Common/SeverityDot";
+import DueDiligenceReport from "../../components/DueDiligence/DueDiligenceReport";
+
 import {
   calculateOverallRiskFromCategories,
-  calculateWorstCaseRisk,
+  calculateCountryMacroRisk,
+  calculatePartnerMacroRisk,
+  calculateProjectMacroRisk,
 } from "../Common/riskUtils";
 
-// import useExpandCollapseAll from "../hooks/useExpandCollapseAll";
-
-export default function ResultsPanel({
-  resultsMap,
-  viewMode,
-  loading,
-  // projectName,
-  // territoryName,
-}) {
+export default function ResultsPanel({ resultsMap, viewMode, loading }) {
   useEffect(() => {
     console.log("resultsMap changed");
   }, [resultsMap]);
@@ -37,6 +34,11 @@ export default function ResultsPanel({
   const countryEntry =
     viewMode === "basic" ? resultsMap.countryBasic : resultsMap.countryAdvanced;
 
+  const overallCountryRisk =
+    countryEntry?.data?.length > 0
+      ? calculateCountryMacroRisk(countryEntry.data)
+      : null;
+
   const projectEntry =
     viewMode === "basic" ? resultsMap.projectBasic : resultsMap.projectAdvanced;
 
@@ -45,58 +47,32 @@ export default function ResultsPanel({
       ? resultsMap.territoryBasic
       : resultsMap.territoryAdvanced;
 
-  // OVERALL COUNTRY RISK
-  // ============================
-  const overallCountryRisk = countryEntry?.data?.[0]
-    ? calculateOverallRiskFromCategories(countryEntry.data[0])
-    : null;
-
   // CUSTOMER ENTRY (GLOBAL)
-  // ============================
+
   const customerEntry =
     viewMode === "basic"
       ? resultsMap.customerBasic
       : resultsMap.customerAdvanced;
 
   // OVERALL CUSTOMER RISK
-  // ============================
 
-  // ============================
-  const overallCustomerRisk =
+  const overallPartnerRisk =
     customerEntry?.data?.length > 0
-      ? calculateOverallRiskFromCategories(
-          customerEntry.data.flat(1), // 🔥 THIS FIX
-        )
+      ? calculatePartnerMacroRisk(customerEntry.data)
       : null;
 
-  const projectNameSeverity =
-    projectEntry?.data?.length > 0
-      ? calculateOverallRiskFromCategories(projectEntry.data)
-      : null;
-
-  const territoryNameSeverity =
-    territoryEntry?.data?.length > 0
-      ? calculateOverallRiskFromCategories(territoryEntry.data)
-      : null;
-
-  // ✅ FINAL PROJECT MACRO SEVERITY
-  const projectMacroOverallSeverity = calculateWorstCaseRisk([
-    projectNameSeverity,
-    territoryNameSeverity,
-  ]);
+  const projectMacroOverallSeverity = calculateProjectMacroRisk(
+    projectEntry?.data,
+    territoryEntry?.data,
+  );
 
   const dueDiligenceCategories = [
     overallCountryRisk && { overall_severity: overallCountryRisk },
-    overallCustomerRisk && { overall_severity: overallCustomerRisk },
+    overallPartnerRisk && { overall_severity: overallPartnerRisk },
     projectMacroOverallSeverity && {
       overall_severity: projectMacroOverallSeverity,
     },
   ].filter(Boolean);
-
-  const overallDueDiligenceRisk =
-    dueDiligenceCategories.length > 0
-      ? calculateOverallRiskFromCategories(dueDiligenceCategories)
-      : null;
 
   /* COUNTRY */
   console.count("ResultsPanel rendered");
@@ -123,12 +99,12 @@ export default function ResultsPanel({
   const [isProjectOpen, setIsProjectOpen] = useState(false);
   const [showDueDiligence, setShowDueDiligence] = useState(false);
 
-  // ============================
-  // COUNTRY RENDER
-  // ============================
-
   // const renderCountryContent = (entry) => {
   //   if (!entry) return null;
+  //   const countryCount = entry.selectedCountries?.length || 0;
+
+  //   const layoutClass =
+  //     countryCount === 2 ? "grid grid-cols-2 gap-4" : "flex flex-col gap-4"; // 1 or >2 → vertical
 
   //   return (
   //     <div>
@@ -140,213 +116,128 @@ export default function ResultsPanel({
   //         ))}
   //       </div>
 
-  //       {entry.selectedCountries.length === 1 &&
-  //         entry.data[0].map((content, i) =>
-  //           renderCategory({
-  //             content,
-  //             index: i,
-  //             countryName: entry.selectedCountries[0],
-  //             expandedSections,
-  //             setExpandedSections,
-  //             expandedMetrics,
-  //             setExpandedMetrics,
-  //             expandedSources,
-  //             setExpandedSources,
-  //             expandedSubIndicators,
-  //             setExpandedSubIndicators,
-  //           }),
-  //         )}
+  //       <div className={layoutClass}>
+  //         {entry.data.map((dataItem, i) => (
+  //           <div key={entry.selectedCountries[i]} className="min-w-0">
+  //             <h2 className="text-sm font-semibold text-gray-700 mb-2">
+  //               Results for {capitalizeWords(entry.selectedCountries[i])}
+  //             </h2>
 
-  //       {entry.selectedCountries.length === 2 && (
-  //         <div className="grid grid-cols-2 gap-4">
-  //           {entry.data.map((dataItem, i) => (
-  //             <div key={i}>
-  //               {dataItem.map((content, idx) =>
-  //                 renderCategory({
-  //                   content,
-  //                   index: idx,
-  //                   countryName: entry.selectedCountries[i],
-  //                   expandedSections,
-  //                   setExpandedSections,
-  //                   expandedMetrics,
-  //                   setExpandedMetrics,
-  //                   expandedSources,
-  //                   setExpandedSources,
-  //                   expandedSubIndicators,
-  //                   setExpandedSubIndicators,
-  //                 }),
-  //               )}
-  //             </div>
-  //           ))}
-  //         </div>
-  //       )}
+  //             {dataItem.map((content, idx) =>
+  //               renderCategory({
+  //                 content,
+  //                 index: idx,
+  //                 countryName: entry.selectedCountries[i],
+  //                 expandedSections,
+  //                 setExpandedSections,
+  //                 expandedMetrics,
+  //                 setExpandedMetrics,
+  //                 expandedSources,
+  //                 setExpandedSources,
+  //                 expandedSubIndicators,
+  //                 setExpandedSubIndicators,
+  //               }),
+  //             )}
+  //           </div>
+  //         ))}
+  //       </div>
 
   //       {viewMode === "advanced" && (
   //         <div className="mt-6">
-  //           {entry.selectedCountries.length === 1 ? (
-  //             renderAdvanced({
-  //               data: entry.advancedData[0],
-  //               countryName: entry.selectedCountries[0],
-  //               expandedAdvSections,
-  //               setExpandedAdvSections,
-  //               expandedQueries,
-  //               setExpandedQueries,
-  //             })
-  //           ) : (
-  //             <div className="grid grid-cols-2 gap-4">
-  //               {entry.selectedCountries.map((country, i) => (
-  //                 <div key={i}>
-  //                   {renderAdvanced({
-  //                     data: entry.advancedData[i],
-  //                     countryName: country,
-  //                     expandedAdvSections,
-  //                     setExpandedAdvSections,
-  //                     expandedQueries,
-  //                     setExpandedQueries,
-  //                   })}
-  //                 </div>
-  //               ))}
-  //             </div>
-  //           )}
+  //           <div className={layoutClass}>
+  //             {entry.selectedCountries.map((country, i) => (
+  //               <div key={country}>
+  //                 {renderAdvanced({
+  //                   data: entry?.advancedData?.[i] || [],
+  //                   countryName: country,
+  //                   expandedAdvSections,
+  //                   setExpandedAdvSections,
+  //                   expandedQueries,
+  //                   setExpandedQueries,
+  //                 })}
+  //               </div>
+  //             ))}
+  //           </div>
   //         </div>
   //       )}
   //     </div>
   //   );
   // };
 
-  const renderCountryContent = (entry) => {
-    if (!entry) return null;
-
-    return (
-      <div>
-        <div className="grid grid-cols-2 gap-4 mb-4">
-          {entry.selectedCountries.map((c, idx) => (
-            <h2 key={idx} className="text-sm font-semibold text-gray-700">
-              Results for {capitalizeWords(c)}
-            </h2>
-          ))}
-        </div>
-
-        {entry.selectedCountries.length === 1 &&
-          entry.data[0].map((content, i) =>
-            renderCategory({
-              content,
-              index: i,
-              countryName: entry.selectedCountries[0],
-              expandedSections,
-              setExpandedSections,
-              expandedMetrics,
-              setExpandedMetrics,
-              expandedSources,
-              setExpandedSources,
-              expandedSubIndicators,
-              setExpandedSubIndicators,
-            }),
-          )}
-
-        {entry.selectedCountries.length === 2 && (
-          <div className="grid grid-cols-2 gap-4">
-            {entry.data.map((dataItem, i) => (
-              <div key={i}>
-                {dataItem.map((content, idx) =>
-                  renderCategory({
-                    content,
-                    index: idx,
-                    countryName: entry.selectedCountries[i],
-                    expandedSections,
-                    setExpandedSections,
-                    expandedMetrics,
-                    setExpandedMetrics,
-                    expandedSources,
-                    setExpandedSources,
-                    expandedSubIndicators,
-                    setExpandedSubIndicators,
-                  }),
-                )}
-              </div>
-            ))}
-          </div>
-        )}
-
-        {viewMode === "advanced" && (
-          <div className="mt-6">
-            {entry.selectedCountries.length === 1 ? (
-              renderAdvanced({
-                data: entry.advancedData[0],
-                countryName: entry.selectedCountries[0],
-                expandedAdvSections,
-                setExpandedAdvSections,
-                expandedQueries,
-                setExpandedQueries,
-              })
-            ) : (
-              <div className="grid grid-cols-2 gap-4">
-                {entry.selectedCountries.map((country, i) => (
-                  <div key={i}>
-                    {renderAdvanced({
-                      data: entry.advancedData[i],
-                      countryName: country,
-                      expandedAdvSections,
-                      setExpandedAdvSections,
-                      expandedQueries,
-                      setExpandedQueries,
-                    })}
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        )}
-      </div>
-    );
-  };
-
-  // ============================
-  // CUSTOMER RENDER
-  // ============================
   const renderCustomerContent = (entry) => {
     if (!entry) return null;
 
-    const customers = [
-      entry.customer1,
-      entry.customer2,
-      entry.partnerName,
-    ].filter(Boolean);
+    // combine all partner names in SAME order as fetch
+
+    const allNames = [
+      ...(entry.suppliers || []).map((name) => ({
+        name,
+        type: "Supplier",
+      })),
+      ...(entry.customers || []).map((name) => ({
+        name,
+        type: "Customer",
+      })),
+      ...(entry.consortiumPartner
+        ? [{ name: entry.consortiumPartner, type: "Consortium Partner" }]
+        : []),
+    ]
+      .map((item) => ({
+        ...item,
+        name: item.name?.trim(),
+      }))
+      .filter((item) => item.name);
+
+    if (!allNames.length) return null;
 
     return (
       <div
         className={`flex ${
-          customers.length === 2 ? "flex-row" : "flex-col"
+          allNames.length === 2 ? "flex-row" : "flex-col"
         } gap-5`}
         onClick={(e) => e.stopPropagation()}
       >
-        {customers.map((cust, custIndex) => {
-          const custData = entry.data[custIndex];
+        {allNames.map(({ name, type }, index) => {
+          const custData = entry.data[index];
           if (!custData) return null;
 
           const safe = Array.isArray(custData) ? custData : [custData];
 
+          const partnerRisk = calculateOverallRiskFromCategories(
+            Array.isArray(custData) ? custData : [custData],
+          );
+
           return (
             <div
-              key={cust}
-              className={customers.length === 2 ? "w-1/2" : "w-full"}
+              key={`${name}-${index}`}
+              className={allNames.length === 2 ? "w-1/2" : "w-full"}
             >
               <div className="text-sm font-semibold mb-2">
-                Results for {capitalizeWords(cust)}
-                {entry.partnerName &&
-                  cust.toLowerCase() === entry.partnerName.toLowerCase() && (
+                Results for {capitalizeWords(name)}
+                {partnerRisk && (
+                  <span className="flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded bg-gray-100">
+                    <SeverityDot level={partnerRisk} />
+                    {partnerRisk}
+                  </span>
+                )}
+                <span className="ml-2 text-xs text-gray-500 font-normal">
+                  {type}
+                </span>
+                {/* {entry.consortiumPartner &&
+                  name.toLowerCase() ===
+                    entry.consortiumPartner.toLowerCase() && (
                     <span className="ml-2 text-xs text-gray-500 font-normal">
                       (Consortium Partner)
                     </span>
-                  )}
+                  )} */}
               </div>
 
               {viewMode === "basic" &&
-                safe.map((content, index) => (
+                safe.map((content, idx) => (
                   <CustomerRenderer
-                    key={index}
+                    key={idx}
                     content={content}
-                    index={index}
+                    index={idx}
                     expandedCustomerSub={expandedCustomerSub}
                     setExpandedCustomerSub={setExpandedCustomerSub}
                   />
@@ -364,9 +255,8 @@ export default function ResultsPanel({
     );
   };
 
-  // ============================
   // PROJECT + TERRITORY
-  // ============================
+
   const renderProjectAndTerritory = (projectEntry, territoryEntry) => (
     <div onClick={(e) => e.stopPropagation()}>
       {projectEntry?.data?.map((content, idx) => (
@@ -390,9 +280,8 @@ export default function ResultsPanel({
     </div>
   );
 
-  // ============================
   // AUTO-GENERATE KEYS FOR EXPAND ALL
-  // ============================
+
   const generateAllKeysFromResults = () => {
     const keys = {
       sections: {},
@@ -530,9 +419,8 @@ export default function ResultsPanel({
     return keys;
   };
 
-  // ============================
   // EXPAND ALL
-  // ============================
+
   const expandAll = () => {
     setIsCountryOpen(true);
     setIsCustomerOpen(true);
@@ -551,9 +439,8 @@ export default function ResultsPanel({
     setExpandedCustomerSub(all.customerSub); // ⭐ NEW
   };
 
-  // ============================
   // COLLAPSE ALL
-  // ============================
+
   const collapseAll = () => {
     setIsCountryOpen(false);
     setIsCustomerOpen(false);
@@ -570,6 +457,10 @@ export default function ResultsPanel({
     setExpandedCustomerSub({}); // ⭐ NEW
   };
 
+  const handleDueDiligenceClick = () => {
+    setShowDueDiligence((prev) => !prev);
+  };
+
   const projectName =
     resultsMap.projectBasic?.projectName ||
     resultsMap.projectAdvanced?.projectName ||
@@ -580,9 +471,17 @@ export default function ResultsPanel({
     resultsMap.territoryAdvanced?.territoryName ||
     "";
 
-  // ============================
+  const projectNameSeverity =
+    projectEntry?.data?.length > 0
+      ? calculateOverallRiskFromCategories(projectEntry.data)
+      : null;
+
+  const territoryNameSeverity =
+    territoryEntry?.data?.length > 0
+      ? calculateOverallRiskFromCategories(territoryEntry.data)
+      : null;
+
   // MAIN UI
-  // ============================
 
   if (loading) {
     return (
@@ -616,48 +515,50 @@ export default function ResultsPanel({
     );
   }
 
-  const getRiskLabel = (severity) => {
-    switch (severity) {
-      case "RED":
-        return "High Risk";
-      case "ORANGE":
-        return "Medium Risk";
-      case "GREEN":
-        return "Low Risk";
-      default:
-        return "No Data";
-    }
-  };
+  const hasAtLeastOneCountry = (() => {
+    const entry =
+      viewMode === "basic"
+        ? resultsMap.countryBasic
+        : resultsMap.countryAdvanced;
 
-  const hasSingleCountry =
-    resultsMap.countryBasic?.selectedCountries?.length === 1;
+    return (entry?.selectedCountries?.length || 0) >= 1;
+  })();
 
-  const hasSingleCustomer = (() => {
+  const hasAtLeastOneCustomer = (() => {
     const cust =
       viewMode === "basic"
         ? resultsMap.customerBasic
         : resultsMap.customerAdvanced;
 
     if (!cust) return false;
+    const count =
+      (cust.suppliers?.filter((s) => s?.trim()).length || 0) +
+      (cust.customers?.filter((c) => c?.trim()).length || 0) +
+      (cust.consortiumPartner?.trim() ? 1 : 0);
 
-    const count = [cust.customer1, cust.customer2, cust.partnerName].filter(
-      Boolean,
-    ).length;
-
-    return count === 1;
+    return count >= 1;
   })();
 
   const hasSingleProject = Boolean(projectName?.trim());
   const hasSingleTerritory = Boolean(territoryName?.trim());
 
-  const canShowDueDiligenceButton =
-    hasSingleCountry &&
-    hasSingleCustomer &&
-    hasSingleProject &&
-    hasSingleTerritory;
+  const getMissingMacros = () => {
+    const missing = [];
+
+    if (!hasAtLeastOneCountry) missing.push("one Country");
+
+    if (!hasAtLeastOneCustomer)
+      missing.push("one Supplier/Customer/Consortium Partner");
+
+    if (!projectName?.trim()) missing.push("Project Name");
+
+    if (!territoryName?.trim()) missing.push("Territory Name");
+
+    return missing;
+  };
 
   return (
-    <div id="print-container" className="space-y-8">
+    <div id="print-container" className="space-y-8 ">
       <div className="flex gap-3 mb-4">
         <button
           onClick={expandAll}
@@ -667,31 +568,14 @@ export default function ResultsPanel({
           Expand All
         </button>
 
-        <button
-          onClick={collapseAll}
-          // className="px-4 py-2 bg-red-600 text-white rounded-md category-header"
-          className="pill-btn"
-        >
+        <button onClick={collapseAll} className="pill-btn">
           Collapse All
         </button>
 
         <button
-          disabled={!canShowDueDiligenceButton}
-          onClick={() =>
-            canShowDueDiligenceButton && setShowDueDiligence((prev) => !prev)
-          }
-          className={`px-4 py-2 rounded-md text-sm font-semibold transition
-    ${
-      canShowDueDiligenceButton
-        ? "bg-blue-600 text-white hover:bg-blue-700 cursor-pointer"
-        : "bg-gray-300 text-gray-500 cursor-not-allowed"
-    }
-  `}
-          title={
-            canShowDueDiligenceButton
-              ? "View Due Diligence Report"
-              : "Select exactly 1 Country, 1 Partner, 1 Project and 1 Territory to enable"
-          }
+          onClick={handleDueDiligenceClick}
+          className="px-4 py-2 rounded-md text-sm font-semibold bg-blue-600 text-white hover:bg-blue-700"
+          title="View Due Diligence Report"
         >
           {showDueDiligence
             ? "Hide Due Diligence Report"
@@ -699,135 +583,17 @@ export default function ResultsPanel({
         </button>
       </div>
 
-      {showDueDiligence && overallDueDiligenceRisk && (
-        <div
-          id="due-diligence-summary"
-          className="border rounded-lg bg-white shadow-sm p-4"
-        >
-          <h2 className="text-md font-semibold mb-3">
-            Due Diligence Report Summary
-          </h2>
-
-          <div className="space-y-3 text-sm">
-            {overallCountryRisk && (
-              <div className="flex justify-between items-center">
-                <span>
-                  <b>Country:</b>{" "}
-                  {resultsMap.countryBasic?.selectedCountries?.join(", ")}
-                </span>
-                <span className="flex items-center gap-2">
-                  <SeverityDot level={overallCountryRisk} />
-                  {overallCountryRisk} – {getRiskLabel(overallCountryRisk)}
-                </span>
-              </div>
-            )}
-
-            {overallCustomerRisk && (
-              <div className="flex justify-between items-center">
-                <span>
-                  {/* <b>Partner:</b> Customer / Partner */}
-                  <b>Partner:</b>{" "}
-                  {[
-                    resultsMap.customerBasic.customer1,
-                    resultsMap.customerBasic.customer2,
-                    resultsMap.customerBasic.partnerName,
-                  ]
-                    .filter(Boolean)
-                    .map(capitalizeWords)
-                    .join(", ")}
-                </span>
-                <span className="flex items-center gap-2">
-                  <SeverityDot level={overallCustomerRisk} />
-                  {overallCustomerRisk} – {getRiskLabel(overallCustomerRisk)}
-                </span>
-              </div>
-            )}
-
-            {/* {projectMacroOverallSeverity && (
-              <div className="flex justify-between items-center">
-                <span>
-                  <b>Project:</b>{" "}
-                  {[projectName, territoryName].filter(Boolean).join(" / ")}
-                </span>
-                <span className="flex items-center gap-2">
-                  <SeverityDot level={projectMacroOverallSeverity} />
-                  {projectMacroOverallSeverity} –{" "}
-                  {getRiskLabel(projectMacroOverallSeverity)}
-                </span>
-              </div>
-            )} */}
-
-            {projectMacroOverallSeverity && (
-              <div className="space-y-1">
-                <div className="flex justify-between items-start">
-                  <span>
-                    <b>Project:</b>{" "}
-                    {[projectName, territoryName].filter(Boolean).join(" / ")}
-                    <p className="text-gray-600">
-                      Combined severity based on highest risk across Project and
-                      Territory
-                    </p>
-                  </span>
-
-                  <span className="flex items-center gap-2">
-                    <SeverityDot level={projectMacroOverallSeverity} />
-                    {projectMacroOverallSeverity} –{" "}
-                    {getRiskLabel(projectMacroOverallSeverity)}
-                  </span>
-                </div>
-
-                {/* Project Name Severity */}
-                {projectNameSeverity && (
-                  <div className="flex justify-between items-center text-xs text-gray-600 pl-4">
-                    <span>Project Name</span>
-                    <span className="flex items-center gap-2">
-                      <SeverityDot level={projectNameSeverity} />
-                      {projectNameSeverity}
-                    </span>
-                  </div>
-                )}
-
-                {/* Territory Severity */}
-                {territoryNameSeverity && (
-                  <div className="flex justify-between items-center text-xs text-gray-600 pl-4">
-                    <span>Territory</span>
-                    <span className="flex items-center gap-2">
-                      <SeverityDot level={territoryNameSeverity} />
-                      {territoryNameSeverity}
-                    </span>
-                  </div>
-                )}
-              </div>
-            )}
-
-            <hr />
-
-            <div className="flex justify-between items-center font-semibold">
-              <span>Overall Severity</span>
-              <span className="flex items-center gap-2">
-                <SeverityDot level={overallDueDiligenceRisk} />
-                {overallDueDiligenceRisk} –{" "}
-                {getRiskLabel(overallDueDiligenceRisk)}
-              </span>
-            </div>
-          </div>
-        </div>
+      {showDueDiligence && (
+        <DueDiligenceReport
+          countryEntry={countryEntry}
+          customerEntry={customerEntry}
+          projectEntry={projectEntry}
+          territoryEntry={territoryEntry}
+          missingMacros={getMissingMacros()}
+        />
       )}
 
       {/* ===== COUNTRY ===== */}
-
-      {/* ===== OVERALL COUNTRY RISK ===== */}
-      {overallCountryRisk && (
-        <div className="flex items-center gap-2 mb-4 p-3 rounded-lg border bg-white">
-          <span className="text-sm font-semibold text-gray-700">
-            Overall Country Risk:
-          </span>
-          <span className="flex items-center gap-2">
-            <SeverityDot level={overallCountryRisk} />
-            <span className="font-semibold">{overallCountryRisk}</span>
-          </span>
-        </div>
-      )}
 
       <CountrySection
         entry={
@@ -850,89 +616,23 @@ export default function ResultsPanel({
         setExpandedAdvSections={setExpandedAdvSections}
         expandedQueries={expandedQueries}
         setExpandedQueries={setExpandedQueries}
+        overallCountryRisk={overallCountryRisk}
       />
 
-      {/* ===== OVERALL CUSTOMER RISK ===== */}
-      {overallCustomerRisk && (
-        <div className="flex items-center gap-2 mb-4 p-3 rounded-lg border bg-white">
-          <span className="text-sm font-semibold text-gray-700">
-            Overall Customer Risk:
-          </span>
-          <span className="flex items-center gap-2">
-            <SeverityDot level={overallCustomerRisk} />
-            <span className="font-semibold">{overallCustomerRisk}</span>
-          </span>
-        </div>
-      )}
-
       {/* ===== CUSTOMER ===== */}
-      {(resultsMap.customerBasic || resultsMap.customerAdvanced) && (
-        <Disclosure open={isCustomerOpen} onChange={setIsCustomerOpen}>
-          {({ open }) => (
-            <div className="border rounded-lg bg-white category-header">
-              <Disclosure.Button className="w-full flex justify-between items-center px-4 py-3 bg-gray-100">
-                {/* 
-              <Disclosure.Button
-                className="w-full flex justify-between items-center px-6 py-4 
-           bg-gray-50 hover:bg-gray-100 cursor-pointer transition"
-              > */}
-                <div className="px-4 py-2">
-                  <span>
-                    Partner
-                    {resultsMap.customerBasic && (
-                      <span className="ml-2 text-sm font-normal text-gray-600">
-                        –{" "}
-                        {[
-                          resultsMap.customerBasic.customer1,
-                          resultsMap.customerBasic.customer2,
-                          resultsMap.customerBasic.partnerName,
-                        ]
-                          .filter(Boolean)
-                          .map(capitalizeWords)
-                          .join(", ")}
-                      </span>
-                    )}
-                  </span>
-
-                  {!open && (
-                    <div className="ml-3 mt-0.5 text-[11px] text-gray-400">
-                      Click to view Results
-                    </div>
-                  )}
-                </div>
-                <ChevronUpIcon
-                  // className={`${open ? "rotate-180" : ""} h-5 w-5`}
-                  className={`h-5 w-5 text-gray-400 transition-transform duration-200 ${
-                    open ? "rotate-180 text-gray-600" : ""
-                  }`}
-                />
-              </Disclosure.Button>
-
-              <Disclosure.Panel className="p-4">
-                {renderCustomerContent(
-                  viewMode === "basic"
-                    ? resultsMap.customerBasic
-                    : resultsMap.customerAdvanced,
-                )}
-              </Disclosure.Panel>
-            </div>
-          )}
-        </Disclosure>
-      )}
-
-      {projectMacroOverallSeverity && (
-        <div className="flex items-center gap-2 mb-4 p-3 rounded-lg border bg-white">
-          <span className="text-sm font-semibold text-gray-700">
-            Overall Project Macro Risk:
-          </span>
-
-          <span className="flex items-center gap-2">
-            <SeverityDot level={projectMacroOverallSeverity} />
-            <span className="font-semibold">{projectMacroOverallSeverity}</span>
-          </span>
-        </div>
-      )}
-
+      <CustomerSection
+        entry={
+          viewMode === "basic"
+            ? resultsMap.customerBasic
+            : resultsMap.customerAdvanced
+        }
+        viewMode={viewMode}
+        isOpen={isCustomerOpen}
+        setIsOpen={setIsCustomerOpen}
+        expandedCustomerSub={expandedCustomerSub}
+        setExpandedCustomerSub={setExpandedCustomerSub}
+        overallPartnerRisk={overallPartnerRisk}
+      />
       {/* ===== PROJECT + TERRITORY ===== */}
       {(resultsMap.projectBasic ||
         resultsMap.projectAdvanced ||
@@ -943,6 +643,11 @@ export default function ResultsPanel({
             <div className="border rounded-lg bg-white category-header ">
               <Disclosure.Button className="w-full flex justify-between items-center px-4 py-3 bg-gray-100">
                 <div className="px-4 py-2">
+                  <span className="flex items-center gap-2">
+                    <SeverityDot level={projectMacroOverallSeverity} />
+                    {projectMacroOverallSeverity}
+                  </span>
+
                   <span>
                     Project
                     {(projectName?.trim() || territoryName?.trim()) && (
@@ -974,6 +679,10 @@ export default function ResultsPanel({
                         {/* className="mb-4 p-3 rounded-lg bg-gray-50 border" */}
                         Project Name:{" "}
                         <span className="font-normal">{projectName}</span>
+                        <span className="flex items-center gap-2">
+                          <SeverityDot level={projectNameSeverity} />
+                          {projectNameSeverity}
+                        </span>
                       </p>
                     )}
 
@@ -981,6 +690,10 @@ export default function ResultsPanel({
                       <p className="text-s font-semibold text-gray-800 mt-1 mb-4">
                         Territory Name:{" "}
                         <span className="font-normal">{territoryName}</span>
+                        <span className="flex items-center gap-2">
+                          <SeverityDot level={territoryNameSeverity} />
+                          {territoryNameSeverity}
+                        </span>
                       </p>
                     )}
                   </div>

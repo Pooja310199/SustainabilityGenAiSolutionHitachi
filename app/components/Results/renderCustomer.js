@@ -150,6 +150,9 @@ const EmptyState = ({ severity }) => (
 );
 
 
+
+
+
 export default function CustomerRenderer({
   content,
   index,
@@ -233,6 +236,12 @@ export default function CustomerRenderer({
                           </div>
                         );
                       })}
+
+
+
+
+
+
 
                     {/* ANALYSIS GROUPS */}
 

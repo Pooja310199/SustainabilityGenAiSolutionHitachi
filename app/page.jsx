@@ -2,6 +2,7 @@
 import React, { useState, useCallback } from "react";
 import Sidebar from "./components/Sidebar/Sidebar";
 import ResultsPanel from "./components/Results/ResultsPanel";
+import LoadingOverlay from "./components/Common/LoadingOverlay";
 
 export default function Page() {
   console.count("Page rendered");
@@ -42,9 +43,24 @@ export default function Page() {
   // ----------- CUSTOMER FETCH -----------
   const fetchCustomerFile = async (name) => {
     try {
-      const file = `/mockData/customers/${name.toLowerCase()}.json`;
+      const safeName = name?.trim();
+
+      // prevent empty calls
+      if (!safeName) {
+        return { error: "Invalid name provided" };
+      }
+
+      // create safe filename
+      const fileName = safeName.toLowerCase().replace(/\s+/g, "-"); // "Siemens AG" → "siemens-ag"
+
+      const file = `/mockData/customers/${fileName}.json`;
+
       const res = await fetch(file);
-      if (!res.ok) throw new Error();
+
+      if (!res.ok) {
+        throw new Error("File not found");
+      }
+
       return await res.json();
     } catch {
       return { error: `No data found for ${name}` };
@@ -98,89 +114,183 @@ export default function Page() {
   }, []);
 
   // ----------- BASIC SEARCH -----------
+  // const onBasicSearch = useCallback(async (formData) => {
+  //   const {
+  //     macro,
+  //     setMacro,
+  //     selectedCountries,
+  //     suppliers = [],
+  //     customers = [],
+  //     consortiumPartner = "",
+  //     projectName,
+  //     territoryName,
+  //   } = formData;
+
+  //   setHasSearched(true);
+  //   setLoading(true);
+  //   setViewMode("basic");
+
+  //   const newResults = {
+  //     countryBasic: null,
+  //     countryAdvanced: null,
+  //     customerBasic: null,
+  //     customerAdvanced: null,
+  //     projectBasic: null,
+  //     projectAdvanced: null,
+  //     territoryBasic: null,
+  //     territoryAdvanced: null,
+  //   };
+
+  //   // COUNTRY
+  //   if (selectedCountries.length > 0) {
+  //     const basic = await Promise.all(
+  //       selectedCountries.map((c) => fetchCountryData(c, "basic")),
+  //     );
+
+  //     newResults.countryBasic = {
+  //       macro: "Country",
+  //       mode: "Basic",
+  //       selectedCountries,
+  //       data: basic,
+  //     };
+  //   }
+
+  //   // PARTNER (Suppliers + Customers + Consortium)
+  //   const allPartnerNames = [...suppliers, ...customers, consortiumPartner]
+  //     .map((n) => n.trim())
+  //     .filter(Boolean);
+
+  //   if (allPartnerNames.length > 0) {
+  //     const basic = await Promise.all(allPartnerNames.map(fetchCustomerFile));
+
+  //     newResults.customerBasic = {
+  //       macro: "Partner",
+  //       mode: "Basic",
+  //       data: basic,
+  //       suppliers,
+  //       customers,
+  //       consortiumPartner,
+  //     };
+  //   }
+
+  //   // PROJECT
+  //   if (projectName?.trim()) {
+  //     const basic = await fetchProjectFile(projectName, "basic");
+
+  //     newResults.projectBasic = {
+  //       macro: "Project",
+  //       mode: "Basic",
+  //       projectName,
+  //       data: Array.isArray(basic) ? basic : [basic],
+  //     };
+  //   }
+
+  //   // TERRITORY
+  //   if (territoryName?.trim()) {
+  //     const basic = await fetchTerritoryFile(territoryName, "basic");
+
+  //     newResults.territoryBasic = {
+  //       macro: "Territory",
+  //       mode: "Basic",
+  //       data: Array.isArray(basic) ? basic : [basic],
+  //       territoryName,
+  //     };
+  //   }
+
+  //   setResultsMap(newResults);
+  //   setLoading(false);
+  // }, []);
+
   const onBasicSearch = useCallback(async (formData) => {
     const {
-      macro,
-      setMacro,
       selectedCountries,
-      customer1,
-      customer2,
-      partnerName,
+      suppliers = [],
+      customers = [],
+      consortiumPartner = "",
       projectName,
       territoryName,
     } = formData;
 
     setHasSearched(true);
-    setLoading(true);
     setViewMode("basic");
+    setLoading(true);
 
-    const newResults = {
-      countryBasic: null,
-      countryAdvanced: null,
-      customerBasic: null,
-      customerAdvanced: null,
-      projectBasic: null,
-      projectAdvanced: null,
-      territoryBasic: null,
-      territoryAdvanced: null,
-    };
-
-    // COUNTRY
-    if (selectedCountries.length > 0) {
-      const basic = await Promise.all(
-        selectedCountries.map((c) => fetchCountryData(c, "basic")),
-      );
-
-      newResults.countryBasic = {
-        macro: "Country",
-        mode: "Basic",
-        selectedCountries,
-        data: basic,
+    try {
+      const newResults = {
+        countryBasic: null,
+        countryAdvanced: null,
+        customerBasic: null,
+        customerAdvanced: null,
+        projectBasic: null,
+        projectAdvanced: null,
+        territoryBasic: null,
+        territoryAdvanced: null,
       };
+
+      // -------- COUNTRY --------
+      if (selectedCountries.length > 0) {
+        const basic = await Promise.all(
+          selectedCountries.map((c) => fetchCountryData(c, "basic")),
+        );
+
+        newResults.countryBasic = {
+          macro: "Country",
+          mode: "Basic",
+          selectedCountries,
+          data: basic,
+        };
+      }
+
+      // -------- PARTNER --------
+      const allPartnerNames = [...suppliers, ...customers, consortiumPartner]
+        .map((n) => n.trim())
+        .filter(Boolean);
+
+      if (allPartnerNames.length > 0) {
+        const basic = await Promise.all(allPartnerNames.map(fetchCustomerFile));
+
+        newResults.customerBasic = {
+          macro: "Partner",
+          mode: "Basic",
+          data: basic,
+          suppliers,
+          customers,
+          consortiumPartner,
+        };
+      }
+
+      // -------- PROJECT --------
+      if (projectName?.trim()) {
+        const basic = await fetchProjectFile(projectName, "basic");
+
+        newResults.projectBasic = {
+          macro: "Project",
+          mode: "Basic",
+          projectName,
+          data: Array.isArray(basic) ? basic : [basic],
+        };
+      }
+
+      // -------- TERRITORY --------
+      if (territoryName?.trim()) {
+        const basic = await fetchTerritoryFile(territoryName, "basic");
+
+        newResults.territoryBasic = {
+          macro: "Territory",
+          mode: "Basic",
+          territoryName,
+          data: Array.isArray(basic) ? basic : [basic],
+        };
+      }
+
+      setResultsMap(newResults);
+    } catch (error) {
+      console.error("Basic Search Failed:", error);
+    } finally {
+      // ✅ ALWAYS executed
+      setLoading(false);
     }
-
-    // CUSTOMER
-    if (customer1 || customer2 || partnerName) {
-      const names = [customer1, customer2, partnerName].filter(Boolean);
-      const basic = await Promise.all(names.map(fetchCustomerFile));
-
-      newResults.customerBasic = {
-        macro: "Customer",
-        mode: "Basic",
-        data: basic,
-        customer1,
-        customer2,
-        partnerName,
-      };
-    }
-
-    // PROJECT
-    if (projectName?.trim()) {
-      const basic = await fetchProjectFile(projectName, "basic");
-
-      newResults.projectBasic = {
-        macro: "Project",
-        mode: "Basic",
-        projectName,
-        data: Array.isArray(basic) ? basic : [basic],
-      };
-    }
-
-    // TERRITORY
-    if (territoryName?.trim()) {
-      const basic = await fetchTerritoryFile(territoryName, "basic");
-
-      newResults.territoryBasic = {
-        macro: "Territory",
-        mode: "Basic",
-        data: Array.isArray(basic) ? basic : [basic],
-        territoryName,
-      };
-    }
-
-    setResultsMap(newResults);
-    setLoading(false);
-  }, []); // ✅ EMPTY dependency array
+  }, []);
 
   // ----------- ADVANCED SEARCH -----------
   const onAdvanceSearch = useCallback(async () => {
@@ -278,8 +388,8 @@ export default function Page() {
         />
       </div>
 
-      <main className="flex-1 overflow-y-auto p-6 ml-72 space-y-6 print-remove-ml print-full-width">
-        {!hasSearched ? (
+      <main className="relative flex-1 overflow-y-auto p-6 ml-72 space-y-6 print-remove-ml print-full-width">
+        {/* {!hasSearched ? (
           <div className="flex items-center justify-center h-full">
             <div className="text-center">
               <h1 className="text-3xl font-semibold text-gray-800">Welcome!</h1>
@@ -297,7 +407,27 @@ export default function Page() {
             // projectName={projectName}
             // territoryName={territoryName}
           />
-        )}
+        )} */}
+
+        <>
+          {!hasSearched ? (
+            <div className="flex items-center justify-center h-full">
+              <div className="text-center">
+                <h1 className="text-3xl font-semibold text-gray-800">
+                  Welcome!
+                </h1>
+                <p className="text-gray-600 mt-3">
+                  Select any macro from the left panel to begin.
+                </p>
+              </div>
+            </div>
+          ) : (
+            <ResultsPanel resultsMap={resultsMap} viewMode={viewMode} />
+          )}
+
+          {/* ✅ GLOBAL LOADER */}
+          {loading && <LoadingOverlay />}
+        </>
       </main>
     </div>
   );

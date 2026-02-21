@@ -128,7 +128,7 @@ export function renderCategory({
 
 
           {/* Rule of Law / Civil Liberties Metrics */}
-          {(isRuleOfLaw || isCivil) && content.metrics && (
+          {(isRuleOfLaw || isCivil || isConflict) && content.metrics && (
             <div style={{ padding: "12px 18px" }}>
               {(() => {
                 const metricsKey = `${countryName}_${category}_metrics`;
@@ -198,6 +198,84 @@ export function renderCategory({
                                 </div>
                               );
                             }
+
+
+
+                            if (
+                              metric === "ibrahim_index_of_african_governance" &&
+                              typeof val === "object"
+                            ) {
+                              const ibrahimKey = `${countryName}_${category}_ibrahim`;
+
+                              return (
+                                <div key={metric} style={{ marginBottom: 12 }}>
+                                  <div
+                                    onClick={() => toggle(setExpandedSubIndicators, ibrahimKey)}
+                                    style={{
+                                      cursor: "pointer",
+                                      fontWeight: 600,
+                                      display: "flex",
+                                      alignItems: "center",
+                                      gap: 8,
+                                    }}
+                                  >
+                                    <span>Ibrahim Index of African Governance</span>
+                                    <span style={{ fontSize: 14, color: "#444" }}>
+                                      {expandedSubIndicators[ibrahimKey] ? "▼" : "▲"}
+                                    </span>
+                                  </div>
+
+                                  {expandedSubIndicators[ibrahimKey] && (
+                                    <div style={{ marginLeft: 25, marginTop: 5 }}>
+                                      {Object.entries(val)
+                                        .filter(
+                                          ([k, v]) =>
+                                            k !== "severity" &&
+                                            k !== "risk_level" &&
+                                            typeof v === "object" &&
+                                            !allValuesNA(v)
+                                        )
+                                        .map(([subName, subVal], i) => (
+                                          <div key={i} style={{ marginBottom: 6 }}>
+                                            <SeverityDot level={subVal.severity} />
+                                            <strong>
+                                              {capitalizeWords(subName.replaceAll("_", " "))}
+                                            </strong>{" "}
+                                            →{" "}
+                                            {subVal.value && (
+                                              <>
+                                                <strong>Value:</strong> {subVal.value},{" "}
+                                              </>
+                                            )}
+                                            {subVal.rescaled && (
+                                              <>
+                                                <strong>Rescaled:</strong> {subVal.rescaled},{" "}
+                                              </>
+                                            )}
+                                            {subVal.risk_level && (
+                                              <>
+                                                <strong>Risk:</strong> {subVal.risk_level}
+                                              </>
+                                            )}
+                                          </div>
+                                        ))}
+                                    </div>
+                                  )}
+                                </div>
+                              );
+                            }
+
+
+
+
+
+
+
+
+
+
+
+
 
                             // Default rendering for other metrics
                             const overallSeverity =

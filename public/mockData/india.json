@@ -41,6 +41,24 @@
     }
    
   ],
+
+  "metrics":{
+
+    "global_peace_index":{
+
+"rank":115,
+"score":2.229,
+"rescaled":6.93,
+"severity":"ORANGE",
+"risk_level":"Medium Risk"
+
+
+    }
+  },
+
+
+
+
   "sources": [
     "https://defensefeeds.com/analysis/conflicts/india-pakistan-conflict",
     "https://en.wikipedia.org/wiki/2025_India%E2%80%93Pakistan_conflict",
@@ -50,7 +68,7 @@
     "gfhhhhhhhhhhhhh",
     "ggggggggggggggggggggggggggggggggg"
   ],
-  "overall_severity": "GREEN"
+  "overall_severity": "RED"
 },
 
 {
@@ -117,7 +135,7 @@
     "htttps/hhhhhhhhhhhhhh",
     "httpsnnnnnnnnnnn"
   ],
-  "overall_severity":"ORANGE"
+  "overall_severity":"RED"
 
 
 
@@ -211,7 +229,58 @@
       "rescaled": 4.44,
       "severity": "RED",
       "risk_level": "High Risk"
-    }
+    },
+
+"ibrahim_index_of_african_governance":{
+
+  "overall_governance":{
+     "value":"8.9",
+    "total":"100",
+    "rescaled":8.76,
+    "severity":"GREEN",
+    "risk_level":"Medium Risk"
+
+
+  },
+  "security_and_rule_of_law":{
+     "value":"8.9",
+    "total":"100",
+    "rescaled":8.76,
+    "severity":"GREEN",
+    "risk_level":"Medium Risk"
+
+
+  },
+  "participation_rights_and_inclusion":{
+     "value":"8.9",
+    "total":"100",
+    "rescaled":8.76,
+    "severity":"GREEN",
+    "risk_level":"Medium Risk"
+
+  },
+  "foundation_for_economic_opportunities":{
+    "value":"8.9",
+    "total":"100",
+    "rescaled":8.76,
+    "severity":"GREEN",
+    "risk_level":"Medium Risk"
+
+
+  },
+  "human_development":{
+    "value":"7.8",
+    "total":"100",
+    "rescaled":6.63,
+    "severity":"ORANGE",
+    "risk_level":"Medium Risk"
+
+  },
+  "severity":"ORANGE",
+  "risk_level":"Medium Risk"
+}
+
+
   },
   "analysis": {
     "trends_and_challenges": [

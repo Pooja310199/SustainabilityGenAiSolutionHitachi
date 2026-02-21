@@ -16,10 +16,23 @@ export default React.memo(function Sidebar({
   const dropdownRef = useRef(null);
 
   const [selectedCountries, setSelectedCountries] = useState([]);
-  const [customer1, setCustomer1] = useState("");
-  const [customer2, setCustomer2] = useState("");
-  const [partnerName, setPartnerName] = useState("");
+  // const [customer1, setCustomer1] = useState("");
+  // const [customer2, setCustomer2] = useState("");
+  // const [partnerName, setPartnerName] = useState("");
   const [projectName, setProjectName] = useState("");
+
+  const [suppliers, setSuppliers] = useState(["", "", "", ""]);
+  const [customers, setCustomers] = useState(["", ""]);
+  const [consortiumPartner, setConsortiumPartner] = useState("");
+
+  const updateArrayValue = (setter, index, value) => {
+    setter((prev) => {
+      const updated = [...prev];
+      updated[index] = value;
+      return updated;
+    });
+  };
+
   const [openMacro, setOpenMacro] = useState({
     country: true,
     partner: true,
@@ -55,9 +68,9 @@ export default React.memo(function Sidebar({
       // macro,
       // setMacro,
       selectedCountries,
-      customer1,
-      customer2,
-      partnerName,
+      suppliers,
+      customers,
+      consortiumPartner,
       projectName,
       territoryName,
     });
@@ -88,7 +101,7 @@ export default React.memo(function Sidebar({
         {openMacro.country && (
           <div>
             <label className="block text-sm font-medium mb-2 text-gray-700">
-              Select Country (max 2):
+              Select Country (max 4):
             </label>
 
             <div
@@ -127,7 +140,7 @@ export default React.memo(function Sidebar({
                           let updated;
                           if (selectedCountries.includes(c)) {
                             updated = selectedCountries.filter((x) => x !== c);
-                          } else if (selectedCountries.length < 2) {
+                          } else if (selectedCountries.length < 4) {
                             updated = [...selectedCountries, c];
                           } else {
                             alert("Max 2 countries allowed");
@@ -155,6 +168,7 @@ export default React.memo(function Sidebar({
       {/* CUSTOMER UI */}
 
       {/* PARTNER MACRO */}
+      {/* PARTNER MACRO */}
       <div className="mb-8 space-y-4">
         <div
           className="flex justify-between items-center cursor-pointer select-none"
@@ -163,80 +177,62 @@ export default React.memo(function Sidebar({
           <h3 className="text-sm font-semibold text-gray-800">Partner</h3>
           <span className="text-xs">{openMacro.partner ? "▲" : "▼"}</span>
         </div>
-        {/* Partner Name 1 */}
-        {/* Partner Name 2 */}
-        {/* Consortium Partner */}
+
         {openMacro.partner && (
-          <div>
+          <div className="space-y-4">
             <p className="text-xs text-blue-800 flex gap-1 items-start">
               <span>ℹ️</span>
               <span>
-                Use this macro to compare risk between customers or consortium
-                partners.
+                Use this macro to compare risk between suppliers, customers, and
+                consortium partners.
               </span>
             </p>
 
-            <div>
-              <label className="block text-sm font-medium mb-1 text-gray-700">
-                Partner Name 1:
-              </label>
-              <input
-                className="w-full border rounded-lg px-3 py-2 text-sm bg-gray-50"
-                placeholder="e.g., Alliander"
-                value={customer1}
-                onChange={(e) => {
-                  const v = e.target.value;
-                  setCustomer1(v);
-
-                  if (!v.trim() && !customer2.trim() && !partnerName.trim()) {
-                    clearResultsForMacro("Customer");
+            {/* SUPPLIERS */}
+            {suppliers.map((supplier, idx) => (
+              <div key={`supplier-${idx}`}>
+                <label className="block text-sm font-medium mb-1 text-gray-700">
+                  Supplier Name {idx + 1}:
+                </label>
+                <input
+                  className="w-full border rounded-lg px-3 py-2 text-sm bg-gray-50"
+                  placeholder={`e.g., Supplier ${idx + 1}`}
+                  value={supplier}
+                  onChange={(e) =>
+                    updateArrayValue(setSuppliers, idx, e.target.value)
                   }
-                }}
-              />
-            </div>
+                />
+              </div>
+            ))}
 
-            {/* CUSTOMER 2 */}
-            <div>
-              <label className="block text-sm font-medium mb-1 text-gray-700">
-                Partner Name 2:
-              </label>
-
-              <input
-                className={`w-full border rounded-lg px-3 py-2 text-sm bg-gray-50 
-      ${partnerName ? "bg-gray-200 cursor-not-allowed" : ""}`}
-                placeholder="e.g., Enel"
-                value={customer2}
-                onChange={(e) => setCustomer2(e.target.value)}
-                disabled={!!partnerName}
-              />
-
-              {partnerName && (
-                <p className="text-xs text-red-600 mt-1">
-                  Consortium Partner entered — Customer 2 disabled.
-                </p>
-              )}
-            </div>
+            {/* CUSTOMERS */}
+            {customers.map((customer, idx) => (
+              <div key={`customer-${idx}`}>
+                <label className="block text-sm font-medium mb-1 text-gray-700">
+                  Customer Name {idx + 1}:
+                </label>
+                <input
+                  className="w-full border rounded-lg px-3 py-2 text-sm bg-gray-50"
+                  placeholder={`e.g., Customer ${idx + 1}`}
+                  value={customer}
+                  onChange={(e) =>
+                    updateArrayValue(setCustomers, idx, e.target.value)
+                  }
+                />
+              </div>
+            ))}
 
             {/* CONSORTIUM PARTNER */}
             <div>
               <label className="block text-sm font-medium mb-1 text-gray-700">
-                Consortium Partner:
+                Consortium Partner Name:
               </label>
-
               <input
-                className={`w-full border rounded-lg px-3 py-2 text-sm bg-gray-50 
-      ${customer1 && customer2 ? "bg-gray-200 cursor-not-allowed" : ""}`}
+                className="w-full border rounded-lg px-3 py-2 text-sm bg-gray-50"
                 placeholder="e.g., Schneider"
-                value={partnerName}
-                onChange={(e) => setPartnerName(e.target.value)}
-                disabled={!!customer1 && !!customer2}
+                value={consortiumPartner}
+                onChange={(e) => setConsortiumPartner(e.target.value)}
               />
-
-              {customer1 && customer2 && (
-                <p className="text-xs text-red-600 mt-1">
-                  Both customers selected — Partner disabled.
-                </p>
-              )}
             </div>
           </div>
         )}
