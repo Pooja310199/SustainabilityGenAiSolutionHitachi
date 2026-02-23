@@ -6,7 +6,6 @@ import LoadingOverlay from "./components/Common/LoadingOverlay";
 
 export default function Page() {
   console.count("Page rendered");
-  // const [macro, setMacro] = useState("Country");
 
   const [loading, setLoading] = useState(false);
 
@@ -114,92 +113,6 @@ export default function Page() {
   }, []);
 
   // ----------- BASIC SEARCH -----------
-  // const onBasicSearch = useCallback(async (formData) => {
-  //   const {
-  //     macro,
-  //     setMacro,
-  //     selectedCountries,
-  //     suppliers = [],
-  //     customers = [],
-  //     consortiumPartner = "",
-  //     projectName,
-  //     territoryName,
-  //   } = formData;
-
-  //   setHasSearched(true);
-  //   setLoading(true);
-  //   setViewMode("basic");
-
-  //   const newResults = {
-  //     countryBasic: null,
-  //     countryAdvanced: null,
-  //     customerBasic: null,
-  //     customerAdvanced: null,
-  //     projectBasic: null,
-  //     projectAdvanced: null,
-  //     territoryBasic: null,
-  //     territoryAdvanced: null,
-  //   };
-
-  //   // COUNTRY
-  //   if (selectedCountries.length > 0) {
-  //     const basic = await Promise.all(
-  //       selectedCountries.map((c) => fetchCountryData(c, "basic")),
-  //     );
-
-  //     newResults.countryBasic = {
-  //       macro: "Country",
-  //       mode: "Basic",
-  //       selectedCountries,
-  //       data: basic,
-  //     };
-  //   }
-
-  //   // PARTNER (Suppliers + Customers + Consortium)
-  //   const allPartnerNames = [...suppliers, ...customers, consortiumPartner]
-  //     .map((n) => n.trim())
-  //     .filter(Boolean);
-
-  //   if (allPartnerNames.length > 0) {
-  //     const basic = await Promise.all(allPartnerNames.map(fetchCustomerFile));
-
-  //     newResults.customerBasic = {
-  //       macro: "Partner",
-  //       mode: "Basic",
-  //       data: basic,
-  //       suppliers,
-  //       customers,
-  //       consortiumPartner,
-  //     };
-  //   }
-
-  //   // PROJECT
-  //   if (projectName?.trim()) {
-  //     const basic = await fetchProjectFile(projectName, "basic");
-
-  //     newResults.projectBasic = {
-  //       macro: "Project",
-  //       mode: "Basic",
-  //       projectName,
-  //       data: Array.isArray(basic) ? basic : [basic],
-  //     };
-  //   }
-
-  //   // TERRITORY
-  //   if (territoryName?.trim()) {
-  //     const basic = await fetchTerritoryFile(territoryName, "basic");
-
-  //     newResults.territoryBasic = {
-  //       macro: "Territory",
-  //       mode: "Basic",
-  //       data: Array.isArray(basic) ? basic : [basic],
-  //       territoryName,
-  //     };
-  //   }
-
-  //   setResultsMap(newResults);
-  //   setLoading(false);
-  // }, []);
 
   const onBasicSearch = useCallback(async (formData) => {
     const {
@@ -389,26 +302,6 @@ export default function Page() {
       </div>
 
       <main className="relative flex-1 overflow-y-auto p-6 ml-72 space-y-6 print-remove-ml print-full-width">
-        {/* {!hasSearched ? (
-          <div className="flex items-center justify-center h-full">
-            <div className="text-center">
-              <h1 className="text-3xl font-semibold text-gray-800">Welcome!</h1>
-              <p className="text-gray-600 mt-3">
-                Select any macro (Country, Customer, Project) from the left
-                panel to begin.
-              </p>
-            </div>
-          </div>
-        ) : (
-          <ResultsPanel
-            resultsMap={resultsMap}
-            viewMode={viewMode}
-            loading={loading}
-            // projectName={projectName}
-            // territoryName={territoryName}
-          />
-        )} */}
-
         <>
           {!hasSearched ? (
             <div className="flex items-center justify-center h-full">

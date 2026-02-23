@@ -18,11 +18,6 @@ export default function DueDiligenceReport({
   missingMacros = [],
 }) {
   /* ===== COUNTRY ===== */
-  // const countryItems =
-  //   countryEntry?.data?.map((b, i) => ({
-  //     name: countryEntry.selectedCountries[i],
-  //     severity: calculateOverallRiskFromCategories(b),
-  //   })) || [];
 
   const countryItems =
     countryEntry?.data?.map((b, i) => {
@@ -85,18 +80,6 @@ export default function DueDiligenceReport({
     ],
     "macro sections",
   );
-  // const getRiskLabel = (level) => {
-  //   switch (level) {
-  //     case "RED":
-  //       return "High Risk";
-  //     case "ORANGE":
-  //       return "Medium Risk";
-  //     case "GREEN":
-  //       return "Low Risk";
-  //     default:
-  //       return "N/A";
-  //   }
-  // };
 
   return (
     <div className="space-y-4 p-4 border border-gray-500 ">
@@ -130,34 +113,6 @@ export default function DueDiligenceReport({
       )}
 
       {/* FINAL RESULT */}
-      {/* <div className="border rounded-lg bg-white p-4">
-        <div className="flex justify-between font-semibold">
-          <span>Overall Due Diligence Severity</span>
-          <span className="flex items-center gap-2">
-            <SeverityDot level={overall.overall} />
-            {getRiskLabel(overall.overall)}
-          </span>
-        </div>
-
-        <p className="text-xs text-gray-600 mt-2">{overall.description}</p>
-      </div> */}
-
-      {/* <div className="rounded-2xl border p-5 shadow-sm  bg-gray-200 ">
-        <div className="flex justify-between items-center">
-          <h2 className="text-lg font-semibold">
-            Overall Due Diligence Severity
-          </h2>
-
-          <div className="flex items-center gap-2 text-lg font-bold">
-            <SeverityDot level={overall.overall} />
-            {getRiskLabel(overall.overall)}
-          </div>
-        </div>
-
-        <p className="text-sm text-gray-600 mt-3 leading-relaxed">
-          {overall.description}
-        </p>
-      </div> */}
 
       <div
         className={`rounded-2xl border-l-4 px-6 py-5 shadow-md ${

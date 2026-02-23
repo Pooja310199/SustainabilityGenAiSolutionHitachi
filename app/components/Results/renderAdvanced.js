@@ -120,7 +120,7 @@ function renderSubcategory(sub, countryName, expandedQueries, setExpandedQueries
   const scores = metrics.scores || {};
   const scoreKeys = Object.keys(scores);
 
-  // ✅ CASE 1: RSF style (NO scores object)
+
   // ✅ CASE 1: RSF style (no country dropdown, keep Score and Rank always visible)
   if (scoreKeys.length === 0 && metrics.score) {
     const contextKey = `${countryName}_${sub.subcategory}_contexts`;
@@ -146,12 +146,7 @@ function renderSubcategory(sub, countryName, expandedQueries, setExpandedQueries
             marginBottom: "8px",
           }}
         >
-          {/* <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-            <SeverityDot level={overallSeverity} />
-            <span>
-              {countryName} {metrics.year ? `(${metrics.year})` : ""}
-            </span>
-          </div> */}
+
         </div>
 
         {/* ✅ Score and Rank (always visible) */}
@@ -286,8 +281,7 @@ function renderSubcategory(sub, countryName, expandedQueries, setExpandedQueries
     );
   }
 
-  // ✅ CASE 3: Internet Freedom (nested Scores collapsible)
-  // ✅ CASE 3: Internet Freedom (keep only Scores dropdown, remove country header + overall score)
+
   // ✅ CASE 3: Internet Freedom (keep only Scores dropdown, add bold overall score, no color dot)
   if (scoreKeys.length > 0 && Object.values(scores)[0]?.queries) {
     const scoresKey = `${countryName}_${sub.subcategory}_scores`;

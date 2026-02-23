@@ -20,43 +20,6 @@ export default function MacroSectionCard({
       </div>
 
       {/* Items */}
-      {/* <div className="space-y-4">
-        {items.map((i) => (
-          <div key={i.name} className="space-y-2">
-            <RiskRow label={i.name} severity={i.severity} />
-
-            {i.description && (
-              <p className="text-sm  text-gray-500 pl-2 whitespace-pre-line leading-relaxed">
-                {i.description}
-              </p>
-            )}
-          </div>
-        ))}
-      </div> */}
-
-      {/* Items (Improved Middle Section) */}
-      {/* <div className="rounded-xl border border-gray-100 bg-gray-50/40 p-3">
-        <p className="text-[11px] uppercase tracking-wide text-gray-400 mb-2">
-          Risk Factors
-        </p>
-
-        <div className="divide-y divide-gray-100">
-          {items.map((i) => (
-            <div key={i.name} className="py-1 ">
-              <RiskRow label={i.name} severity={i.severity} />
-
-              {i.description && (
-                <p className="text-base text-gray-600 ml-2 mt-0.5 leading-relaxed whitespace-pre-line">
-                  {i.description}
-                </p>
-              )}
-            </div>
-          ))}
-        </div>
-      </div> */}
-
-      {/* Items */}
-      {/* Items */}
       <div className="space-y-4">
         {items.map((i, index) => {
           const isOpen = openItems.includes(index);
@@ -105,23 +68,6 @@ export default function MacroSectionCard({
       {/* Divider */}
       <div className="h-px bg-gray-100" />
 
-      {/* Overall summary block */}
-      {/* <div className="rounded-lg bg-gray-100 px-4 py-3">
-        <div className="flex items-center gap-3 font-semibold text-base">
-          <span className="flex-1 text-gray-800">
-            Overall {title} (Worst Case)
-          </span>
-
-          <span className="flex items-center gap-2 px-2 py-1 rounded-md bg-white border border-gray-200">
-            <SeverityDot level={overall} />
-            {overallLabel || overall}
-          </span>
-        </div>
-
-        <p className="text-base text-gray-600 mt-2 leading-relaxed">
-          {description}
-        </p>
-      </div> */}
       {/* Overall summary block */}
       <div
         className={`rounded-xl border-l-4 px-5 py-4 shadow-sm ${

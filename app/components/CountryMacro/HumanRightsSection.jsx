@@ -45,9 +45,6 @@ const HumanRightsSection = ({
   const renderExtraFields = (item) =>
     Object.entries(item)
       .filter(([key, val]) => {
-        // Already rendered fields → skip
-        // if (["title", "url", "link", "date", "status", "summary"].includes(key))
-
         if (
           [
             "title",
@@ -454,87 +451,6 @@ const HumanRightsSection = ({
                         {/* <SeverityDot level={res.overall_severity} /> */}
                         HRMI Rights Tracker
                       </div>
-
-                      {/* <div style={{ marginTop: 10 }}>
-                        {Object.entries(res.metrics.hrmi_rights_tracker).map(
-                          ([rightKey, rightVal], i) => {
-                            const subIndicators =
-                              rightVal.subindicators ||
-                              rightVal.subindicatore ||
-                              [];
-
-                            const isRealValue = (val) =>
-                              typeof val === "string" &&
-                              val.trim() !== "" &&
-                              val.trim().toLowerCase() !== "n/a" &&
-                              val.trim().toLowerCase() !== "no data";
-
-                            const validIndicators = subIndicators.filter(
-                              (s) =>
-                                isRealValue(s?.name) && isRealValue(s?.value)
-                            );
-
-                            const hasValidSummary = isRealValue(
-                              rightVal.summary_score
-                            );
-
-                            // 🚫 If summary AND subindicators are useless → hide card
-                            if (
-                              !hasValidSummary &&
-                              validIndicators.length === 0
-                            )
-                              return null;
-
-                            return (
-                              <div
-                                key={i}
-                                style={{
-                                  marginBottom: 14,
-                                  padding: 12,
-                                  border: "1px solid #e5e7eb",
-                                  borderRadius: 8,
-                                  background: "#fff",
-                                }}
-                              >
-                                <div
-                                  style={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                    gap: 8,
-                                    fontWeight: 600,
-                                  }}
-                                >
-                                  <SeverityDot level={rightVal.severity} />
-                                  {capitalizeWords(
-                                    rightKey.replaceAll("_", " ")
-                                  )}
-                                </div>
-
-                                {hasValidSummary && (
-                                  <div style={{ fontSize: 13, marginTop: 4 }}>
-                                    <strong>Summary Score:</strong>{" "}
-                                    {rightVal.summary_score}
-                                  </div>
-                                )}
-
-                                <ul style={{ marginTop: 8, marginLeft: 18 }}>
-                                  {validIndicators
-                                    .filter(
-                                      (s) =>
-                                        isValidText(s.name) &&
-                                        isValidText(s.value)
-                                    )
-                                    .map((s, j) => (
-                                      <li key={j}>
-                                        <strong>{s.name}:</strong> {s.value}
-                                      </li>
-                                    ))}
-                                </ul>
-                              </div>
-                            );
-                          }
-                        )}
-                      </div> */}
 
                       {(() => {
                         const hrmiEntries = Object.entries(

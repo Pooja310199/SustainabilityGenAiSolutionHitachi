@@ -24,7 +24,7 @@ const nonCollapsibleGroups = [
 
 /* Renders a single analysis item */
 const renderAnalysisItem = (item, idx) => {
-  // CASE 1 — strings (Associated Top Issues)
+
   // CASE — Associated Top Issues (string items)
   if (typeof item === "string") {
     if (!item.trim()) return null; // safety
@@ -183,7 +183,7 @@ export default function CustomerRenderer({
       {/* CATEGORY HEADER */}
       <button
         onClick={() => toggle(catKey)}
-        // className="w-full flex justify-between px-4 py-3 bg-gray-100 hover:bg-gray-200 font-semibold text-sm rounded-t-lg"
+
 
 
         className="w-full flex justify-between px-4 py-3 bg-gray-100  font-semibold text-sm rounded-t-lg category-header"

@@ -122,35 +122,7 @@ export function calculateProjectMacroRisk(
 }
 
 
-// export function buildMajorityExplanation(categories = [], label = "categories") {
-//   if (!Array.isArray(categories) || !categories.length) {
-//     return {
-//       severity: "N/A",
-//       description: `No ${label} available.`,
-//       counts: {},
-//     };
-//   }
 
-//   const counts = {};
-
-//   categories.forEach((cat) => {
-//     const sev = cat?.overall_severity || "N/A";
-//     counts[sev] = (counts[sev] || 0) + 1;
-//   });
-
-//   const severity = calculateOverallRiskFromCategories(categories);
-
-//   const total = Object.values(counts).reduce((a, b) => a + b, 0);
-//   const majorityCount = counts[severity] || 0;
-
-//   return {
-//     severity,
-//     counts,
-//     description:
-//       `Out of ${total} ${label}, ${majorityCount} are ${severity}. ` +
-//       `Since ${severity} is the majority severity, overall ${label} risk is ${severity}.`,
-//   };
-// }
 export const getRiskLabel = (level) => {
   switch (level) {
     case "RED":
@@ -238,3 +210,7 @@ const getSeverityStyles = (level) => {
       return "bg-gray-100 border-gray-200 text-gray-600";
   }
 };
+
+
+
+

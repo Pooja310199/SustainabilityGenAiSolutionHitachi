@@ -45,27 +45,6 @@ export default function RenderTerritoryMacro({
     return entries.length > 0 ? Object.fromEntries(entries) : {};
   };
 
-  /* ================================
-   EXPAND ALL + COLLAPSE ALL
-================================ */
-
-  // const collapseAll = () => {
-  //   // Close top-level blocks
-  //   setIsCountryOpen(false);
-  //   setIsCustomerOpen(false);
-  //   setIsProjectOpen(false);
-
-  //   // Reset all nested expanders
-  //   setExpandedSections({});
-  //   setExpandedMetrics({});
-  //   setExpandedSources({});
-  //   setExpandedSubIndicators({});
-  //   setExpandedAdvSections({});
-  //   setExpandedQueries({});
-  //   setExpandedProjectSub({});
-  //   setExpandedTerritorySub({});
-  // };
-
   const normalizeSection = (section) => {
     if (!section || typeof section !== "object") return null;
 
