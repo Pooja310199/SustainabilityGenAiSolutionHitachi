@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import { Disclosure } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/24/solid";
 import SeverityDot from "../../Common/SeverityDot";
@@ -6,15 +7,44 @@ import CustomerRenderer from "../renderCustomer";
 import { capitalizeWords } from "../../Common/Utils";
 import { calculateOverallRiskFromCategories } from "../../Common/riskUtils";
 
-export default function CustomerSection({
+const CustomerSection = React.memo(function CustomerSection({
   entry,
   viewMode,
-  isOpen,
-  setIsOpen,
-  expandedCustomerSub,
-  setExpandedCustomerSub,
+  // isOpen,
+  // setIsOpen,
   overallPartnerRisk,
+  expandSignal,
+  collapseSignal,
 }) {
+  React.useEffect(() => {
+    console.log("CustomerSection actually rendered");
+  }, []);
+  const [expandedCustomerSub, setExpandedCustomerSub] = React.useState({});
+
+  React.useEffect(() => {
+    if (!entry?.data) return;
+
+    const allOpen = {};
+
+    entry.data.forEach((custArr, ci) => {
+      const safeCust = Array.isArray(custArr) ? custArr : [custArr];
+
+      safeCust.forEach((content, si) => {
+        allOpen[`cust-${si}-cat`] = true;
+
+        content.results?.forEach((_, ri) => {
+          allOpen[`cust-${si}-sub-${ri}`] = true;
+        });
+      });
+    });
+
+    setExpandedCustomerSub(allOpen);
+  }, [expandSignal]);
+
+  React.useEffect(() => {
+    setExpandedCustomerSub({});
+  }, [collapseSignal]);
+
   if (!entry) return null;
 
   /* ===== BUILD PARTNER LIST ===== */
@@ -38,7 +68,8 @@ export default function CustomerSection({
   if (!allPartners.length) return null;
 
   return (
-    <Disclosure open={isOpen} onChange={setIsOpen}>
+    // <Disclosure open={isOpen} onChange={setIsOpen}>
+    <Disclosure>
       {({ open }) => (
         <div className="border rounded-lg bg-white category-header">
           {/* ===== HEADER ===== */}
@@ -117,4 +148,6 @@ export default function CustomerSection({
       )}
     </Disclosure>
   );
-}
+});
+
+export default CustomerSection;

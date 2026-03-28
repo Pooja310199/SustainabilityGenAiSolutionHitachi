@@ -1,26 +1,24 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+
+import React, { useEffect, useRef, useState, useMemo } from "react";
 
 export default React.memo(function Sidebar({
-  // macro,
-  // setMacro,
   onBasicSearch,
   onAdvanceSearch,
-  clearResultsForMacro, // ⭐ NEW
+  clearResultsForMacro,
 }) {
   console.count("Sidebar rendered");
-  // const [macro, setMacro] = useState("");
+
   const [countries, setCountries] = useState([]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [searchText, setSearchText] = useState("");
   const dropdownRef = useRef(null);
+  const [debouncedSearch, setDebouncedSearch] = useState("");
 
   const [selectedCountries, setSelectedCountries] = useState([]);
-  // const [customer1, setCustomer1] = useState("");
-  // const [customer2, setCustomer2] = useState("");
-  // const [partnerName, setPartnerName] = useState("");
-  const [projectName, setProjectName] = useState("");
 
+  const [projectName, setProjectName] = useState("");
+  const [territoryName, setTerritoryName] = useState("");
   const [suppliers, setSuppliers] = useState(["", "", "", ""]);
   const [customers, setCustomers] = useState(["", ""]);
   const [consortiumPartner, setConsortiumPartner] = useState("");
@@ -46,8 +44,6 @@ export default React.memo(function Sidebar({
     }));
   };
 
-  const [territoryName, setTerritoryName] = useState("");
-
   useEffect(() => {
     fetch("https://restcountries.com/v3.1/all?fields=name")
       .then((res) => res.json())
@@ -63,10 +59,16 @@ export default React.memo(function Sidebar({
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearch(searchText);
+    }, 300); // delay
+
+    return () => clearTimeout(timer);
+  }, [searchText]);
+
   const handleBasicSearch = () => {
     onBasicSearch({
-      // macro,
-      // setMacro,
       selectedCountries,
       suppliers,
       customers,
@@ -75,6 +77,20 @@ export default React.memo(function Sidebar({
       territoryName,
     });
   };
+
+  const filteredCountries = useMemo(() => {
+    return countries.filter((c) =>
+      c.toLowerCase().includes(debouncedSearch.toLowerCase()),
+    );
+  }, [countries, debouncedSearch]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearch(searchText);
+    }, 300); // delay
+
+    return () => clearTimeout(timer);
+  }, [searchText]);
 
   return (
     <aside className="w-72 bg-white border-r border-gray-200 p-6 overflow-y-auto fixed inset-y-0 shadow-sm print:hidden">
@@ -93,7 +109,7 @@ export default React.memo(function Sidebar({
       <div className="mb-8" ref={dropdownRef}>
         <div
           className="flex justify-between items-center text-sm font-medium text-gray-800 cursor-pointer mb-1"
-          onClick={() => setOpenMacro((o) => ({ ...o, country: !o.country }))}
+          onClick={() => toggleMacro("country")}
         >
           <span className="bg-red-600 text-white">Country</span>
           <span className="ml-2">{openMacro.country ? "▲" : "▼"}</span>
@@ -124,51 +140,42 @@ export default React.memo(function Sidebar({
                   className="w-full border-b p-2 text-sm"
                 />
 
-                {countries
-                  .filter((c) =>
-                    c.toLowerCase().includes(searchText.toLowerCase()),
-                  )
-                  .map((c) => (
-                    <label
-                      key={c}
-                      className="flex items-center px-3 py-2 text-sm hover:bg-gray-100 gap-2"
-                    >
-                      <input
-                        type="checkbox"
-                        checked={selectedCountries.includes(c)}
-                        onChange={() => {
-                          let updated;
-                          if (selectedCountries.includes(c)) {
-                            updated = selectedCountries.filter((x) => x !== c);
-                          } else if (selectedCountries.length < 4) {
-                            updated = [...selectedCountries, c];
-                          } else {
-                            alert("Max 2 countries allowed");
-                            return;
-                          }
+                {filteredCountries.map((c) => (
+                  <label
+                    key={c}
+                    className="flex items-center px-3 py-2 text-sm hover:bg-gray-100 gap-2"
+                  >
+                    <input
+                      type="checkbox"
+                      checked={selectedCountries.includes(c)}
+                      onChange={() => {
+                        let updated;
+                        if (selectedCountries.includes(c)) {
+                          updated = selectedCountries.filter((x) => x !== c);
+                        } else if (selectedCountries.length < 4) {
+                          updated = [...selectedCountries, c];
+                        } else {
+                          alert("Max 2 countries allowed");
+                          return;
+                        }
 
-                          setSelectedCountries(updated);
+                        setSelectedCountries(updated);
 
-                          // ⭐ If empty, clear country results
-                          if (updated.length === 0)
-                            clearResultsForMacro("Country");
-                        }}
-                      />
-                      {c}
-                    </label>
-                  ))}
+                        if (updated.length === 0)
+                          clearResultsForMacro("Country");
+                      }}
+                    />
+                    {c}
+                  </label>
+                ))}
               </div>
             )}
-
-            {/* your existing dropdown code stays SAME */}
           </div>
         )}
       </div>
 
-      {/* CUSTOMER UI */}
+      {/* PARTNER MACRO */}
 
-      {/* PARTNER MACRO */}
-      {/* PARTNER MACRO */}
       <div className="mb-8 space-y-4">
         <div
           className="flex justify-between items-center cursor-pointer select-none"
@@ -268,7 +275,6 @@ export default React.memo(function Sidebar({
               />
             </div>
 
-            {/* Territory Name – ⭐ NEW FIELD */}
             {/* Territory Name */}
             <div>
               <label className="block text-sm font-medium mb-1 text-gray-700">
@@ -296,7 +302,6 @@ export default React.memo(function Sidebar({
       <div className="mt-8 flex flex-col gap-3">
         <button
           onClick={handleBasicSearch}
-          // className="bg-blue-600 text-white rounded-lg py-2 font-semibold text-sm"
           className="
          btn-learn-more
          

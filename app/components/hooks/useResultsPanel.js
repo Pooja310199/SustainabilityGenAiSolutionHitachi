@@ -1,33 +1,43 @@
-import { useState } from "react";
-
-
 import { useMacroRisk } from "../hooks/useMacroRisk";
-import { useExpandState } from "../hooks/useExpandState";
+import { useState, useMemo } from "react";
 
 export function useResultsPanel(resultsMap, viewMode) {
 
 
-  const countryEntry =
-    viewMode === "basic" ? resultsMap.countryBasic : resultsMap.countryAdvanced;
+
+
+  const countryEntry = useMemo(() => {
+    return viewMode === "basic"
+      ? resultsMap.countryBasic
+      : resultsMap.countryAdvanced;
+  }, [resultsMap, viewMode]);
 
 
 
-  const customerEntry =
-    viewMode === "basic"
+
+
+  const customerEntry = useMemo(() => {
+    return viewMode === "basic"
       ? resultsMap.customerBasic
       : resultsMap.customerAdvanced;
+  }, [resultsMap, viewMode]);
 
-  const projectEntry =
-    viewMode === "basic" ? resultsMap.projectBasic : resultsMap.projectAdvanced;
 
-  const territoryEntry =
-    viewMode === "basic"
+
+
+  const projectEntry = useMemo(() => {
+    return viewMode === "basic" ? resultsMap.projectBasic : resultsMap.projectAdvanced;
+  }, [resultsMap, viewMode]);
+
+
+
+
+
+  const territoryEntry = useMemo(() => {
+    return viewMode === "basic"
       ? resultsMap.territoryBasic
       : resultsMap.territoryAdvanced;
-
-
-
-  const expand = useExpandState(resultsMap, viewMode);
+  }, [resultsMap, viewMode]);
 
 
 
@@ -36,12 +46,21 @@ export function useResultsPanel(resultsMap, viewMode) {
 
 
 
-  const risk = useMacroRisk(
+  const risk = useMemo(() =>
+    useMacroRisk(
+      countryEntry,
+      customerEntry,
+      projectEntry,
+      territoryEntry
+    ), [
+
+
     countryEntry,
     customerEntry,
     projectEntry,
     territoryEntry
-  );
+
+  ]);
 
 
   return {
@@ -50,10 +69,40 @@ export function useResultsPanel(resultsMap, viewMode) {
     projectEntry,
     territoryEntry,
 
-    ...expand,
     ...risk
 
   };
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

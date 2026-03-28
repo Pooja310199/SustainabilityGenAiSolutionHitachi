@@ -1,23 +1,27 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Disclosure } from "@headlessui/react";
-import { ChevronUpIcon } from "@heroicons/react/24/solid";
+import { useMemo } from "react";
 
-import { renderCategory } from "./renderers";
-import { renderAdvanced } from "./renderAdvanced";
-import CustomerRenderer from "./renderCustomer";
-import { capitalizeWords } from "../Common/Utils";
-
-import RenderProjectMacro from "./renderProjectMacro";
-import RenderTerritoryMacro from "./renderTerritoryMacro";
 import CountrySection from "./macroRender/CountrySection";
 import CustomerSection from "./macroRender/CustomerSection";
-import SeverityDot from "../Common/SeverityDot";
+
 import DueDiligenceReport from "../../components/DueDiligence/DueDiligenceReport";
 import ProjectSection from "./macroRender/ProjectSection";
+
 import { useResultsPanel } from "../hooks/useResultsPanel";
 
-export default function ResultsPanel({ resultsMap, viewMode, loading }) {
+function ResultsPanel({ resultsMap, viewMode, loading }) {
+  const [expandSignal, setExpandSignal] = useState(0);
+  const [collapseSignal, setCollapseSignal] = useState(0);
+
+  const expandAll = () => {
+    setExpandSignal((v) => v + 1);
+  };
+
+  const collapseAll = () => {
+    setCollapseSignal((v) => v + 1);
+  };
+
   useEffect(() => {
     console.log("resultsMap changed");
   }, [resultsMap]);
@@ -36,40 +40,16 @@ export default function ResultsPanel({ resultsMap, viewMode, loading }) {
     projectMacroOverallSeverity,
     projectNameSeverity,
     territoryNameSeverity,
-    expandedSections,
-    setExpandedSections,
-    expandedMetrics,
-    setExpandedMetrics,
-    expandedSources,
-    setExpandedSources,
-    expandedSubIndicators,
-    setExpandedSubIndicators,
-    expandedAdvSections,
-    setExpandedAdvSections,
-    expandedQueries,
-    setExpandedQueries,
-    expandedProjectSub,
-    setExpandedProjectSub,
-    expandedTerritorySub,
-    setExpandedTerritorySub,
-    expandedCustomerSub,
-    setExpandedCustomerSub,
-
-    isCountryOpen,
-    setIsCountryOpen,
-    isCustomerOpen,
-    setIsCustomerOpen,
-    isProjectOpen,
-    setIsProjectOpen,
-    expandAll,
-    collapseAll,
   } = useResultsPanel(resultsMap, viewMode);
 
   /* COUNTRY */
   console.count("ResultsPanel rendered");
-  const hasAnyResults = Object.values(resultsMap).some(
-    (section) => section && section.data && section.data.length > 0,
-  );
+
+  const hasAnyResults = useMemo(() => {
+    return Object.values(resultsMap).some(
+      (section) => section?.data?.length > 0,
+    );
+  }, [resultsMap]);
 
   const [showDueDiligence, setShowDueDiligence] = useState(false);
 
@@ -208,21 +188,9 @@ export default function ResultsPanel({ resultsMap, viewMode, loading }) {
             : resultsMap.countryAdvanced
         }
         viewMode={viewMode}
-        isOpen={isCountryOpen}
-        setIsOpen={setIsCountryOpen}
-        expandedSections={expandedSections}
-        setExpandedSections={setExpandedSections}
-        expandedMetrics={expandedMetrics}
-        setExpandedMetrics={setExpandedMetrics}
-        expandedSources={expandedSources}
-        setExpandedSources={setExpandedSources}
-        expandedSubIndicators={expandedSubIndicators}
-        setExpandedSubIndicators={setExpandedSubIndicators}
-        expandedAdvSections={expandedAdvSections}
-        setExpandedAdvSections={setExpandedAdvSections}
-        expandedQueries={expandedQueries}
-        setExpandedQueries={setExpandedQueries}
         overallCountryRisk={overallCountryRisk}
+        expandSignal={expandSignal}
+        collapseSignal={collapseSignal}
       />
 
       {/* ===== CUSTOMER ===== */}
@@ -233,11 +201,9 @@ export default function ResultsPanel({ resultsMap, viewMode, loading }) {
             : resultsMap.customerAdvanced
         }
         viewMode={viewMode}
-        isOpen={isCustomerOpen}
-        setIsOpen={setIsCustomerOpen}
-        expandedCustomerSub={expandedCustomerSub}
-        setExpandedCustomerSub={setExpandedCustomerSub}
         overallPartnerRisk={overallPartnerRisk}
+        expandSignal={expandSignal}
+        collapseSignal={collapseSignal}
       />
       {/* ===== PROJECT + TERRITORY ===== */}
 
@@ -253,19 +219,16 @@ export default function ResultsPanel({ resultsMap, viewMode, loading }) {
               ? resultsMap.territoryBasic
               : resultsMap.territoryAdvanced
           }
-          isOpen={isProjectOpen}
-          setIsOpen={setIsProjectOpen}
           projectMacroOverallSeverity={projectMacroOverallSeverity}
           projectName={projectName}
           territoryName={territoryName}
           projectNameSeverity={projectNameSeverity}
           territoryNameSeverity={territoryNameSeverity}
-          expandedProjectSub={expandedProjectSub}
-          setExpandedProjectSub={setExpandedProjectSub}
-          expandedTerritorySub={expandedTerritorySub}
-          setExpandedTerritorySub={setExpandedTerritorySub}
+          expandSignal={expandSignal}
+          collapseSignal={collapseSignal}
         />
       )}
     </div>
   );
 }
+export default React.memo(ResultsPanel);

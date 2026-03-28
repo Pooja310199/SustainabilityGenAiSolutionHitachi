@@ -5,34 +5,59 @@ import { ChevronUpIcon } from "@heroicons/react/24/solid";
 import { renderCategory } from "../renderers";
 import { renderAdvanced } from "../renderAdvanced";
 import { capitalizeWords } from "../../Common/Utils";
+import { calculateCountryMacroRisk } from "../../Common/riskUtils";
 
 import SeverityDot from "../../Common/SeverityDot";
-import { calculateCountryMacroRisk } from "../../Common/riskUtils";
+// import { calculateCountryMacroRisk } from "../../Common/riskUtils";
 
 const CountrySection = React.memo(function CountrySection({
   entry,
   viewMode,
-  isOpen,
-  setIsOpen,
 
-  expandedSections,
-  setExpandedSections,
-  expandedMetrics,
-  setExpandedMetrics,
-  expandedSources,
-  setExpandedSources,
-  expandedSubIndicators,
-  setExpandedSubIndicators,
-  expandedAdvSections,
-  setExpandedAdvSections,
-  expandedQueries,
-  setExpandedQueries,
   overallCountryRisk,
+  expandSignal,
+  collapseSignal,
 }) {
+  React.useEffect(() => {
+    console.log("CountrySection actual render");
+  }, []);
+  const [expandedSections, setExpandedSections] = React.useState({});
+  const [expandedMetrics, setExpandedMetrics] = React.useState({});
+  const [expandedSources, setExpandedSources] = React.useState({});
+  const [expandedSubIndicators, setExpandedSubIndicators] = React.useState({});
+  const [expandedAdvSections, setExpandedAdvSections] = React.useState({});
+  const [expandedQueries, setExpandedQueries] = React.useState({});
+
+  React.useEffect(() => {
+    if (!entry) return;
+
+    const allOpen = {};
+
+    entry.data?.forEach((block, bi) => {
+      block.forEach((content) => {
+        const key = entry.selectedCountries[bi] + "_" + content.category;
+
+        allOpen[key] = true;
+      });
+    });
+
+    setExpandedSections(allOpen);
+  }, [expandSignal]);
+
+  React.useEffect(() => {
+    setExpandedSections({});
+    setExpandedMetrics({});
+    setExpandedSources({});
+    setExpandedSubIndicators({});
+    setExpandedAdvSections({});
+    setExpandedQueries({});
+  }, [collapseSignal]);
+
   if (!entry) return null;
 
   return (
-    <Disclosure open={isOpen} onChange={setIsOpen}>
+    // <Disclosure open={isOpen} onChange={setIsOpen}>
+    <Disclosure>
       {({ open }) => (
         <div className="border rounded-lg bg-white category-header">
           <Disclosure.Button className="w-full flex justify-between items-center px-4 py-3 bg-gray-100">

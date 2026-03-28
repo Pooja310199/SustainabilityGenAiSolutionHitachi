@@ -13,7 +13,8 @@ export default function RenderProjectMacro({
   console.count("RenderProjectMacro rendered");
   if (!content || allValuesNA(content)) return null;
 
-  const mainKey = `project-main-${index}`;
+  // const mainKey = `project-main-${index}`;
+  const mainKey = `project-main-${content.category}`;
 
   const toggle = (key) => {
     setExpandedProjectSub((prev) => ({
@@ -51,9 +52,12 @@ export default function RenderProjectMacro({
           {content.results?.map((res, idx) => {
             if (allValuesNA(res)) return null;
 
-            const subKey = `project-sub-${index}-${idx}`;
-            const srcKey = `project-src-${index}-${idx}`;
+            // const subKey = `project-sub-${index}-${idx}`;
+            // const srcKey = `project-src-${index}-${idx}`;
 
+            const subKey = `project-sub-${content.category}-${res.sub_category}`;
+
+            const srcKey = `project-src-${content.category}-${res.sub_category}`;
             return (
               <div
                 key={idx}

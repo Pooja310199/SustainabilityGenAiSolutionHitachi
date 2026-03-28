@@ -13,7 +13,8 @@ export default function RenderTerritoryMacro({
   console.count("RenderTerritoryMacro rendered");
   if (!content || allValuesNA(content)) return null;
 
-  const mainKey = `territory-main-${index}`;
+  // const mainKey = `territory-main-${index}`;
+  const mainKey = `territory-main-${content.category}`;
 
   const toggle = (key) => {
     setExpandedTerritorySub((prev) => ({
@@ -91,8 +92,11 @@ export default function RenderTerritoryMacro({
           {content.results?.map((res, idx) => {
             if (allValuesNA(res)) return null;
 
-            const subKey = `territory-sub-${index}-${idx}`;
-            const srcKey = `territory-src-${index}-${idx}`;
+            // const subKey = `territory-sub-${index}-${idx}`;
+            // const srcKey = `territory-src-${index}-${idx}`;
+            const subKey = `territory-sub-${content.category}-${res.sub_category}`;
+
+            const srcKey = `territory-src-${content.category}-${res.sub_category}`;
 
             return (
               <div

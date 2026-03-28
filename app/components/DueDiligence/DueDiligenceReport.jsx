@@ -1,3 +1,5 @@
+import React from "react";
+
 import {
   calculateOverallRiskFromCategories,
   buildWorstCaseExplanation,
@@ -10,7 +12,7 @@ import { capitalizeWords } from "../Common/Utils";
 import MacroSectionCard from "./MacroSectionCard";
 import SeverityDot from "../Common/SeverityDot";
 
-export default function DueDiligenceReport({
+const DueDiligenceReport = React.memo(function DueDiligenceReport({
   countryEntry,
   customerEntry,
   projectEntry,
@@ -176,4 +178,6 @@ export default function DueDiligenceReport({
       />
     </div>
   );
-}
+});
+
+export default DueDiligenceReport;

@@ -8,23 +8,101 @@ import SeverityDot from "../../Common/SeverityDot";
 import RenderProjectMacro from "../renderProjectMacro";
 import RenderTerritoryMacro from "../renderTerritoryMacro";
 
-export default function ProjectSection({
+const ProjectSection = React.memo(function ProjectSection({
   projectEntry,
   territoryEntry,
-  isOpen,
-  setIsOpen,
+  // isOpen,
+  // setIsOpen,
   projectMacroOverallSeverity,
   projectName,
   territoryName,
   projectNameSeverity,
   territoryNameSeverity,
-  expandedProjectSub,
-  setExpandedProjectSub,
-  expandedTerritorySub,
-  setExpandedTerritorySub,
+  expandSignal,
+  collapseSignal,
 }) {
+  React.useEffect(() => {
+    console.log("ProjectSection actual render");
+  }, []);
+  const [expandedProjectSub, setExpandedProjectSub] = React.useState({});
+
+  const [expandedTerritorySub, setExpandedTerritorySub] = React.useState({});
+
+  // React.useEffect(() => {
+  //   const projKeys = {};
+  //   const terrKeys = {};
+
+  //   projectEntry?.data?.forEach((block, bi) => {
+  //     projKeys[`project-main-${bi}`] = true;
+
+  //     block.results?.forEach((_, ri) => {
+  //       projKeys[`project-sub-${bi}-${ri}`] = true;
+  //     });
+  //   });
+
+  //   territoryEntry?.data?.forEach((block, bi) => {
+  //     terrKeys[`territory-main-${bi}`] = true;
+
+  //     block.results?.forEach((_, ri) => {
+  //       terrKeys[`territory-sub-${bi}-${ri}`] = true;
+  //     });
+  //   });
+
+  //   setExpandedProjectSub(projKeys);
+  //   setExpandedTerritorySub(terrKeys);
+  // }, [expandSignal]);
+
+  const prevExpandSignal = React.useRef(expandSignal);
+
+  React.useEffect(() => {
+    // run only when Expand All clicked
+    if (prevExpandSignal.current === expandSignal) return;
+
+    prevExpandSignal.current = expandSignal;
+
+    const projKeys = {};
+    const terrKeys = {};
+
+    // ---------- PROJECT ----------
+    projectEntry?.data?.forEach((content, ci) => {
+      projKeys[`project-main-${content.category}`] = true;
+
+      content.results?.forEach((res, ri) => {
+        projKeys[`project-sub-${content.category}-${res.sub_category}`] = true;
+
+        projKeys[`project-src-${content.category}-${res.sub_category}`] = true;
+
+        Object.entries(res.analysis || {}).forEach((_, vi) => {
+          projKeys[`env-${ci}-${ri}-${vi}`] = true;
+        });
+      });
+    });
+
+    // ---------- TERRITORY ----------
+    territoryEntry?.data?.forEach((content) => {
+      terrKeys[`territory-main-${content.category}`] = true;
+
+      content.results?.forEach((res) => {
+        terrKeys[`territory-sub-${content.category}-${res.sub_category}`] =
+          true;
+
+        terrKeys[`territory-src-${content.category}-${res.sub_category}`] =
+          true;
+      });
+    });
+
+    setExpandedProjectSub(projKeys);
+    setExpandedTerritorySub(terrKeys);
+  }, [expandSignal]); // ✅ FIXED
+
+  React.useEffect(() => {
+    setExpandedProjectSub({});
+    setExpandedTerritorySub({});
+  }, [collapseSignal]);
+
   return (
-    <Disclosure open={isOpen} onChange={setIsOpen}>
+    // <Disclosure open={isOpen} onChange={setIsOpen}>
+    <Disclosure>
       {({ open }) => (
         <div className="border rounded-lg bg-white category-header">
           {/* HEADER */}
@@ -102,4 +180,6 @@ export default function ProjectSection({
       )}
     </Disclosure>
   );
-}
+});
+
+export default ProjectSection;
