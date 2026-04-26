@@ -143,3 +143,17 @@ font-size:10px;
   }
 }
 
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);   /* ✅ visible immediately */
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  min-width: 200%;
+  animation: marquee 20s linear infinite;
+}

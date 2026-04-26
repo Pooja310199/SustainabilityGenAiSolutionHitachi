@@ -198,7 +198,7 @@ export function buildMajorityExplanation(
   };
 
 }
-const getSeverityStyles = (level) => {
+export const getSeverityStyles = (level) => {
   switch (level) {
     case "RED":
       return "bg-red-100 border-red-300 text-red-800";

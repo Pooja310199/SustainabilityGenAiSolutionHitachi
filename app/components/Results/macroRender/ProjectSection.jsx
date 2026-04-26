@@ -7,6 +7,7 @@ import SeverityDot from "../../Common/SeverityDot";
 
 import RenderProjectMacro from "../renderProjectMacro";
 import RenderTerritoryMacro from "../renderTerritoryMacro";
+import Feedback from "../../Common/Feedback";
 
 const ProjectSection = React.memo(function ProjectSection({
   projectEntry,
@@ -134,6 +135,7 @@ const ProjectSection = React.memo(function ProjectSection({
                   <p className="text-s font-semibold mb-4">
                     Project Name:
                     <span className="font-normal ml-1">{projectName}</span>
+                    <Feedback section="Project" entityName={projectName} />
                     <span className="flex items-center gap-2">
                       <SeverityDot level={projectNameSeverity} />
                       {projectNameSeverity}
@@ -145,6 +147,7 @@ const ProjectSection = React.memo(function ProjectSection({
                   <p className="text-s font-semibold mb-4">
                     Territory Name:
                     <span className="font-normal ml-1">{territoryName}</span>
+                    <Feedback section="Territory" entityName={territoryName} />
                     <span className="flex items-center gap-2">
                       <SeverityDot level={territoryNameSeverity} />
                       {territoryNameSeverity}

@@ -78,6 +78,17 @@ export default React.memo(function Sidebar({
     });
   };
 
+  const handleadvanceSearch = () => {
+    onAdvanceSearch({
+      selectedCountries,
+      suppliers,
+      customers,
+      consortiumPartner,
+      projectName,
+      territoryName,
+    });
+  };
+
   const filteredCountries = useMemo(() => {
     return countries.filter((c) =>
       c.toLowerCase().includes(debouncedSearch.toLowerCase()),
@@ -310,7 +321,7 @@ export default React.memo(function Sidebar({
           Basic Search
         </button>
 
-        <button onClick={onAdvanceSearch} className="btn-learn-more">
+        <button onClick={handleadvanceSearch} className="btn-learn-more">
           Advance Search
         </button>
       </div>

@@ -117,7 +117,7 @@
     "htttps/hhhhhhhhhhhhhh",
     "httpsnnnnnnnnnnn"
   ],
-  "overall_severity":"ORANGE"
+  "overall_severity":"GREEN"
 
 
 
@@ -230,7 +230,7 @@
     "https://www.icj.org/wp-content/uploads/2025/02/Judicial-Independence-in-India.pdf",
     "gggggggggggggggggggggggggggggggg"
   ],
-  "overall_severity": "RED"
+  "overall_severity": "GREEN"
 },
 
 {
@@ -516,7 +516,7 @@
 
 
    },
-   "overall_severity":"ORANGE",
+   "overall_severity":"GREEN",
    "risk_level":"Medium Risk",
    "sources":[
 

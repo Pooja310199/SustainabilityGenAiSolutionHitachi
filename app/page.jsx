@@ -23,6 +23,9 @@ export default function Page() {
 
   // ✅ CHANGE 1 — uses stable reference instead of inline object
   const [resultsMap, setResultsMap] = useState(EMPTY_RESULTS);
+  React.useEffect(() => {
+    console.log("customerAdvanced:", resultsMap.customerAdvanced);
+  }, [resultsMap]);
 
   // ----------- COUNTRY FETCH -----------
   const fetchCountryData = async (country, type = "basic") => {
@@ -49,6 +52,27 @@ export default function Page() {
       return await res.json();
     } catch {
       return { error: `No data found for ${name}` };
+    }
+  };
+
+  // ----------- CUSTOMER ADVANCED FETCH -----------
+  const fetchCustomerAdvancedFile = async (name) => {
+    try {
+      const safeName = name?.trim();
+      if (!safeName) return null;
+
+      const fileName = safeName.toLowerCase().replace(/\s+/g, "-");
+
+      const res = await fetch(`/mockData/CustomersAdvance/${fileName}.json`);
+
+      if (!res.ok) throw new Error("File not found");
+
+      const data = await res.json();
+
+      // ✅ MUST return array
+      return Array.isArray(data) ? data : [data];
+    } catch {
+      return null; // ✅ DO NOT return {error}
     }
   };
 
@@ -192,6 +216,7 @@ export default function Page() {
   }, []);
 
   // ----------- ADVANCED SEARCH -----------
+  // ----------- ADVANCED SEARCH -----------
   const onAdvanceSearch = useCallback(async (formData) => {
     // ✅ CHANGE 2 — abort controller added here too
     if (abortRef.current) abortRef.current.abort();
@@ -216,9 +241,13 @@ export default function Page() {
 
       // -------- COUNTRY --------
       if (selectedCountries.length > 0) {
-        const advanced = await Promise.all(
-          selectedCountries.map((c) => fetchCountryData(c, "advanced")),
-        );
+        const advanced = (
+          await Promise.all(
+            allPartnerNames.map((name) => fetchCustomerAdvancedFile(name)),
+          )
+        )
+          .flat()
+          .filter(Boolean);
         updates.countryAdvanced = {
           macro: "Country",
           mode: "Advanced",
@@ -235,9 +264,11 @@ export default function Page() {
         .filter(Boolean);
 
       if (allPartnerNames.length > 0) {
-        const advanced = await Promise.all(
-          allPartnerNames.map((name) => fetchCustomerFile(name)),
-        );
+        const advanced = (
+          await Promise.all(
+            allPartnerNames.map((name) => fetchCustomerAdvancedFile(name)),
+          )
+        ).filter(Boolean);
         updates.customerAdvanced = {
           macro: "Partner",
           mode: "Advanced",

@@ -145,6 +145,11 @@ function ResultsPanel({ resultsMap, viewMode, loading }) {
 
   return (
     <div id="print-container" className="space-y-8 ">
+      <div className="sticky top-0 z-50 bg-yellow-50 border-b border-yellow-200 text-yellow-700 text-xs p-2 text-center font-medium shadow-sm">
+        ⚠️ <strong>Disclaimer:</strong> This information is AI-generated and
+        should be reviewed by a human before making any final decisions.
+      </div>
+
       <div className="flex gap-3 mb-4">
         <button
           onClick={expandAll}
@@ -205,6 +210,7 @@ function ResultsPanel({ resultsMap, viewMode, loading }) {
         expandSignal={expandSignal}
         collapseSignal={collapseSignal}
       />
+
       {/* ===== PROJECT + TERRITORY ===== */}
 
       {(hasSingleProject || hasSingleTerritory) && (

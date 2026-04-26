@@ -1,4 +1,5 @@
 import SeverityDot from "../Common/SeverityDot";
+
 import {
   allValuesNA,
   capitalizeWords,

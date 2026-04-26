@@ -1,11 +1,13 @@
 "use client";
 import React from "react";
+import SeverityPieChart from "../../Common/SeverityPieChart";
 import { Disclosure } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/24/solid";
 import { renderCategory } from "../renderers";
 import { renderAdvanced } from "../renderAdvanced";
 import { capitalizeWords } from "../../Common/Utils";
 import { calculateCountryMacroRisk } from "../../Common/riskUtils";
+import Feedback from "../../Common/Feedback";
 
 import SeverityDot from "../../Common/SeverityDot";
 // import { calculateCountryMacroRisk } from "../../Common/riskUtils";
@@ -85,6 +87,20 @@ const CountrySection = React.memo(function CountrySection({
 
           {open && (
             <Disclosure.Panel className="p-4">
+              {/* <div className="text-base p-5 text-orange-600 mt-2 text-center font-medium">
+                ⚠️ Note: Even if the majority of categories are low/medium risk,
+                <br />
+                high-risk categories should still be carefully reviewed when
+                determining overall risk of country.
+              </div> */}
+              <div className="max-w-xl mx-auto bg-orange-50 border border-orange-200 text-orange-600 text-base p-3 rounded mb-6 text-center">
+                ⚠️ <strong>Note:</strong> Even if the majority of categories are
+                low/medium risk,
+                <br />
+                high-risk categories should still be carefully reviewed when
+                determining overall risk of a country.
+              </div>
+
               <div
                 className={`grid gap-4 ${
                   entry.selectedCountries.length === 1
@@ -98,10 +114,15 @@ const CountrySection = React.memo(function CountrySection({
                   return (
                     <div key={i} className="min-w-0">
                       {/* Header INSIDE each grid cell */}
-                      <h2 className="text-sm font-semibold text-gray-700 mb-2">
+                      {/* <h2 className="text-sm font-semibold text-gray-700 mb-2">
                         Results for{" "}
                         {capitalizeWords(entry.selectedCountries[i])}
-                      </h2>
+                      </h2> */}
+
+                      <Feedback
+                        section="Country"
+                        entityName={entry.selectedCountries[i]}
+                      />
 
                       {countryRisk && (
                         <span className="flex items-center gap-1 text-xs font-medium">
@@ -109,6 +130,18 @@ const CountrySection = React.memo(function CountrySection({
                           {countryRisk}
                         </span>
                       )}
+
+                      <h2 className="text-sm text-center font-semibold text-gray-700 mb-2">
+                        Results for{" "}
+                        {capitalizeWords(entry.selectedCountries[i])} Overall
+                        Risk
+                      </h2>
+
+                      <SeverityPieChart categories={block} />
+
+                      <h2 className="text-lg font-semibold text-gray-500 mt-6 md-2 border-b pb-1">
+                        Detailed Categories
+                      </h2>
 
                       {block.map((content, idx) =>
                         renderCategory({

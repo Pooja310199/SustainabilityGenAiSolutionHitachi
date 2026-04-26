@@ -6,6 +6,8 @@ import SeverityDot from "../../Common/SeverityDot";
 import CustomerRenderer from "../renderCustomer";
 import { capitalizeWords } from "../../Common/Utils";
 import { calculateOverallRiskFromCategories } from "../../Common/riskUtils";
+import CustomerAdvanceRenderer from "../renderCustomerAdvance";
+import Feedback from "../../Common/Feedback";
 
 const CustomerSection = React.memo(function CustomerSection({
   entry,
@@ -101,8 +103,8 @@ const CustomerSection = React.memo(function CustomerSection({
           {/* ===== BODY ===== */}
           <Disclosure.Panel className="p-4">
             <div
-              className={`flex ${
-                allPartners.length === 2 ? "flex-row" : "flex-col"
+              className={`grid gap-5 ${
+                allPartners.length === 2 ? "grid-cols-2" : "grid-cols-1"
               } gap-5`}
             >
               {allPartners.map(({ name, type }, index) => {
@@ -114,24 +116,38 @@ const CustomerSection = React.memo(function CustomerSection({
                 const partnerRisk = calculateOverallRiskFromCategories(safe);
 
                 return (
-                  <div
-                    key={`${name}-${index}`}
-                    className={allPartners.length === 2 ? "w-1/2" : "w-full"}
-                  >
-                    <div className="text-sm font-semibold mb-2">
-                      Results for {capitalizeWords(name)}
-                      {partnerRisk && (
-                        <span className="flex items-center gap-1 text-xs ml-2">
-                          <SeverityDot level={partnerRisk} />
-                          {partnerRisk}
+                  <div key={`${name}-${index}`} className={"w-full"}>
+                    <div className="flex justify-between items-center mb-2">
+                      <div className="text-sm font-semibold">
+                        Results for {capitalizeWords(name)}
+                        {partnerRisk && (
+                          <span className="flex items-center gap-1 text-xs ml-2">
+                            <SeverityDot level={partnerRisk} />
+                            {partnerRisk}
+                          </span>
+                        )}
+                        <span className="ml-2 text-xs text-gray-500">
+                          {type}
                         </span>
-                      )}
-                      <span className="ml-2 text-xs text-gray-500">{type}</span>
+                      </div>
+
+                      <Feedback section="Partner" entityName={name} />
                     </div>
 
                     {viewMode === "basic" &&
                       safe.map((content, idx) => (
                         <CustomerRenderer
+                          key={idx}
+                          content={content}
+                          index={idx}
+                          expandedCustomerSub={expandedCustomerSub}
+                          setExpandedCustomerSub={setExpandedCustomerSub}
+                        />
+                      ))}
+
+                    {viewMode === "advanced" &&
+                      safe.map((content, idx) => (
+                        <CustomerAdvanceRenderer
                           key={idx}
                           content={content}
                           index={idx}

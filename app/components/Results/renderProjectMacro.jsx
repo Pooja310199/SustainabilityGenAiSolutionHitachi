@@ -3,6 +3,7 @@ import React from "react";
 import { ChevronUpIcon } from "@heroicons/react/24/solid";
 import { capitalizeWords, allValuesNA } from "../Common/Utils";
 import SeverityDot from "../Common/SeverityDot";
+import Feedback from "../Common/Feedback";
 
 export default function RenderProjectMacro({
   content,
@@ -40,6 +41,7 @@ export default function RenderProjectMacro({
           <SeverityDot level={content.overall_severity} />
           {capitalizeWords(content.category || "Project Section")}
         </span>
+
         <ChevronUpIcon
           className={`h-4 w-5 transition-transform ${
             expandedProjectSub[mainKey] ? "rotate-180" : ""
