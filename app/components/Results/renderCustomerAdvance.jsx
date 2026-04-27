@@ -202,6 +202,29 @@ export default function CustomerAdvanceRenderer({
                       return null;
                     },
                   )}
+
+                {/* ===== RESULT LEVEL SOURCES ===== */}
+                {result.sources && Array.isArray(result.sources) && (
+                  <div className="bg-white border rounded-xl shadow-sm p-4">
+                    <div className="font-semibold text-gray-800 mb-2 border-b pb-1">
+                      Sources
+                    </div>
+
+                    <div className="flex flex-col gap-1">
+                      {result.sources.map((link, i) => (
+                        <a
+                          key={i}
+                          href={link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-blue-600 hover:text-blue-800 underline text-sm break-all"
+                        >
+                          {link}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             );
           })}
