@@ -7,10 +7,21 @@ import CustomerSection from "./macroRender/CustomerSection";
 
 import DueDiligenceReport from "../../components/DueDiligence/DueDiligenceReport";
 import ProjectSection from "./macroRender/ProjectSection";
+import PdfAnalysisSection from "./macroRender/PdfAnalysisSection";
 
 import { useResultsPanel } from "../hooks/useResultsPanel";
+import {
+  calculateOverallRiskFromCategories,
+  calculatePartnerMacroRisk,
+  calculateCountryMacroRisk,
+} from "../Common/riskUtils";
 
-function ResultsPanel({ resultsMap, viewMode, loading }) {
+function ResultsPanel({
+  resultsMap,
+  viewMode,
+  loading,
+  countryAdvancedLoading,
+}) {
   const [expandSignal, setExpandSignal] = useState(0);
   const [collapseSignal, setCollapseSignal] = useState(0);
 
@@ -45,10 +56,23 @@ function ResultsPanel({ resultsMap, viewMode, loading }) {
   /* COUNTRY */
   console.count("ResultsPanel rendered");
 
+  // const hasAnyResults = useMemo(() => {
+  //   return Object.values(resultsMap).some(
+  //     (section) => section?.data?.length > 0,
+  //   );
+  // }, [resultsMap]);
   const hasAnyResults = useMemo(() => {
-    return Object.values(resultsMap).some(
-      (section) => section?.data?.length > 0,
-    );
+    return Object.values(resultsMap).some((section) => {
+      if (!section) return false;
+
+      // normal search results
+      if (section?.data?.length > 0) return true;
+
+      // document analysis result
+      if (section?.report?.document_name) return true;
+
+      return false;
+    });
   }, [resultsMap]);
 
   const [showDueDiligence, setShowDueDiligence] = useState(false);
@@ -186,45 +210,98 @@ function ResultsPanel({ resultsMap, viewMode, loading }) {
 
       {/* ===== COUNTRY ===== */}
 
-      <CountrySection
-        entry={
-          viewMode === "basic"
-            ? resultsMap.countryBasic
-            : resultsMap.countryAdvanced
-        }
-        viewMode={viewMode}
-        overallCountryRisk={overallCountryRisk}
-        expandSignal={expandSignal}
-        collapseSignal={collapseSignal}
-      />
+      {resultsMap.partnerDocument && (
+        <PdfAnalysisSection documentData={resultsMap.partnerDocument} />
+      )}
 
-      {/* ===== CUSTOMER ===== */}
-      <CustomerSection
-        entry={
-          viewMode === "basic"
-            ? resultsMap.customerBasic
-            : resultsMap.customerAdvanced
-        }
-        viewMode={viewMode}
-        overallPartnerRisk={overallPartnerRisk}
-        expandSignal={expandSignal}
-        collapseSignal={collapseSignal}
-      />
+      {/* ===== BASIC COUNTRY ===== */}
+      {resultsMap.countryBasic && (
+        <CountrySection
+          entry={resultsMap.countryBasic}
+          viewMode="basic"
+          // overallCountryRisk={overallCountryRisk}
+          overallCountryRisk={
+            resultsMap.countryBasic?.data
+              ? calculateCountryMacroRisk(resultsMap.countryBasic.data)
+              : null
+          }
+          expandSignal={expandSignal}
+          collapseSignal={collapseSignal}
+        />
+      )}
+
+      {/* ===== ADVANCED COUNTRY ===== */}
+      {viewMode === "advanced" && (
+        <>
+          {countryAdvancedLoading ? (
+            <div className="border rounded-lg bg-white p-6 text-center">
+              <div className="animate-pulse space-y-3">
+                <div className="h-4 bg-gray-300 rounded w-40 mx-auto"></div>
+                <div className="h-4 bg-gray-200 rounded w-56 mx-auto"></div>
+              </div>
+
+              <p className="text-gray-500 mt-4">
+                Loading advanced country data...
+              </p>
+            </div>
+          ) : (
+            resultsMap.countryAdvanced && (
+              <CountrySection
+                entry={resultsMap.countryAdvanced}
+                viewMode="advanced"
+                overallCountryRisk={
+                  resultsMap.countryAdvanced?.data
+                    ? calculateCountryMacroRisk(resultsMap.countryAdvanced.data)
+                    : null
+                }
+                expandSignal={expandSignal}
+                collapseSignal={collapseSignal}
+              />
+            )
+          )}
+        </>
+      )}
+
+      {/* ===== BASIC CUSTOMER ===== */}
+      {resultsMap.customerBasic && (
+        <>
+          {" "}
+          <CustomerSection
+            entry={resultsMap.customerBasic}
+            viewMode="basic"
+            overallPartnerRisk={
+              resultsMap.customerBasic?.data
+                ? calculatePartnerMacroRisk(resultsMap.customerBasic.data)
+                : null
+            }
+            expandSignal={expandSignal}
+            collapseSignal={collapseSignal}
+          />
+        </>
+      )}
+
+      {/* ===== ADVANCED CUSTOMER ===== */}
+      {viewMode === "advanced" && resultsMap.customerAdvanced && (
+        <CustomerSection
+          entry={resultsMap.customerAdvanced}
+          viewMode="advanced"
+          overallPartnerRisk={
+            resultsMap.customerAdvanced?.data
+              ? calculatePartnerMacroRisk(resultsMap.customerAdvanced.data)
+              : null
+          }
+          expandSignal={expandSignal}
+          collapseSignal={collapseSignal}
+        />
+      )}
 
       {/* ===== PROJECT + TERRITORY ===== */}
 
-      {(hasSingleProject || hasSingleTerritory) && (
+      {/* ===== BASIC PROJECT + TERRITORY ===== */}
+      {(resultsMap.projectBasic || resultsMap.territoryBasic) && (
         <ProjectSection
-          projectEntry={
-            viewMode === "basic"
-              ? resultsMap.projectBasic
-              : resultsMap.projectAdvanced
-          }
-          territoryEntry={
-            viewMode === "basic"
-              ? resultsMap.territoryBasic
-              : resultsMap.territoryAdvanced
-          }
+          projectEntry={resultsMap.projectBasic}
+          territoryEntry={resultsMap.territoryBasic}
           projectMacroOverallSeverity={projectMacroOverallSeverity}
           projectName={projectName}
           territoryName={territoryName}
@@ -232,8 +309,26 @@ function ResultsPanel({ resultsMap, viewMode, loading }) {
           territoryNameSeverity={territoryNameSeverity}
           expandSignal={expandSignal}
           collapseSignal={collapseSignal}
+          viewMode="basic"
         />
       )}
+
+      {/* ===== ADVANCED PROJECT + TERRITORY ===== */}
+      {viewMode === "advanced" &&
+        (resultsMap.projectAdvanced || resultsMap.territoryAdvanced) && (
+          <ProjectSection
+            projectEntry={resultsMap.projectAdvanced}
+            territoryEntry={resultsMap.territoryAdvanced}
+            projectMacroOverallSeverity={projectMacroOverallSeverity}
+            projectName={projectName}
+            territoryName={territoryName}
+            projectNameSeverity={projectNameSeverity}
+            territoryNameSeverity={territoryNameSeverity}
+            expandSignal={expandSignal}
+            collapseSignal={collapseSignal}
+            viewMode="advanced"
+          />
+        )}
     </div>
   );
 }

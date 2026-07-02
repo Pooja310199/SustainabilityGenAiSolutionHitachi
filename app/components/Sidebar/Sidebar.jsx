@@ -6,6 +6,7 @@ export default React.memo(function Sidebar({
   onBasicSearch,
   onAdvanceSearch,
   clearResultsForMacro,
+  onDocumentAnalysis,
 }) {
   console.count("Sidebar rendered");
 
@@ -22,6 +23,11 @@ export default React.memo(function Sidebar({
   const [suppliers, setSuppliers] = useState(["", "", "", ""]);
   const [customers, setCustomers] = useState(["", ""]);
   const [consortiumPartner, setConsortiumPartner] = useState("");
+
+  //document upload
+
+  const [uploadedDocument, setUploadedDocument] = useState(null);
+  const [documentLoading, setDocumentLoading] = useState(false);
 
   const updateArrayValue = (setter, index, value) => {
     setter((prev) => {
@@ -87,6 +93,31 @@ export default React.memo(function Sidebar({
       projectName,
       territoryName,
     });
+  };
+
+  const handleDocumentUpload = async () => {
+    if (!uploadedDocument) {
+      alert("Please upload document");
+      return;
+    }
+
+    try {
+      setDocumentLoading(true);
+
+      // fake API delay
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
+      // mock response
+      const response = await fetch("/mockData/pdfupload.json");
+
+      const mockResult = await response.json();
+
+      onDocumentAnalysis(mockResult[0]);
+    } catch (error) {
+      console.error("Document analysis failed", error);
+    } finally {
+      setDocumentLoading(false);
+    }
   };
 
   const filteredCountries = useMemo(() => {
@@ -251,6 +282,40 @@ export default React.memo(function Sidebar({
                 value={consortiumPartner}
                 onChange={(e) => setConsortiumPartner(e.target.value)}
               />
+            </div>
+
+            {/* DOCUMENT UPLOAD */}
+            <div>
+              <label className="block text-sm font-medium mb-2 text-gray-700">
+                Upload Partner Document
+              </label>
+
+              <input
+                type="file"
+                accept=".pdf,.doc,.docx,.txt"
+                className="w-full border rounded-lg px-3 py-2 text-sm bg-gray-50"
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+
+                  if (file) {
+                    setUploadedDocument(file);
+                  }
+                }}
+              />
+
+              {uploadedDocument && (
+                <p className="text-xs text-green-600 mt-2">
+                  {uploadedDocument.name}
+                </p>
+              )}
+
+              <button
+                onClick={handleDocumentUpload}
+                disabled={documentLoading}
+                className="mt-3 w-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 rounded-lg"
+              >
+                {documentLoading ? "Analyzing..." : "Analyze Document"}
+              </button>
             </div>
           </div>
         )}

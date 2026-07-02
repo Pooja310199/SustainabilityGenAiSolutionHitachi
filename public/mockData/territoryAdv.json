@@ -238,9 +238,9 @@
     },
     "by_form_exploit":{
 
-      "title":"tyut",
-      "details":"ug",
-      "source":"gggg",
+      "title":"N/A",
+      "details":"N/A",
+      "source":"N/A",
       "data":[]
 
     }
@@ -623,115 +623,14 @@
   
 
 
-  },
-
-{
-
-"category":"Equality and Discrimination",
-"results":[
-  {
-
-"category":"SIGI,HDI,GII JHHJ",
-"metrics":{
-
-
-  "social_institutional_and_gender_index":{
-
-
-    "country":"India",
-    "world":"gghf",
-    "region":"fhgfh",
-    "oecd":"ggf",
-    "note":"nnvn",
-
-  "severity":"ORANGE",
-  "risk_level":"No Data",
-  "rescaled":"N/A"
-
-
-
-  },
-
-  "gender_inequality_index":{
-
-    "indicator":"GIT",
-    "entity":"Morocci",
-    "iso_code":"MAR",
-    "year":2303,
-    "value":0.566,
-    "title":"gfgfdg",
-    "description":"gdgfd fdgf",
-    "rescaled":7.9,
-    "severity":"ORANGE",
-    "risk_level":"No Data"
-
-  },
-  "human_development_index":{
-
-
-
-    "indicator":"GIT",
-    "entity":"Morocci",
-    "iso_code":"MAR",
-    "year":2303,
-    "value":0.566,
-    "owid_region":"Africa",
-    "title":"gfgfdg",
-    "description":"gdgfd fdgf",
-    "rescaled":7.9,
-    "severity":"ORANGE",
-    "risk_level":"No Data"
-
-
-
-
-
-
-  },
-  "gender_equality_index":{
-
-
-"country":"India",
-"iso_code":"ghhg",
-"score":"76",
-"country_url":"https://fghgdhgdhg",
-"year":2303,
-"severity":"ORANGE",
-"risk_level":"ORANGE",
-"rescaled":7.9
-
-
-
-
-
-
-
-  },
-
-
-
-  "sources":[
-    "https://hvhjhfjfjfjj",
-
-    "https://hvhjhfjfjfjj"
-  ],
-  "overall_severity":"ORANGE"
-},
-"sources":[
-  "https://hvhjhfjfjfjj",
-  "https://hvhjhfjfjfjj",
-  "https://hvhjhfjfjfjj"
-
-],
-
-"overall_severity":"ORANGE"
-
-}
-],
-
-"errors":"null",
-"overall_severity":"ORANGE",
-"overall_risk_level":"Medium Risk"
-
   }
+
+
+
+
+
+
+
+
+
 ]

@@ -2,6 +2,7 @@
 import React from "react";
 import SeverityDot from "../Common/SeverityDot";
 import { capitalizeWords } from "../Common/Utils";
+import PDFUploader from "../Common/PDFUploader";
 
 const isValid = (val) => {
   if (val === null || val === undefined) return false;
@@ -44,11 +45,13 @@ export default function CustomerAdvanceRenderer({
           <SeverityDot level={content.overall_severity} />
           {capitalizeWords(content.category)}
         </span>
+
         <span>{isCatOpen ? "▲" : "▼"}</span>
       </button>
 
       {isCatOpen && (
         <div className="p-4 space-y-5">
+          <PDFUploader category={content.category} />
           {content.results.map((result, rIndex) => {
             return (
               <div key={rIndex} className="space-y-4">

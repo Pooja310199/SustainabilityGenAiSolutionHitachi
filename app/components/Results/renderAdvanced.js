@@ -1,279 +1,463 @@
+
+
+// "use client";
+// import React from "react";
+// import SeverityDot from "../Common/SeverityDot";
+// import { getCategoryColor } from "../Common/Utils";
+
+// export function renderAdvanced({
+//   data,
+//   countryName,
+//   expandedAdvSections,
+//   setExpandedAdvSections,
+// }) {
+//   if (!data || !Array.isArray(data)) return null;
+
+//   // ✅ CLEAN DATA
+//   const cleanedData = data
+//     .map((cat) => {
+//       if (!cat || !Array.isArray(cat.results)) return null;
+
+//       const validResults = cat.results.filter((r) => {
+//         if (!r) return false;
+
+//         const hasValidMetrics =
+//           r.metrics &&
+//           Object.values(r.metrics).some((v) => {
+//             if (!v) return false;
+
+//             if (typeof v === "object") {
+//               return Object.values(v).some(
+//                 (val) =>
+//                   val !== null &&
+//                   val !== "N/A" &&
+//                   !(Array.isArray(val) && val.length === 0)
+//               );
+//             }
+
+//             return v !== "N/A";
+//           });
+
+//         const hasValidAnalysis =
+//           r.analysis &&
+//           Object.values(r.analysis).some(
+//             (v) => v && !(Array.isArray(v) && v.length === 0)
+//           );
+
+//         const hasSources = r.sources && r.sources.length > 0;
+
+//         return hasValidMetrics || hasValidAnalysis || hasSources;
+//       });
+
+//       return {
+//         ...cat,
+//         category: (cat.category || "Unknown").trim(),
+//         results: validResults,
+//       };
+//     })
+//     .filter((cat) => cat && cat.results.length > 0);
+
+//   return (
+
+//     <div className="space-y-6">
+//       {cleanedData.map((categoryBlock, i) => {
+//         const sectionKey = `${countryName}_${categoryBlock.category}`;
+//         const isOpen = expandedAdvSections[sectionKey];
+
+//         return (
+//           <div
+//             key={i}
+//             className="rounded-2xl bg-white shadow-md border border-gray-100 overflow-hidden transition hover:shadow-lg"
+//           >
+//             {/* HEADER */}
+//             <div
+//               onClick={() =>
+//                 setExpandedAdvSections((prev) => ({
+//                   ...prev,
+//                   [sectionKey]: !prev[sectionKey],
+//                 }))
+//               }
+//               className="cursor-pointer flex justify-between items-center px-5 py-4"
+//               style={{
+//                 backgroundColor: getCategoryColor(
+//                   categoryBlock.overall_severity
+//                 ),
+//               }}
+//             >
+//               <div className="flex items-center gap-3">
+//                 <SeverityDot level={categoryBlock.overall_severity} />
+//                 <h3 className="font-semibold text-gray-900 text-base">
+//                   {categoryBlock.category}
+//                 </h3>
+//               </div>
+
+//               <span className="text-sm text-gray-600">
+//                 {isOpen ? "▲" : "▼"}
+//               </span>
+//             </div>
+
+//             {/* BODY */}
+//             {isOpen && (
+//               <div className="p-5 space-y-4 bg-gray-50">
+//                 {categoryBlock.results.map((result, rIdx) => {
+//                   const title =
+//                     result.category ||
+//                     result.sub_category ||
+//                     "Unnamed Section";
+
+//                   const hasMetrics =
+//                     result.metrics &&
+//                     Object.keys(result.metrics).length > 0;
+
+//                   const hasAnalysis =
+//                     result.analysis &&
+//                     Object.keys(result.analysis).length > 0;
+
+//                   const hasSources =
+//                     result.sources && result.sources.length > 0;
+
+//                   if (!hasMetrics && !hasAnalysis && !hasSources) {
+//                     return null;
+//                   }
+
+//                   return (
+//                     <div
+//                       key={rIdx}
+//                       className="rounded-xl border border-gray-100 p-4 bg-white hover:shadow-sm transition"
+//                     >
+//                       {/* TITLE */}
+//                       <h4 className="font-semibold text-gray-800 text-sm mb-3">
+//                         {title}
+//                       </h4>
+
+//                       {/* METRICS */}
+//                       {hasMetrics && (
+//                         <div className="grid grid-cols-2 gap-3 text-sm mb-3">
+//                           {Object.entries(result.metrics).map(
+//                             ([key, value]) => {
+//                               if (
+//                                 value === null ||
+//                                 value === undefined ||
+//                                 value === "N/A"
+//                               )
+//                                 return null;
+
+//                               if (typeof value === "object") {
+//                                 if (Object.keys(value).length === 0)
+//                                   return null;
+
+//                                 return (
+//                                   <div
+//                                     key={key}
+//                                     className="col-span-2 bg-gray-50 rounded-lg p-3 border"
+//                                   >
+//                                     <p className="text-xs text-gray-500 capitalize mb-1">
+//                                       {key.replace(/_/g, " ")}
+//                                     </p>
+
+//                                     <div className="space-y-1 text-xs">
+//                                       {Object.entries(value).map(
+//                                         ([k, v]) => {
+//                                           if (
+//                                             v === null ||
+//                                             v === undefined ||
+//                                             v === "N/A"
+//                                           )
+//                                             return null;
+
+//                                           return (
+//                                             <p key={k}>
+//                                               <span className="text-gray-500">
+//                                                 {k}:
+//                                               </span>{" "}
+//                                               <span className="text-gray-800">
+//                                                 {typeof v === "object"
+//                                                   ? JSON.stringify(v)
+//                                                   : String(v)}
+//                                               </span>
+//                                             </p>
+//                                           );
+//                                         }
+//                                       )}
+//                                     </div>
+//                                   </div>
+//                                 );
+//                               }
+
+//                               return (
+//                                 <div
+//                                   key={key}
+//                                   className="bg-gray-50 rounded-lg p-3 border"
+//                                 >
+//                                   <p className="text-xs text-gray-500 capitalize">
+//                                     {key.replace(/_/g, " ")}
+//                                   </p>
+//                                   <p className="font-medium text-gray-800">
+//                                     {String(value)}
+//                                   </p>
+//                                 </div>
+//                               );
+//                             }
+//                           )}
+//                         </div>
+//                       )}
+
+//                       {/* ANALYSIS */}
+//                       {hasAnalysis && (
+//                         <div className="text-sm mb-3">
+//                           <p className="font-medium text-gray-700 mb-1">
+//                             Analysis
+//                           </p>
+//                           <div className="bg-gray-100 p-3 rounded-lg text-gray-700 text-xs leading-relaxed overflow-x-auto">
+//                             {JSON.stringify(result.analysis, null, 2)}
+//                           </div>
+//                         </div>
+//                       )}
+
+//                       {/* SOURCES */}
+//                       {hasSources && (
+//                         <div className="text-sm mb-2">
+//                           <p className="font-medium text-gray-700 mb-1">
+//                             Sources
+//                           </p>
+//                           <ul className="list-disc ml-5 text-blue-500 text-xs space-y-1">
+//                             {result.sources.map((src, i) => (
+//                               <li key={i}>
+//                                 <a
+//                                   href={src}
+//                                   target="_blank"
+//                                   rel="noreferrer"
+//                                   className="hover:underline"
+//                                 >
+//                                   {src}
+//                                 </a>
+//                               </li>
+//                             ))}
+//                           </ul>
+//                         </div>
+//                       )}
+
+//                       {/* FOOTER */}
+//                       <div className="text-xs text-gray-400 mt-2 border-t pt-2">
+//                         Severity:{" "}
+//                         <span className="font-medium">
+//                           {result.overall_severity || "N/A"}
+//                         </span>{" "}
+//                         • Risk:{" "}
+//                         <span className="font-medium">
+//                           {result.overall_risk_level || "N/A"}
+//                         </span>
+//                       </div>
+//                     </div>
+//                   );
+//                 })}
+//               </div>
+//             )}
+//           </div>
+//         );
+//       })}
+//     </div>
+
+//   );
+// }
+
+
+
+"use client";
+
+import React from "react";
 import SeverityDot from "../Common/SeverityDot";
-import { capitalizeWords, getCategoryColor } from "../Common/Utils";
+import { getCategoryColor } from "../Common/Utils";
 
-export function renderAdvanced({
-  data,
-  countryName,
-  expandedAdvSections,
-  setExpandedAdvSections,
-  expandedQueries,
-  setExpandedQueries,
-}) {
-  if (!Array.isArray(data)) return null;
+/* ---------------------------------- */
+/* HELPERS */
+/* ---------------------------------- */
 
-  const toggle = (setter, key) =>
-    setter((prev) => ({ ...prev, [key]: !prev[key] }));
+const isEmptyValue = (value) => {
+  if (
+    value === null ||
+    value === undefined ||
+    value === "" ||
+    value === "N/A"
+  ) {
+    return true;
+  }
 
-  const categoryKey = `${countryName}_advanced_main`;
+  if (Array.isArray(value) && value.length === 0) {
+    return true;
+  }
+
+  if (
+    typeof value === "object" &&
+    !Array.isArray(value) &&
+    Object.keys(value).length === 0
+  ) {
+    return true;
+  }
+
+  return false;
+};
+
+const formatKey = (key) =>
+  key
+    .replace(/_/g, " ")
+    .replace(/\b\w/g, (c) => c.toUpperCase());
+
+/* ---------------------------------- */
+/* TABLE DETECTION */
+/* ---------------------------------- */
+
+const isTableData = (arr) => {
+  if (!Array.isArray(arr)) return false;
+  if (arr.length === 0) return false;
+
+  return arr.every(
+    (item) =>
+      typeof item === "object" &&
+      item !== null &&
+      !Array.isArray(item)
+  );
+};
+
+/* ---------------------------------- */
+/* TABLE RENDER */
+/* ---------------------------------- */
+
+const RenderTable = ({ data }) => {
+  if (!data?.length) return null;
+
+  const headers = [
+    ...new Set(data.flatMap((obj) => Object.keys(obj))),
+  ];
 
   return (
-    <div style={{ marginTop: "20px" }}>
-      {/* Advanced Main Header */}
-      <div
-        onClick={() => toggle(setExpandedAdvSections, categoryKey)}
-        style={{
-          cursor: "pointer",
-          fontWeight: "700",
-          backgroundColor: "#e5e7eb",
-          padding: "10px",
-          borderRadius: "8px",
-          marginBottom: "10px",
-          display: "flex",
-          justifyContent: "space-between",
-        }}
-      >
-        <span> {data[0]?.category || "Advanced"}</span>
-        <span>{expandedAdvSections[categoryKey] ? "▲" : "▼"}</span>
-      </div>
-
-      {expandedAdvSections[categoryKey] && (
-        <div style={{ marginLeft: "10px" }}>
-          {data[0]?.results?.map((sub, idx) => {
-            const subKey = `${countryName}_${sub.subcategory}_${idx}`;
-            const severityColor = getCategoryColor(sub.overall_severity); // ✅ Correct position
-
-            return (
-              <div
-                key={idx}
-                style={{
-                  border: "1px solid #ddd",
-                  background: "white",
-                  borderRadius: "8px",
-                  marginBottom: "12px",
-                }}
+    <div className="overflow-auto rounded-xl border border-gray-200">
+      <table className="min-w-full text-xs">
+        <thead className="bg-gray-100">
+          <tr>
+            {headers.map((header) => (
+              <th
+                key={header}
+                className="px-3 py-2 text-left font-semibold text-gray-700 whitespace-nowrap"
               >
-                {/* ✅ Subcategory Header */}
-                <div
-                  onClick={() => toggle(setExpandedAdvSections, subKey)}
-                  style={{
-                    padding: "12px 15px",
-                    fontWeight: "600",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    cursor: "pointer",
-                    backgroundColor: severityColor,
-                    borderRadius: "8px 8px 0 0",
-                    alignItems: "center",
-                  }}
+                {formatKey(header)}
+              </th>
+            ))}
+          </tr>
+        </thead>
+
+        <tbody>
+          {data.map((row, idx) => (
+            <tr
+              key={idx}
+              className="border-t hover:bg-gray-50"
+            >
+              {headers.map((header) => (
+                <td
+                  key={header}
+                  className="px-3 py-2 text-gray-900 font-medium whitespace-nowrap"
                 >
-                  <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                    <SeverityDot level={sub.overall_severity} />
-                    {sub.subcategory}
-                  </div>
-                  <span style={{ fontSize: "14px" }}>
-                    {expandedAdvSections[subKey] ? "▲" : "▼"}
-                  </span>
-                </div>
-
-                {expandedAdvSections[subKey] && (
-                  <div style={{ padding: "10px 15px" }}>
-                    {/* Metrics */}
-                    {renderSubcategory(sub, countryName, expandedQueries, setExpandedQueries)}
-
-                    {/* Analysis (always visible) */}
-                    {sub.analysis && (
-                      <div style={{ marginTop: "10px" }}>
-                        {Object.entries(sub.analysis).map(([k, v], i) => (
-                          <div key={i} style={{ marginBottom: "8px", lineHeight: "1.5rem" }}>
-                            <strong>{capitalizeWords(k.replaceAll("_", " "))}:</strong> {v}
-                          </div>
-                        ))}
-                      </div>
-                    )}
-
-                    {/* Sources (collapsible only) */}
-                    {Array.isArray(sub.sources) && sub.sources.length > 0 && (
-                      <div style={{ marginTop: "10px" }}>
-                        {renderSources(
-                          sub.sources,
-                          countryName,
-                          sub.subcategory,
-                          idx,
-                          expandedQueries,
-                          setExpandedQueries
-                        )}
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-      )}
+                  {String(row[header] ?? "-")}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
-}
+};
 
-function renderSubcategory(sub, countryName, expandedQueries, setExpandedQueries) {
-  const metrics = sub.metrics || {};
-  const scores = metrics.scores || {};
-  const scoreKeys = Object.keys(scores);
+/* ---------------------------------- */
+/* RECURSIVE RENDER */
+/* ---------------------------------- */
 
+const RenderValue = ({ value, depth = 0 }) => {
+  if (isEmptyValue(value)) return null;
 
-  // ✅ CASE 1: RSF style (no country dropdown, keep Score and Rank always visible)
-  if (scoreKeys.length === 0 && metrics.score) {
-    const contextKey = `${countryName}_${sub.subcategory}_contexts`;
-    const overallSeverity = metrics.overall_severity || "ORANGE";
+  /* STRING / NUMBER / BOOLEAN */
+  if (
+    typeof value === "string" ||
+    typeof value === "number" ||
+    typeof value === "boolean"
+  ) {
+    return (
+      <span className="text-gray-900 font-medium break-words">
+        {String(value)}
+      </span>
+    );
+  }
+
+  /* ARRAY */
+  if (Array.isArray(value)) {
+    if (isTableData(value)) {
+      return <RenderTable data={value} />;
+    }
 
     return (
-      <div
-        style={{
-          marginTop: "10px",
-          background: "white",
-          border: "1px solid #ddd",
-          borderRadius: "8px",
-          padding: "10px 14px",
-        }}
-      >
-        {/* Header Row */}
-        <div
-          style={{
-            fontWeight: "700",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            marginBottom: "8px",
-          }}
-        >
-
-        </div>
-
-        {/* ✅ Score and Rank (always visible) */}
-        <div style={{ lineHeight: "1.6rem", marginBottom: "10px" }}>
-          <div>
-            <SeverityDot level={metrics.score.severity} />
-            <strong>Score:</strong> {metrics.score.original_value}
-          </div>
-
-          <div>
-            <SeverityDot level={metrics.rank.severity} />
-            <strong>Rank:</strong> {metrics.rank.original_value}
-          </div>
-        </div>
-
-        {/* ✅ Previous year details (optional) */}
-        {(metrics.score_previous_year || metrics.rank_previous_year) && (
+      <div className="space-y-2">
+        {value.map((item, idx) => (
           <div
-            style={{
-              marginBottom: "10px",
-              fontSize: "14px",
-              color: "#444",
-              display: "flex",
-              gap: "12px",
-            }}
+            key={idx}
+            className="rounded-xl border border-gray-200 bg-white p-3"
           >
-            {metrics.score_previous_year && (
-              <span>
-                <strong>Prev Score:</strong> {metrics.score_previous_year}
-              </span>
-            )}
-            {metrics.rank_previous_year && (
-              <span>
-                <strong>Prev Rank:</strong> {metrics.rank_previous_year}
-              </span>
-            )}
+            <RenderValue
+              value={item}
+              depth={depth + 1}
+            />
           </div>
-        )}
-
-        {/* ✅ Context Details (collapsible) */}
-        {metrics.contexts && (
-          <div style={{ marginTop: "10px" }}>
-            <div
-              onClick={() =>
-                setExpandedQueries((prev) => ({
-                  ...prev,
-                  [contextKey]: !prev[contextKey],
-                }))
-              }
-              style={{
-                cursor: "pointer",
-                fontWeight: "600",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <span>Context Details</span>
-              <span>{expandedQueries[contextKey] ? "▲" : "▼"}</span>
-            </div>
-
-            {expandedQueries[contextKey] && (
-              <div
-                style={{
-                  marginTop: "8px",
-                  marginLeft: "8px",
-                  lineHeight: "1.6rem",
-                }}
-              >
-                {Object.entries(metrics.contexts).map(([ctxKey, ctx], i) => (
-                  <div
-                    key={i}
-                    style={{
-                      marginBottom: "6px",
-                      borderLeft: "3px solid #ddd",
-                      paddingLeft: "8px",
-                    }}
-                  >
-                    <SeverityDot level={ctx.severity} />{" "}
-                    <strong>{capitalizeWords(ctxKey.replaceAll("_", " "))}:</strong>{" "}
-                    {ctx.original_value} — {ctx.risk_level}
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        )}
+        ))}
       </div>
     );
   }
 
-  // ✅ CASE 2: V-Dem style (no queries, but still a score)
-  if (
-    scoreKeys.length > 0 &&
-    !Object.values(scores)[0]?.queries
-  ) {
+  /* OBJECT */
+  if (typeof value === "object") {
     return (
-      <div style={{ padding: "10px 15px" }}>
-        {scoreKeys.map((key, i) => {
-          const m = scores[key];
+      <div className="space-y-3">
+        {Object.entries(value).map(([k, v]) => {
+          if (isEmptyValue(v)) return null;
+
+          const isSeverity =
+            k.toLowerCase().includes("severity");
+
+          const isRisk =
+            k.toLowerCase().includes("risk");
 
           return (
             <div
-              key={i}
-              style={{
-                marginBottom: "10px",
-                display: "flex",
-                alignItems: "center",
-                gap: "6px",
-                lineHeight: "1.4rem",
-              }}
+              key={k}
+              className="rounded-xl border border-gray-200 bg-white p-3"
             >
-              <SeverityDot level={m.severity} />
-              <span>
-                <strong>
-                  {capitalizeWords(
-                    key.replaceAll("_", " ")
+              <div className="flex items-center justify-between mb-2 gap-2 flex-wrap">
+                <p className="text-xs font-bold tracking-wide text-gray-700 uppercase">
+                  {formatKey(k)}
+                </p>
+                {isSeverity &&
+                  typeof v === "string" && (
+                    <div className="flex items-center gap-2">
+                      <SeverityDot level={v} />
+
+                      <span className="text-xs font-semibold text-gray-800">
+                        {v}
+                      </span>
+                    </div>
                   )}
-                </strong>{" "}
-                {m.original_value !== undefined && (
-                  <> – Value: {m.original_value}</>
-                )}
-                {/* {m.rescaled !== undefined && (
-                  <> – Rescaled: {m.rescaled}</>
-                )} */}
-                {m.risk_level && <> – Risk: {m.risk_level}</>}
-              </span>
+
+                {isRisk &&
+                  typeof v === "string" && (
+                    <span className="px-2 py-1 rounded-full text-[11px] font-semibold bg-gray-200 text-gray-800">
+                      {v}
+                    </span>
+                  )}
+              </div>
+
+              <div className="text-sm">
+                <RenderValue
+                  value={v}
+                  depth={depth + 1}
+                />
+              </div>
             </div>
           );
         })}
@@ -281,188 +465,208 @@ function renderSubcategory(sub, countryName, expandedQueries, setExpandedQueries
     );
   }
 
+  return null;
+};
 
-  // ✅ CASE 3: Internet Freedom (keep only Scores dropdown, add bold overall score, no color dot)
-  if (scoreKeys.length > 0 && Object.values(scores)[0]?.queries) {
-    const scoresKey = `${countryName}_${sub.subcategory}_scores`;
-    const overallValue = metrics.value;
-    const overallMax = metrics.max_value;
+/* ---------------------------------- */
+/* MAIN */
+/* ---------------------------------- */
 
-    return (
-      <div style={{ marginTop: "10px" }}>
-        {/* Collapsible Scores section */}
-        <div
-          onClick={() =>
-            setExpandedQueries((prev) => ({
-              ...prev,
-              [scoresKey]: !prev[scoresKey],
-            }))
-          }
-          style={{
-            cursor: "pointer",
-            fontWeight: "600",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            padding: "8px 10px",
-            borderRadius: "6px",
-            background: "#f9fafb",
-            border: "1px solid #ddd",
-            marginBottom: "10px",
-          }}
-        >
-          <span>Scores</span>
-          <span>{expandedQueries[scoresKey] ? "▲" : "▼"}</span>
-        </div>
+export function renderAdvanced({
+  data,
+  countryName,
+  expandedAdvSections,
+  setExpandedAdvSections,
+}) {
+  if (!data || !Array.isArray(data)) return null;
 
-        {/* Expanded Scores section */}
-        {expandedQueries[scoresKey] && (
+  const cleanedData = data
+    .map((cat) => {
+      if (!cat || !Array.isArray(cat.results))
+        return null;
+
+      return {
+        ...cat,
+        category: (cat.category || "Unknown").trim(),
+        results: cat.results.filter(Boolean),
+      };
+    })
+    .filter(
+      (cat) =>
+        cat &&
+        Array.isArray(cat.results) &&
+        cat.results.length > 0
+    );
+
+  return (
+    <div className="space-y-6">
+      {cleanedData.map((categoryBlock, i) => {
+        const sectionKey = `${countryName}_${categoryBlock.category}`;
+
+        const isOpen =
+          expandedAdvSections?.[sectionKey];
+
+        return (
           <div
-            style={{
-              marginLeft: "10px",
-              marginTop: "8px",
-              background: "white",
-              borderRadius: "8px",
-              border: "1px solid #eee",
-              padding: "10px 14px",
-            }}
+            key={i}
+            className="overflow-hidden rounded-3xl border border-gray-300 bg-white shadow-sm"
           >
-            {scoreKeys.map((scoreKey, i) => {
-              const metric = scores[scoreKey];
-              const metricKey = `${countryName}_${sub.subcategory}_${scoreKey}_${i}`;
+            {/* HEADER */}
+            <div
+              onClick={() =>
+                setExpandedAdvSections((prev) => ({
+                  ...prev,
+                  [sectionKey]:
+                    !prev?.[sectionKey],
+                }))
+              }
+              className="cursor-pointer px-6 py-5 flex items-center justify-between transition-all"
+              style={{
+                backgroundColor: getCategoryColor(
+                  categoryBlock.overall_severity
+                ),
+              }}
+            >
+              <div className="flex items-center gap-3">
+                <SeverityDot
+                  level={
+                    categoryBlock.overall_severity
+                  }
+                />
 
-              return (
-                <div
-                  key={i}
-                  style={{
-                    marginBottom: "10px",
-                    borderBottom: "1px solid #eee",
-                    paddingBottom: "6px",
-                  }}
-                >
-                  {/* Each score category header */}
-                  <div
-                    onClick={() =>
-                      setExpandedQueries((prev) => ({
-                        ...prev,
-                        [metricKey]: !prev[metricKey],
-                      }))
+                <div>
+                  <h2 className="font-bold text-gray-900 text-lg">
+                    {categoryBlock.category}
+                  </h2>
+
+                  <p className="text-xs text-gray-700 mt-1">
+                    Risk Level:{" "}
+                    {
+                      categoryBlock.overall_risk_level
                     }
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      fontWeight: "600",
-                      cursor: "pointer",
-                      gap: "8px",
-                    }}
-                  >
-                    <SeverityDot level={metric.severity} />
-                    <span>{metric.name || scoreKey}</span>
-                    <span style={{ marginLeft: "auto" }}>
-                      {expandedQueries[metricKey] ? "▲" : "▼"}
-                    </span>
-                  </div>
+                  </p>
+                </div>
+              </div>
 
-                  {/* Queries for each score */}
-                  {expandedQueries[metricKey] && (
-                    <div style={{ marginLeft: "20px", marginTop: "6px" }}>
-                      {(metric?.queries || []).map((q, j) => (
-                        <div
-                          key={j}
-                          style={{
-                            marginBottom: "8px",
-                            lineHeight: "1.4rem",
-                            paddingLeft: "10px",
-                            borderLeft: "3px solid #ddd",
-                          }}
-                        >
-                          <SeverityDot level={q.severity} />{" "}
-                          <strong>{q.code}</strong> — {q.query}
-                          <div style={{ fontSize: "14px", marginLeft: "18px" }}>
-                            <strong>Score:</strong> {q.value} / {q.max_value},{" "}
-                            <strong>Risk:</strong> {q.risk_level}
+              <div className="text-xl text-gray-700">
+                {isOpen ? "−" : "+"}
+              </div>
+            </div>
+
+            {/* BODY */}
+            {isOpen && (
+              <div className="bg-gray-50 p-5 space-y-5">
+                {categoryBlock.results.map(
+                  (result, idx) => {
+                    const title =
+                      result.category ||
+                      result.sub_category ||
+                      "Unnamed Section";
+
+                    return (
+                      <div
+                        key={idx}
+                        className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm"
+                      >
+                        {/* TITLE */}
+                        <div className="flex items-start justify-between gap-3 mb-5 flex-wrap">
+                          <div>
+                            <div className="flex items-center gap-2 flex-wrap">
+                              <SeverityDot
+                                level={result.overall_severity}
+                              />
+
+                              <h3 className="text-lg font-bold text-gray-950">
+                                {title}
+                              </h3>
+                            </div>
+
+                            <div className="flex gap-2 mt-2 flex-wrap">
+                              {result.overall_severity && (
+                                <span
+                                  className="px-2 py-1 rounded-full text-xs font-semibold"
+                                  style={{
+                                    backgroundColor: getCategoryColor(
+                                      result.overall_severity
+                                    ),
+                                  }}
+                                >
+                                  {result.overall_severity}
+                                </span>
+                              )}
+
+                              {result.overall_risk_level && (
+                                <span className="px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-700">
+                                  {result.overall_risk_level}
+                                </span>
+                              )}
+                            </div>
                           </div>
                         </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
 
-            {/* ✅ Overall Score (bold, no color code) */}
-            {overallValue !== undefined && overallMax !== undefined && (
-              <div
-                style={{
-                  marginTop: "12px",
-                  fontWeight: "700",
-                  fontSize: "15px",
-                }}
-              >
-                Overall Score: {overallValue} / {overallMax}
+                        {/* METRICS */}
+                        {result.metrics && (
+                          <div className="mb-6">
+                            <h4 className="text-sm font-extrabold text-gray-900 mb-3">
+                              Metrics
+                            </h4>
+
+                            <RenderValue
+                              value={result.metrics}
+                            />
+                          </div>
+                        )}
+
+                        {/* ANALYSIS */}
+                        {result.analysis && (
+                          <div className="mb-6">
+                            <h4 className="text-sm font-bold text-gray-800 mb-3">
+                              Analysis
+                            </h4>
+
+                            <RenderValue
+                              value={result.analysis}
+                            />
+                          </div>
+                        )}
+
+                        {/* SOURCES */}
+                        {Array.isArray(
+                          result.sources
+                        ) &&
+                          result.sources.length >
+                          0 && (
+                            <div>
+                              <h4 className="text-sm font-bold text-gray-800 mb-2">
+                                Sources
+                              </h4>
+
+                              <div className="flex flex-col gap-2">
+                                {result.sources.map(
+                                  (src, sIdx) => (
+                                    <a
+                                      key={sIdx}
+                                      href={src}
+                                      target="_blank"
+                                      rel="noreferrer"
+                                      className="text-xs  text-blue-700 font-medium hover:underline break-all"
+                                    >
+                                      {src}
+                                    </a>
+                                  )
+                                )}
+                              </div>
+                            </div>
+                          )}
+                      </div>
+                    );
+                  }
+                )}
               </div>
             )}
           </div>
-        )}
-      </div>
-    );
-  }
-
-
-
-
-
-}
-function renderSources(sources, countryName, subcategory, idx, expandedQueries, setExpandedQueries) {
-  const sourceKey = `${countryName}_${subcategory}_sources_${idx}`;
-  return (
-
-
-    <div style={{ marginTop: "8px" }}>
-      {/* Collapsible Title */}
-      <div
-        onClick={() =>
-          setExpandedQueries((prev) => ({
-            ...prev,
-            [sourceKey]: !prev[sourceKey],
-          }))
-        }
-        style={{
-          cursor: "pointer",
-          fontWeight: "600",
-          display: "flex",
-          alignItems: "center",
-          gap: "6px",
-        }}
-      >
-
-        <span>Sources</span>
-        <span style={{ marginLeft: "4px" }}>
-          {expandedQueries[sourceKey] ? "▲" : "▼"}
-        </span>
-      </div>
-
-      {/* Collapsible List */}
-      {expandedQueries[sourceKey] && (
-        <div style={{ marginTop: "4px", marginLeft: "22px" }}>
-          {sources.map((src, i) => (
-            <div key={i} style={{ marginBottom: "4px" }}>
-              <a
-                href={src}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  color: "#2563eb", // Tailwind blue-600
-                  textDecoration: "underline",
-                  wordBreak: "break-all",
-                }}
-              >
-                {src}
-              </a>
-            </div>
-          ))}
-        </div>
-      )}
+        );
+      })}
     </div>
   );
 }

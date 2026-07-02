@@ -87,12 +87,6 @@ const CountrySection = React.memo(function CountrySection({
 
           {open && (
             <Disclosure.Panel className="p-4">
-              {/* <div className="text-base p-5 text-orange-600 mt-2 text-center font-medium">
-                ⚠️ Note: Even if the majority of categories are low/medium risk,
-                <br />
-                high-risk categories should still be carefully reviewed when
-                determining overall risk of country.
-              </div> */}
               <div className="max-w-xl mx-auto bg-orange-50 border border-orange-200 text-orange-600 text-base p-3 rounded mb-6 text-center">
                 ⚠️ <strong>Note:</strong> Even if the majority of categories are
                 low/medium risk,
@@ -100,7 +94,6 @@ const CountrySection = React.memo(function CountrySection({
                 high-risk categories should still be carefully reviewed when
                 determining overall risk of a country.
               </div>
-
               <div
                 className={`grid gap-4 ${
                   entry.selectedCountries.length === 1
@@ -113,12 +106,6 @@ const CountrySection = React.memo(function CountrySection({
 
                   return (
                     <div key={i} className="min-w-0">
-                      {/* Header INSIDE each grid cell */}
-                      {/* <h2 className="text-sm font-semibold text-gray-700 mb-2">
-                        Results for{" "}
-                        {capitalizeWords(entry.selectedCountries[i])}
-                      </h2> */}
-
                       <Feedback
                         section="Country"
                         entityName={entry.selectedCountries[i]}
@@ -138,56 +125,40 @@ const CountrySection = React.memo(function CountrySection({
                       </h2>
 
                       <SeverityPieChart categories={block} />
-
                       <h2 className="text-lg font-semibold text-gray-500 mt-6 md-2 border-b pb-1">
                         Detailed Categories
                       </h2>
 
-                      {block.map((content, idx) =>
-                        renderCategory({
-                          content,
-                          index: idx,
-                          countryName: entry.selectedCountries[i],
-                          expandedSections,
-                          setExpandedSections,
-                          expandedMetrics,
-                          setExpandedMetrics,
-                          expandedSources,
-                          setExpandedSources,
-                          expandedSubIndicators,
-                          setExpandedSubIndicators,
-                        }),
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
+                      {viewMode === "basic" &&
+                        block.map((content, idx) =>
+                          renderCategory({
+                            content,
+                            index: idx,
+                            countryName: entry.selectedCountries[i],
+                            expandedSections,
+                            setExpandedSections,
+                            expandedMetrics,
+                            setExpandedMetrics,
+                            expandedSources,
+                            setExpandedSources,
+                            expandedSubIndicators,
+                            setExpandedSubIndicators,
+                          }),
+                        )}
 
-              {/* ADVANCED MODE */}
-              {viewMode === "advanced" && (
-                <div className="mt-6">
-                  <div
-                    className={`grid gap-4 ${
-                      entry.selectedCountries.length === 1
-                        ? "grid-cols-1"
-                        : "grid-cols-2"
-                    }`}
-                  >
-                    {entry.selectedCountries.map((country, i) => (
-                      <div key={country}>
-                        {renderAdvanced({
-                          data: entry.advancedData[i],
-                          countryName: country,
+                      {viewMode === "advanced" &&
+                        renderAdvanced({
+                          data: block,
+                          countryName: entry.selectedCountries[i],
                           expandedAdvSections,
                           setExpandedAdvSections,
                           expandedQueries,
                           setExpandedQueries,
                         })}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
+                    </div>
+                  );
+                })}
+              </div>
             </Disclosure.Panel>
           )}
         </div>

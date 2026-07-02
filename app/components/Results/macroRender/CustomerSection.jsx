@@ -84,13 +84,26 @@ const CustomerSection = React.memo(function CustomerSection({
                   {overallPartnerRisk}
                 </div>
               )}
-
+              {/* 
               <span>
                 Partner –
                 <span className="ml-2 text-sm text-gray-600">
                   {allPartners.map((p) => capitalizeWords(p.name)).join(", ")}
                 </span>
-              </span>
+              </span> */}
+
+              <div>
+                <div className="text-sm font-bold text-blue-700 mb-1">
+                  {viewMode === "basic" ? "Basic Results" : "Advanced Results"}
+                </div>
+
+                <span>
+                  Partner –
+                  <span className="ml-2 text-sm text-gray-600">
+                    {allPartners.map((p) => capitalizeWords(p.name)).join(", ")}
+                  </span>
+                </span>
+              </div>
             </div>
 
             <ChevronUpIcon

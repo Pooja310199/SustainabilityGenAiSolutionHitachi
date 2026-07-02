@@ -18,6 +18,7 @@ const EMPTY_RESULTS = {
 
 export default function Page() {
   const [loading, setLoading] = useState(false);
+  const [countryAdvancedLoading, setCountryAdvancedLoading] = useState(false);
   const [viewMode, setViewMode] = useState("basic");
   const [hasSearched, setHasSearched] = useState(false);
 
@@ -218,6 +219,7 @@ export default function Page() {
   // ----------- ADVANCED SEARCH -----------
   // ----------- ADVANCED SEARCH -----------
   const onAdvanceSearch = useCallback(async (formData) => {
+    await onBasicSearch(formData);
     // ✅ CHANGE 2 — abort controller added here too
     if (abortRef.current) abortRef.current.abort();
     abortRef.current = new AbortController();
@@ -240,24 +242,29 @@ export default function Page() {
       const updates = {};
 
       // -------- COUNTRY --------
-      if (selectedCountries.length > 0) {
-        const advanced = (
-          await Promise.all(
-            allPartnerNames.map((name) => fetchCustomerAdvancedFile(name)),
-          )
-        )
-          .flat()
-          .filter(Boolean);
-        updates.countryAdvanced = {
-          macro: "Country",
-          mode: "Advanced",
-          selectedCountries,
-          data: advanced,
-        };
-      } else {
-        updates.countryAdvanced = null;
-      }
 
+      // -------- COUNTRY --------
+      // -------- COUNTRY --------
+      setCountryAdvancedLoading(true);
+
+      try {
+        if (selectedCountries.length > 0) {
+          const advanced = await Promise.all(
+            selectedCountries.map((c) => fetchCountryData(c, "advanced")),
+          );
+
+          updates.countryAdvanced = {
+            macro: "Country",
+            mode: "Advanced",
+            selectedCountries,
+            data: advanced,
+          };
+        } else {
+          updates.countryAdvanced = null;
+        }
+      } finally {
+        setCountryAdvancedLoading(false);
+      }
       // -------- PARTNER --------
       const allPartnerNames = [...suppliers, ...customers, consortiumPartner]
         .map((n) => n?.trim())
@@ -323,6 +330,14 @@ export default function Page() {
           onBasicSearch={onBasicSearch}
           onAdvanceSearch={onAdvanceSearch}
           clearResultsForMacro={clearResultsForMacro}
+          onDocumentAnalysis={(data) => {
+            setHasSearched(true);
+
+            setResultsMap((prev) => ({
+              ...prev,
+              partnerDocument: data,
+            }));
+          }}
         />
       </div>
 
@@ -337,7 +352,11 @@ export default function Page() {
             </div>
           </div>
         ) : (
-          <ResultsPanel resultsMap={resultsMap} viewMode={viewMode} />
+          <ResultsPanel
+            resultsMap={resultsMap}
+            viewMode={viewMode}
+            countryAdvancedLoading={countryAdvancedLoading}
+          />
         )}
 
         {loading && <LoadingOverlay />}
